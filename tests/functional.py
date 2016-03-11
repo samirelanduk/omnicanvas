@@ -20,7 +20,7 @@ class ProduceSvg(unittest.TestCase):
          canvas.width() - 100, canvas.width() - 100,
          line_color="#0000FF"
         )
-        canvas.draw_cirlce(
+        canvas.draw_oval(
          canvas.width() * 0.3, canvas.height() * 0.3,
          canvas.width() * 0.7, canvas.height() * 0.7,
          fill_color="#FF0000"
