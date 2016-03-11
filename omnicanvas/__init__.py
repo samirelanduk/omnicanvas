@@ -36,23 +36,23 @@ class Canvas:
 
 
     def draw_rectangle(self, x, y, width, height, line_width=1,
-     line_color="#000000", line_style="-", fill_color=None, opacity=None):
+     line_color="#000000", line_style="-", fill_color=None, opacity=1):
         pass
 
 
     def draw_polygon(self, *points, line_width=1,
-     line_color="#000000", line_style="-", fill_color=None, opacity=None):
+     line_color="#000000", line_style="-", fill_color=None, opacity=1):
         pass
 
 
     def draw_oval(self, x, y, width, height, line_width=1,
-     line_color="#000000", line_style="-", fill_color=None, opacity=None):
+     line_color="#000000", line_style="-", fill_color=None, opacity=1):
         pass
 
 
     def draw_arc(self, x, y, width, height, start_angle, end_angle,
      connect=None, line_width=1, line_color="#000000", line_style="-",
-      fill_color=None, opacity=None):
+      fill_color=None, opacity=1):
         pass
 
 
