@@ -84,12 +84,45 @@ class Polygon(GenericShape):
 
 
 class Oval(GenericBox, GenericShape):
-    pass
+
+    def __init__(self, *args, **kwargs):
+        GenericBox.__init__(self, *args)
+        GenericShape.__init__(self, **kwargs)
+
+
+    def __repr__(self):
+        return "<%i × %i Oval object at (%i,%i)>" % (
+         self.width, self.height, self.x, self.y
+        )
 
 
 
 class Arc(GenericBox, GenericShape):
-    pass
+
+    def __init__(self, *args, start_angle, end_angle, connect=None, **kwargs):
+        assert start_angle <= 360, "Start angle %i greater than 360" % start_angle
+        assert end_angle <= 360, "End angle %i greater than 360" % end_angle
+
+        self.start_angle = start_angle
+        self.end_angle = end_angle
+        self.connect = connect if connect == "pie" or connect == "direct" else None
+        GenericBox.__init__(self, *args)
+        GenericShape.__init__(self, **kwargs)
+
+
+    def __repr__(self):
+        return "<%i × %i %s Arc object at (%i,%i)>" % (
+         self.width, self.height,
+         "Unclosed" if not self.connect else self.connect,
+         self.x, self.y
+        )
+
+
+    def angle(self):
+        if self.end_angle >= self.start_angle:
+            return self.end_angle - self.start_angle
+        else:
+            return self.end_angle + (360 - self.start_angle)
 
 
 
