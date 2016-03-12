@@ -38,6 +38,15 @@ class ProduceSvg(unittest.TestCase):
         # User saves as SVG
         canvas.save("svg", "test_can_make_svg_file.svg")
 
+        # There is now a file of this name
+        with open("test_can_make_svg_file.svg") as f:
+
+            # It looks sort of right
+            svg = f.read()
+            self.assertIn("Bottom-left", svg)
+            self.assertIn("Top-right", svg)
+            self.assertIn("<svg>", svg)
+
 
 if __name__ == "__main__":
     unittest.main()

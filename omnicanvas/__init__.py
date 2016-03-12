@@ -1,4 +1,5 @@
 from . import graphics
+from . import svg
 
 class Canvas:
 
@@ -73,3 +74,14 @@ class Canvas:
             font_size = max_font_size
         self.draw_text(*args, font_size=font_size, **kwargs)
         return self.graphics[-1]
+
+
+    def render(self, file_type):
+        if file_type.lower() == "svg":
+            return svg.canvas_to_svg(self)
+
+
+    def save(self, file_type, file_name):
+        file_contents = self.render(file_type=file_type)
+        with open(file_name, "w") as f:
+            f.write(file_contents)
