@@ -67,16 +67,30 @@ class TestRectangleGraphic(GraphicsUnitTest):
 
 
 
+class TestPolygonGraphic(GraphicsUnitTest):
+
+    def test_path_points_format_correctly(self):
+        polygon = Polygon(10,10, 10,30, 34,45, 100,101, 19,200)
+        self.check_valid_shape(polygon)
+        self.assertIsInstance(polygon.points, list)
+        for point in polygon.points:
+            self.assertIsInstance(point, tuple)
+            self.assertEqual(len(point), 2)
+
+
+
 class TestValidRepr(GraphicsUnitTest):
 
     def test_reprs_ok(self):
         line = Line(1,1,2,2)
         path = Path(1,1,2,2,3,3)
         rectangle = Rectangle(1,1,2,2)
+        polygon = Polygon(1,1,2,2,3,3,4,4)
 
         self.assertRegex(line.__repr__(), r"<Line object: (.+,.+) to (.+,.+)>")
         self.assertRegex(path.__repr__(), r"<Path object: .+ points>")
         self.assertRegex(rectangle.__repr__(), r"<.+ × .+ Rectangle object at (.+,.+)>")
+        self.assertRegex(polygon.__repr__(), r"<Polygon object: .+ vertices>")
 
 
 

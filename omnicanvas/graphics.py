@@ -71,7 +71,15 @@ class Rectangle(GenericBox, GenericShape):
 
 
 class Polygon(GenericShape):
-    pass
+
+    def __init__(self, *points, **kwargs):
+        assert len(points) % 2 == 0, "An even number of points must be supplied"
+        self.points = list(zip(points[::2], points[1::2]))
+        GenericShape.__init__(self, **kwargs)
+
+
+    def __repr__(self):
+        return "<Polygon object: %s vertices>" % len(self.points)
 
 
 
