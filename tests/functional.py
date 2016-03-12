@@ -25,6 +25,11 @@ class ProduceSvg(unittest.TestCase):
          canvas.width() * 0.7, canvas.height() * 0.7,
          fill_color="#FF0000"
         )
+        canvas.draw_text(600, 100, "Top-right")
+        canvas.draw_text_boundary(
+         0, canvas.height() - 20, width=300, height=20, text="Bottom-left"
+        )
+        self.assertEqual(len(canvas.graphics), 5)
 
         # User resizes the canvas
         canvas.resize(width=900, height=600)
