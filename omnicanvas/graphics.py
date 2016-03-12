@@ -7,6 +7,10 @@ class GenericBox:
         self.height = height
 
 
+    def center(self):
+        return (self.x + self.width / 2, self.y + self.height / 2)
+
+
 
 class GenericLine:
 
@@ -91,8 +95,8 @@ class Oval(GenericBox, GenericShape):
 
 
     def __repr__(self):
-        return "<%i × %i Oval object at (%i,%i)>" % (
-         self.width, self.height, self.x, self.y
+        return "<%i × %i Oval object centered at %s>" % (
+         self.width, self.height, str(self.center()).replace(" ", "")
         )
 
 

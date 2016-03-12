@@ -10,6 +10,10 @@ class GraphicsUnitTest(unittest.TestCase):
         box.y + 1
         box.width + 1
         box.height + 1
+        self.assertIsInstance(box.center(), tuple)
+        self.assertEqual(len(box.center()), 2)
+        self.assertGreaterEqual(box.center()[0], box.x)
+        self.assertGreaterEqual(box.center()[1], box.y)
 
 
     def check_valid_line(self, line):
@@ -134,7 +138,7 @@ class TestValidRepr(GraphicsUnitTest):
         self.assertRegex(path.__repr__(), r"<Path object: .+ points>")
         self.assertRegex(rectangle.__repr__(), r"<.+ × .+ Rectangle object at (.+,.+)>")
         self.assertRegex(polygon.__repr__(), r"<Polygon object: .+ vertices>")
-        self.assertRegex(oval.__repr__(), r"<.+ × .+ Oval object at (.+,.+)>")
+        self.assertRegex(oval.__repr__(), r"<.+ × .+ Oval object centered at (.+,.+)>")
         self.assertRegex(arc.__repr__(), r"<.+ × .+ .+ Arc object at (.+,.+)>")
         self.assertRegex(text.__repr__(), r'<".+" Text object at (.+,.+)>')
 
