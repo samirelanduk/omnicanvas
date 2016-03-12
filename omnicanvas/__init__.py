@@ -67,7 +67,9 @@ class Canvas:
         return self.graphics[-1]
 
 
-    def draw_text_boundary(self, x, y, width, height, text, max_font_size=None,
-     font_family="Tahoma", vertical_align="center", horizontal_align="center"):
-        self.graphics.append(None) # To add later
+    def draw_text_boundary(self, *args, width, height, max_font_size=None, **kwargs):
+        font_size = height
+        if max_font_size and font_size > max_font_size:
+            font_size = max_font_size
+        self.draw_text(*args, font_size=font_size, **kwargs)
         return self.graphics[-1]
