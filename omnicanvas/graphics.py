@@ -11,6 +11,18 @@ class GenericBox:
         return (self.x + self.width / 2, self.y + self.height / 2)
 
 
+    def scale(self, x, y):
+        self.x *= x
+        self.y *= y
+        self.width *= x
+        self.height *= y
+
+
+    def translate(self, x, y):
+        self.x += x
+        self.y += y
+
+
 
 class GenericLine:
 
@@ -46,6 +58,20 @@ class Line(GenericLine):
         )
 
 
+    def scale(self, x, y):
+        self.x1 *= x
+        self.y1 *= y
+        self.x2 *= x
+        self.y2 *= y
+
+
+    def translate(self, x, y):
+        self.x1 += x
+        self.y1 += y
+        self.x2 += x
+        self.y2 += y
+
+
 
 class Path(GenericLine):
 
@@ -57,6 +83,14 @@ class Path(GenericLine):
 
     def __repr__(self):
         return "<Path object: %s points>" % len(self.points)
+
+
+    def scale(self, x, y):
+        self.points = [(x_ * x, y_ * y) for (x_, y_) in self.points]
+
+
+    def translate(self, x, y):
+        self.points = [(x_ + x, y_ + y) for (x_, y_) in self.points]
 
 
 
@@ -74,11 +108,10 @@ class Rectangle(GenericBox, GenericShape):
 
 
 
-class Polygon(GenericShape):
+class Polygon(Path, GenericShape):
 
     def __init__(self, *points, **kwargs):
-        assert len(points) % 2 == 0, "An even number of points must be supplied"
-        self.points = list(zip(points[::2], points[1::2]))
+        Path.__init__(self, *points)
         GenericShape.__init__(self, **kwargs)
 
 
@@ -145,3 +178,13 @@ class Text:
 
     def __repr__(self):
         return '<"%s" Text object at (%i,%i)>' % (self.text, self.x, self.y)
+
+
+    def scale(self, x, y):
+        self.x *= x
+        self.y *= y
+
+
+    def translate(self, x, y):
+        self.x += x
+        self.y += y

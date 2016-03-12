@@ -27,34 +27,47 @@ class Canvas:
         return self._height
 
 
+    def resize(self, width, height):
+        for graphic in self.graphics:
+            graphic.scale(width / self._width, height / self._height)
+
+
     def draw_line(self, *args, **kwargs):
         self.graphics.append(graphics.Line(*args, **kwargs))
+        return self.graphics[-1]
 
 
     def draw_path(self, *args, **kwargs):
         self.graphics.append(graphics.Path(*args, **kwargs))
+        return self.graphics[-1]
 
 
     def draw_rectangle(self, *args, **kwargs):
         self.graphics.append(graphics.Rectangle(*args, **kwargs))
+        return self.graphics[-1]
 
 
     def draw_polygon(self, *args, **kwargs):
         self.graphics.append(graphics.Rectangle(*args, **kwargs))
+        return self.graphics[-1]
 
 
     def draw_oval(self, *args, **kwargs):
         self.graphics.append(graphics.Oval(*args, **kwargs))
+        return self.graphics[-1]
 
 
     def draw_arc(self, *args, **kwargs):
         self.graphics.append(graphics.Arc(*args, **kwargs))
+        return self.graphics[-1]
 
 
     def draw_text(self, *args, **kwargs):
         self.graphics.append(graphics.Text(*args, **kwargs))
+        return self.graphics[-1]
 
 
     def draw_text_boundary(self, x, y, width, height, text, max_font_size=None,
      font_family="Tahoma", vertical_align="center", horizontal_align="center"):
         self.graphics.append(None) # To add later
+        return self.graphics[-1]

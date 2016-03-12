@@ -45,6 +45,24 @@ class TestLineGraphic(GraphicsUnitTest):
         self.check_valid_line(line)
 
 
+    def test_can_resize(self):
+        line = Line(10, 10, 90, 90)
+        line.scale(0.4, 3)
+        self.assertEqual(line.x1, 4)
+        self.assertEqual(line.y1, 30)
+        self.assertEqual(line.x2, 36)
+        self.assertEqual(line.y2, 270)
+
+
+    def test_can_move(self):
+        line = Line(10, 10, 90, 90)
+        line.translate(20, 50)
+        self.assertEqual(line.x1, 30)
+        self.assertEqual(line.y1, 60)
+        self.assertEqual(line.x2, 110)
+        self.assertEqual(line.y2, 140)
+
+
 
 class TestPathGraphic(GraphicsUnitTest):
 
@@ -61,6 +79,18 @@ class TestPathGraphic(GraphicsUnitTest):
         self.assertRaises(AssertionError, lambda: Path(1, 2, 3, 4, 5))
 
 
+    def test_can_resize(self):
+        path = Path(10,10, 10,30, 34,45, 100,101, 19,200)
+        path.scale(8, 0.5)
+        self.assertEqual(path.points, [(80,5),(80,15),(272,22.5),(800,50.5),(152,100)])
+
+
+    def test_can_move(self):
+        path = Path(10,10, 10,30, 34,45, 100,101, 19,200)
+        path.translate(8, -200)
+        self.assertEqual(path.points, [(18,-190),(18,-170),(42,-155),(108,-99),(27,0)])
+
+
 
 class TestRectangleGraphic(GraphicsUnitTest):
 
@@ -68,6 +98,24 @@ class TestRectangleGraphic(GraphicsUnitTest):
         rectangle = Rectangle(1, 1, 10, 10)
         self.check_valid_box(rectangle)
         self.check_valid_shape(rectangle)
+
+
+    def test_can_resize(self):
+        rectangle = Rectangle(1, 1, 10, 10)
+        rectangle.scale(3, 0.25)
+        self.assertEqual(rectangle.x, 3)
+        self.assertEqual(rectangle.y, 0.25)
+        self.assertEqual(rectangle.width, 30)
+        self.assertEqual(rectangle.height, 2.5)
+
+
+    def test_can_move(self):
+        rectangle = Rectangle(1, 1, 10, 10)
+        rectangle.translate(30, -25)
+        self.assertEqual(rectangle.x, 31)
+        self.assertEqual(rectangle.y, -24)
+        self.assertEqual(rectangle.width, 10)
+        self.assertEqual(rectangle.height, 10)
 
 
 
@@ -120,6 +168,21 @@ class TestTextGraphic(GraphicsUnitTest):
 
     def test_can_create_text(self):
         text = Text(20, 30, "Test")
+
+
+    def test_can_resize(self):
+        text = Text(20, 30, "Test")
+        text.scale(4, 4)
+        self.assertEqual(text.x, 80)
+        self.assertEqual(text.y, 120)
+
+
+    def test_can_move(self):
+        text = Text(20, 30, "Test")
+        text.translate(4, 4)
+        self.assertEqual(text.x, 24)
+        self.assertEqual(text.y, 34)
+
 
 
 

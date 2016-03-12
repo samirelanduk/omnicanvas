@@ -30,6 +30,7 @@ class ProduceSvg(unittest.TestCase):
          0, canvas.height() - 20, width=300, height=20, text="Bottom-left"
         )
         self.assertEqual(len(canvas.graphics), 5)
+        print(canvas.graphics)
 
         # User resizes the canvas
         canvas.resize(width=900, height=600)
