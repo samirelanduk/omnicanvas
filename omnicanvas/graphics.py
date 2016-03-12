@@ -126,5 +126,18 @@ class Arc(GenericBox, GenericShape):
 
 
 
-class Text(GenericBox):
-    pass
+class Text:
+
+    def __init__(self, x, y, text, font_family="Tahoma", font_size=24,
+     vertical_align="center", horizontal_align="center"):
+        self.x = x
+        self.y = y
+        self.text = str(text)
+        self.font_family = font_family
+        self.font_size = font_size
+        self.vertical_align = vertical_align
+        self.horizontal_align = horizontal_align
+
+
+    def __repr__(self):
+        return '<"%s" Text object at (%i,%i)>' % (self.text, self.x, self.y)

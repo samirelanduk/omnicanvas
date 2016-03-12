@@ -112,6 +112,13 @@ class TestArcGraphic(GraphicsUnitTest):
 
 
 
+class TestTextGraphic(GraphicsUnitTest):
+
+    def test_can_create_text(self):
+        text = Text(20, 30, "Test")
+
+
+
 class TestValidRepr(GraphicsUnitTest):
 
     def test_reprs_ok(self):
@@ -121,13 +128,15 @@ class TestValidRepr(GraphicsUnitTest):
         polygon = Polygon(1,1,2,2,3,3,4,4)
         oval = Oval(1,1,2,2)
         arc = Arc(10, 10, 40, 80, start_angle=35, end_angle=25)
-        
+        text = Text(20, 30, "Test")
+
         self.assertRegex(line.__repr__(), r"<Line object: (.+,.+) to (.+,.+)>")
         self.assertRegex(path.__repr__(), r"<Path object: .+ points>")
         self.assertRegex(rectangle.__repr__(), r"<.+ × .+ Rectangle object at (.+,.+)>")
         self.assertRegex(polygon.__repr__(), r"<Polygon object: .+ vertices>")
         self.assertRegex(oval.__repr__(), r"<.+ × .+ Oval object at (.+,.+)>")
         self.assertRegex(arc.__repr__(), r"<.+ × .+ .+ Arc object at (.+,.+)>")
+        self.assertRegex(text.__repr__(), r'<".+" Text object at (.+,.+)>')
 
 
 
