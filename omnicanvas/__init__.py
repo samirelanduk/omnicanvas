@@ -40,8 +40,8 @@ class Canvas:
         return self.graphics[-1]
 
 
-    def draw_path(self, *args, **kwargs):
-        self.graphics.append(graphics.Path(*args, **kwargs))
+    def draw_polyline(self, *args, **kwargs):
+        self.graphics.append(graphics.Polyline(*args, **kwargs))
         return self.graphics[-1]
 
 

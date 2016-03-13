@@ -11,6 +11,13 @@ class TestGraphicsCanProduceSvg(unittest.TestCase):
         svg = line.to_svg()
 
 
+    def test_polylines_can_produce_svg(self):
+        polyline = Polyline(
+         10, 10, 90, 90, 100, 100, line_width=0.5, line_style="..", line_color="#00FF00"
+        )
+        svg = polyline.to_svg()
+
+
 
 if __name__ == "__main__":
     unittest.main()

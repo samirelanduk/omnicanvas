@@ -78,7 +78,7 @@ class Line(GenericLine):
 
 
 
-class Path(GenericLine):
+class Polyline(GenericLine):
 
     def __init__(self, *points, **kwargs):
         assert len(points) % 2 == 0, "An even number of points must be supplied"
@@ -87,7 +87,7 @@ class Path(GenericLine):
 
 
     def __repr__(self):
-        return "<Path object: %s points>" % len(self.points)
+        return "<Polyline object: %s points>" % len(self.points)
 
 
     def scale(self, x, y):
@@ -96,6 +96,9 @@ class Path(GenericLine):
 
     def translate(self, x, y):
         self.points = [(x_ + x, y_ + y) for (x_, y_) in self.points]
+
+
+    to_svg = svg.polyline_to_svg
 
 
 
@@ -113,10 +116,10 @@ class Rectangle(GenericBox, GenericShape):
 
 
 
-class Polygon(Path, GenericShape):
+class Polygon(Polyline, GenericShape):
 
     def __init__(self, *points, **kwargs):
-        Path.__init__(self, *points)
+        Polyline.__init__(self, *points)
         GenericShape.__init__(self, **kwargs)
 
 

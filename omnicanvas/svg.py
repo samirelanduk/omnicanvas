@@ -27,6 +27,13 @@ def canvas_to_svg(canvas):
 
 
 def line_to_svg(line):
-    return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s"/>' % (
+    return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" />' % (
      line.x1, line.y1, line.x2, line.y2, line.line_color, line.line_width, get_line_dash(line)
+    )
+
+
+def polyline_to_svg(polyline):
+    return '<polyline points="%s" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" fill="none"/>' % (
+     " ".join(["%.1f,%.1f" %  (x, y) for x, y in polyline.points]),
+     polyline.line_color, polyline.line_width, get_line_dash(polyline)
     )

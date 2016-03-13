@@ -6,7 +6,10 @@ import omnicanvas
 class ProduceSvg(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.canvas = omnicanvas.Canvas(
+         width=700, height=700, background_color="#11BB11"
+        )
+        self.make_grid(self.canvas)
 
 
     def make_grid(self, canvas):
@@ -21,54 +24,60 @@ class ProduceSvg(unittest.TestCase):
             )
 
 
-    def test_can_make_svg_file(self):
-        canvas = omnicanvas.Canvas(width=700, height=700, background_color="#11BB11")
-
-        self.make_grid(canvas)
-        canvas.draw_line(
-         canvas.width() * 0.05, canvas.height() * 0.05,
-         canvas.width() * 0.95, canvas.height() * 0.05,
+    def test_can_make_line_svg_file(self):
+        self.canvas.draw_line(
+         self.canvas.width() * 0.05, self.canvas.height() * 0.05,
+         self.canvas.width() * 0.95, self.canvas.height() * 0.05,
          line_style="--",
          line_width=1,
          line_color="#FF0000"
         )
-        canvas.draw_line(
-         canvas.width() * 0.05, canvas.height() * 0.15,
-         canvas.width() * 0.85, canvas.height() * 0.25,
+        self.canvas.draw_line(
+         self.canvas.width() * 0.05, self.canvas.height() * 0.15,
+         self.canvas.width() * 0.85, self.canvas.height() * 0.25,
          line_style="--",
          line_width=2,
          line_color="#00FF00"
         )
-        canvas.draw_line(
-         canvas.width() * 0.05, canvas.height() * 0.25,
-         canvas.width() * 0.75, canvas.height() * 0.45,
+        self.canvas.draw_line(
+         self.canvas.width() * 0.05, self.canvas.height() * 0.25,
+         self.canvas.width() * 0.75, self.canvas.height() * 0.45,
          line_style="-",
          line_width=3,
          line_color="#0000FF"
         )
-        canvas.draw_line(
-         canvas.width() * 0.15, canvas.height() * 0.95,
-         canvas.width() * 0.15, canvas.height() * 0.5,
+        self.canvas.draw_line(
+         self.canvas.width() * 0.15, self.canvas.height() * 0.95,
+         self.canvas.width() * 0.15, self.canvas.height() * 0.5,
          line_style="-",
          line_width=5,
          line_color="#FF00FF"
         )
-        canvas.draw_line(
-         canvas.width() * 0.25, canvas.height() * 0.95,
-         canvas.width() * 0.25, canvas.height() * 0.7,
+        self.canvas.draw_line(
+         self.canvas.width() * 0.25, self.canvas.height() * 0.95,
+         self.canvas.width() * 0.25, self.canvas.height() * 0.7,
          line_style="..",
          line_width=3,
          line_color="#FFFF00"
         )
-        canvas.draw_line(
-         canvas.width() * 0.35, canvas.height() * 0.95,
-         canvas.width() * 0.35, canvas.height() * 0.9,
+        self.canvas.draw_line(
+         self.canvas.width() * 0.35, self.canvas.height() * 0.95,
+         self.canvas.width() * 0.35, self.canvas.height() * 0.9,
          line_style="-",
          line_width=1,
          line_color="#00FFFF"
         )
+        self.canvas.save("svg", "line_test.svg")
 
-        canvas.save("svg", "line_test.svg")
+
+    def test_can_make_polyline_svg_file(self):
+        self.canvas.draw_polyline(
+         50, 50, 400, 50, 690, 85, 70, 630,
+         line_style="--",
+         line_width=2,
+         line_color="#34944D"
+        )
+        self.canvas.save("svg", "polyline_test.svg")
 
 
 if __name__ == "__main__":
