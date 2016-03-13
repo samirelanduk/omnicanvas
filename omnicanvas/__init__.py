@@ -31,6 +31,8 @@ class Canvas:
     def resize(self, width, height):
         for graphic in self.graphics:
             graphic.scale(width / self._width, height / self._height)
+        self._width = width
+        self._height = height
 
 
     def draw_line(self, *args, **kwargs):

@@ -1,3 +1,5 @@
+from . import svg
+
 class GenericBox:
 
     def __init__(self, x, y, width, height):
@@ -70,6 +72,9 @@ class Line(GenericLine):
         self.y1 += y
         self.x2 += x
         self.y2 += y
+
+
+    to_svg = svg.line_to_svg
 
 
 
