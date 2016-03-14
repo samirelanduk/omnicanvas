@@ -25,6 +25,13 @@ class TestGraphicsCanProduceSvg(unittest.TestCase):
         svg = rectangle.to_svg()
 
 
+    def test_polygons_can_produce_svg(self):
+        polygon = Polygon(
+         10, 10, 90, 90, 100, 100, line_width=0.5, line_style="..", line_color="#00FF00", fill_color="#999999"
+        )
+        svg = polygon.to_svg()
+
+
 
 if __name__ == "__main__":
     unittest.main()

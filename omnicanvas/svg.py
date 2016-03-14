@@ -35,7 +35,7 @@ def line_to_svg(line):
 
 
 def polyline_to_svg(polyline):
-    return '<polyline points="%s" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" fill="none"/>' % (
+    return '<polyline points="%s" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" fill="none" />' % (
      " ".join(["%.1f,%.1f" %  (x, y) for x, y in polyline.points]),
      polyline.line_color, polyline.line_width, get_line_dash(polyline)
     )
@@ -46,4 +46,12 @@ def rectangle_to_svg(rectangle):
      rectangle.x, rectangle.y, rectangle.width, rectangle.height,
      rectangle.line_color, rectangle.line_width, get_line_dash(rectangle),
      rectangle.fill_color if rectangle.fill_color else "none", rectangle.opacity
+    )
+
+
+def polygon_to_svg(polygon):
+    return '<polygon points="%s" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
+     " ".join(["%.1f,%.1f" %  (x, y) for x, y in polygon.points]),
+     polygon.line_color, polygon.line_width, get_line_dash(polygon),
+     polygon.fill_color if polygon.fill_color else "none", polygon.opacity
     )

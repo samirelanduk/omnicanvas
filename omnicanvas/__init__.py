@@ -51,7 +51,7 @@ class Canvas:
 
 
     def draw_polygon(self, *args, **kwargs):
-        self.graphics.append(graphics.Rectangle(*args, **kwargs))
+        self.graphics.append(graphics.Polygon(*args, **kwargs))
         return self.graphics[-1]
 
 

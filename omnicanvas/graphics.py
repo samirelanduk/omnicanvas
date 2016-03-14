@@ -130,6 +130,9 @@ class Polygon(Polyline, GenericShape):
         return "<Polygon object: %s vertices>" % len(self.points)
 
 
+    to_svg = svg.polygon_to_svg
+
+
 
 class Oval(GenericBox, GenericShape):
 
