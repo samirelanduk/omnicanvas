@@ -3,9 +3,11 @@ import math
 SVG_TEMPLATE = "\n".join([
     '<?xml version="1.0" encoding="utf-8"?>',
     '<!-- Generator: OmniCanvas  -->',
-    '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
+    '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" '
+    '"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
     '<svg width="%ipx" height="%ipx" xmlns="http://www.w3.org/2000/svg">',
-    '<rect class="omnicanvas_background" x="0" y="0" width="100%%" height="100%%" fill="%s" />',
+    '<rect class="omnicanvas_background" x="0" y="0" '
+    'width="100%%" height="100%%" fill="%s" />',
     '%s',
     '</svg>'
 ])
@@ -54,4 +56,12 @@ def polygon_to_svg(polygon):
      " ".join(["%.1f,%.1f" %  (x, y) for x, y in polygon.points]),
      polygon.line_color, polygon.line_width, get_line_dash(polygon),
      polygon.fill_color if polygon.fill_color else "none", polygon.opacity
+    )
+
+
+def oval_to_svg(oval):
+    return '<ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
+     oval.center()[0], oval.center()[1], oval.width, oval.height,
+     oval.line_color, oval.line_width, get_line_dash(oval),
+     oval.fill_color if oval.fill_color else "none", oval.opacity
     )

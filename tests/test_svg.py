@@ -32,6 +32,13 @@ class TestGraphicsCanProduceSvg(unittest.TestCase):
         svg = polygon.to_svg()
 
 
+    def test_ovals_can_produce_svg(self):
+        oval = Oval(
+         10, 10, 90, 90, line_width=15, line_style="-", line_color="#0000FF"
+        )
+        svg = oval.to_svg()
+
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -147,6 +147,9 @@ class Oval(GenericBox, GenericShape):
         )
 
 
+    to_svg = svg.oval_to_svg
+
+
 
 class Arc(GenericBox, GenericShape):
 

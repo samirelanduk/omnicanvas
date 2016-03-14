@@ -102,14 +102,10 @@ class ProduceSvg(unittest.TestCase):
          {"x": self.canvas.width() / 2, "y": self.canvas.height() * 0.3},
          {"x": self.canvas.width() / 2, "y": self.canvas.height() * 0.7}
         )
-        for _ in range(1):
-            print("Two points are (%.1f,%.1f) and (%.1f,%.1f)" % (
-             points[0]["x"], points[0]["y"], points[1]["x"], points[1]["y"]
-            ))
+        for _ in range(6):
             delta_x = points[1]["x"] - points[0]["x"]
             delta_y = points[1]["y"] - points[0]["y"]
             gradient = (delta_y / delta_x) if delta_x else math.inf
-            print("The gradient between them is %.2f" % gradient)
             inverse_gradient = gradient
             if gradient:
                 inverse_gradient = 1 / gradient
@@ -117,13 +113,9 @@ class ProduceSvg(unittest.TestCase):
                 inverse_gradient = math.inf
             else:
                 inverse_gradient = 0
-            print("The inverse of this gradient is %.2f" % inverse_gradient)
             angle = math.atan(inverse_gradient)
-            print("The angle between the next line and top of grid is %.1f degrees" % math.degrees(angle))
             delta_y = math.sin(angle) * (self.canvas.width() * 0.075)
             delta_x = math.cos(angle) * (self.canvas.width() * 0.075)
-            print("dY is %.1f" % delta_y)
-            print("dX is %.1f" % delta_x)
             points = points + ({"x": points[0]["x"] - delta_x, "y": points[0]["y"] + delta_y},)
             self.canvas.draw_polygon(
              points[0]["x"], points[0]["y"],
@@ -135,8 +127,24 @@ class ProduceSvg(unittest.TestCase):
              line_color="#0000FF"
             )
             points = (points[2], points[1])
-            print("")
         self.canvas.save("svg", "polygon_test.svg")
+
+
+    def test_can_make_oval_svg(self):
+        for n in range(7):
+            self.canvas.draw_oval(
+             (n + 1) * (self.canvas.width() / 14),
+             (n + 1) * self.canvas.height() / 14,
+             100 + (n * 10), #self.canvas.width() * (0.5 + (n / 50)),
+             170 - (n * 10), #self.canvas.height() * (1 - (0.5 + (n / 50))),
+             line_style="..",
+             line_width=2.5,
+             line_color="#%02xFF%02x" % (int(255 * (n/6)), int(255 * ((6-n)/6))),
+             opacity=0.5,
+             fill_color="#%02xFF%02x" % (int(255 * ((6-n)/6)), int(255 * (n/6)))
+            )
+        self.canvas.save("svg", "oval_test.svg")
+
 
 
 
