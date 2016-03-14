@@ -18,6 +18,13 @@ class TestGraphicsCanProduceSvg(unittest.TestCase):
         svg = polyline.to_svg()
 
 
+    def test_rectangles_can_produce_svg(self):
+        rectangle = Rectangle(
+         10, 10, 90, 90, line_width=15, line_style="-", line_color="#0000FF"
+        )
+        svg = rectangle.to_svg()
+
+
 
 if __name__ == "__main__":
     unittest.main()

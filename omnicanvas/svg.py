@@ -5,6 +5,7 @@ SVG_TEMPLATE = "\n".join([
     '<!-- Generator: OmniCanvas  -->',
     '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
     '<svg width="%ipx" height="%ipx" xmlns="http://www.w3.org/2000/svg">',
+    '<rect class="omnicanvas_background" x="0" y="0" width="100%%" height="100%%" fill="%s" />',
     '%s',
     '</svg>'
 ])
@@ -23,6 +24,7 @@ def canvas_to_svg(canvas):
     return SVG_TEMPLATE % (
      canvas.width(),
      canvas.height(),
+     canvas.background_color,
      "\t" + "\n\t".join(graphic_svgs))
 
 
@@ -36,4 +38,12 @@ def polyline_to_svg(polyline):
     return '<polyline points="%s" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" fill="none"/>' % (
      " ".join(["%.1f,%.1f" %  (x, y) for x, y in polyline.points]),
      polyline.line_color, polyline.line_width, get_line_dash(polyline)
+    )
+
+
+def rectangle_to_svg(rectangle):
+    return '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" stroke="%s" stroke-width="%ipx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
+     rectangle.x, rectangle.y, rectangle.width, rectangle.height,
+     rectangle.line_color, rectangle.line_width, get_line_dash(rectangle),
+     rectangle.fill_color if rectangle.fill_color else "none", rectangle.opacity
     )

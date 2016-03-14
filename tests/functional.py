@@ -7,7 +7,7 @@ class ProduceSvg(unittest.TestCase):
 
     def setUp(self):
         self.canvas = omnicanvas.Canvas(
-         width=700, height=700, background_color="#11BB11"
+         width=700, height=700, background_color="#F0F0F0"
         )
         self.make_grid(self.canvas)
 
@@ -78,6 +78,22 @@ class ProduceSvg(unittest.TestCase):
          line_color="#34944D"
         )
         self.canvas.save("svg", "polyline_test.svg")
+
+
+    def test_can_make_rectangle_svg_file(self):
+        for n in range(7):
+            self.canvas.draw_rectangle(
+             (n + 1) * self.canvas.width() / 14,
+             (n + 1) * self.canvas.height() / 14,
+             self.canvas.width() * (0.5 - (n / 50)),
+             self.canvas.height() * (0.5 - (n / 50)),
+             line_style="..",
+             line_width=2.5,
+             line_color="#%02xFF%02x" % (int(255 * (n/6)), int(255 * ((6-n)/6))),
+             opacity=0.5,
+             fill_color="#%02xFF%02x" % (int(255 * ((6-n)/6)), int(255 * (n/6)))
+            )
+        self.canvas.save("svg", "rectangle_test.svg")
 
 
 if __name__ == "__main__":

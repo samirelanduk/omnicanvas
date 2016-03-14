@@ -115,6 +115,9 @@ class Rectangle(GenericBox, GenericShape):
         )
 
 
+    to_svg = svg.rectangle_to_svg
+
+
 
 class Polygon(Polyline, GenericShape):
 
