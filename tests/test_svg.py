@@ -39,6 +39,17 @@ class TestGraphicsCanProduceSvg(unittest.TestCase):
         svg = oval.to_svg()
 
 
+    def test_arc_can_produce_svg(self):
+        pass
+
+
+    def test_can_make_produce_svg(self):
+        text = Text(
+         10, 10, "test", color="#377899", font_size=98 
+        )
+        svg = text.to_svg()
+
+
 
 if __name__ == "__main__":
     unittest.main()

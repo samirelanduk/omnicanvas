@@ -183,7 +183,7 @@ class Arc(GenericBox, GenericShape):
 class Text:
 
     def __init__(self, x, y, text, font_family="Tahoma", font_size=24,
-     vertical_align="center", horizontal_align="center"):
+     vertical_align="center", horizontal_align="center", color="#000000"):
         self.x = x
         self.y = y
         self.text = str(text)
@@ -191,6 +191,7 @@ class Text:
         self.font_size = font_size
         self.vertical_align = vertical_align
         self.horizontal_align = horizontal_align
+        self.color = color
 
 
     def __repr__(self):
@@ -205,3 +206,6 @@ class Text:
     def translate(self, x, y):
         self.x += x
         self.y += y
+
+
+    to_svg = svg.text_to_svg

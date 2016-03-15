@@ -65,3 +65,23 @@ def oval_to_svg(oval):
      oval.line_color, oval.line_width, get_line_dash(oval),
      oval.fill_color if oval.fill_color else "none", oval.opacity
     )
+
+
+def text_to_svg(text):
+    anchor = None
+    alignment = None
+    if text.horizontal_align == "center":
+        anchor = "middle"
+    elif text.horizontal_align == "left":
+        anchor = "start"
+    elif text.horizontal_align == "right":
+        anchor = "end"
+    if text.vertical_align == "center":
+        alignment = "middle"
+    elif text.vertical_align == "top":
+        alignment = "hanging"
+    elif text.vertical_align == "bottom":
+        alignment = "baseline"
+    return '<text x="%.1f" y="%.1f" fill="%s" font-family="%s" style="font-size:%ipx" text-anchor="%s" alignment-baseline="%s">%s</text>' % (
+     text.x, text.y, text.color, text.font_family, text.font_size, anchor, alignment, text.text
+    )

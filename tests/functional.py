@@ -146,6 +146,77 @@ class ProduceSvg(unittest.TestCase):
         self.canvas.save("svg", "oval_test.svg")
 
 
+    def test_can_make_arc_svg(self):
+        pass
+
+
+    def test_can_make_text_svg(self):
+        self.canvas.draw_text(
+         70, 70, "wow",
+         vertical_align="top",
+         horizontal_align="left",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         350, 70, "wow",
+         vertical_align="top",
+         horizontal_align="center",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         630, 70, "wow",
+         vertical_align="top",
+         horizontal_align="right",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         70, 350, "wow",
+         vertical_align="center",
+         horizontal_align="left",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         350, 350, "wow",
+         vertical_align="center",
+         horizontal_align="center",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         630, 350, "wow",
+         vertical_align="center",
+         horizontal_align="right",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         70, 630, "wow",
+         vertical_align="bottom",
+         horizontal_align="left",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         350, 630, "wow",
+         vertical_align="bottom",
+         horizontal_align="center",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.draw_text(
+         630, 630, "wow",
+         vertical_align="bottom",
+         horizontal_align="right",
+         font_family="Comic Sans MS",
+         color="#EE9999"
+        )
+        self.canvas.save("svg", "text_test.svg")
+
+
 
 
 if __name__ == "__main__":
