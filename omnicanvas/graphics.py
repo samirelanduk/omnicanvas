@@ -153,13 +153,13 @@ class Oval(GenericBox, GenericShape):
 
 class Arc(GenericBox, GenericShape):
 
-    def __init__(self, *args, start_angle, end_angle, connect=None, **kwargs):
+    def __init__(self, *args, start_angle, end_angle, connect=False, **kwargs):
         assert start_angle <= 360, "Start angle %i greater than 360" % start_angle
         assert end_angle <= 360, "End angle %i greater than 360" % end_angle
 
         self.start_angle = start_angle
         self.end_angle = end_angle
-        self.connect = connect if connect == "pie" or connect == "direct" else None
+        self.connect = connect
         GenericBox.__init__(self, *args)
         GenericShape.__init__(self, **kwargs)
 
@@ -167,7 +167,7 @@ class Arc(GenericBox, GenericShape):
     def __repr__(self):
         return "<%i × %i %s Arc object at (%i,%i)>" % (
          self.width, self.height,
-         "Unclosed" if not self.connect else self.connect,
+         "Unclosed" if not self.connect else "Closed",
          self.x, self.y
         )
 
@@ -177,6 +177,9 @@ class Arc(GenericBox, GenericShape):
             return self.end_angle - self.start_angle
         else:
             return self.end_angle + (360 - self.start_angle)
+
+
+    to_svg = svg.arc_to_svg
 
 
 

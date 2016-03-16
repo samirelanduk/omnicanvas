@@ -105,12 +105,12 @@ class ProduceSvg(unittest.TestCase):
         for _ in range(6):
             delta_x = points[1]["x"] - points[0]["x"]
             delta_y = points[1]["y"] - points[0]["y"]
-            gradient = (delta_y / delta_x) if delta_x else math.inf
+            gradient = (delta_y / delta_x) if delta_x else float("inf")
             inverse_gradient = gradient
             if gradient:
                 inverse_gradient = 1 / gradient
             elif gradient == 0:
-                inverse_gradient = math.inf
+                inverse_gradient = float("inf")
             else:
                 inverse_gradient = 0
             angle = math.atan(inverse_gradient)
@@ -147,7 +147,38 @@ class ProduceSvg(unittest.TestCase):
 
 
     def test_can_make_arc_svg(self):
-        pass
+        self.canvas.draw_oval(
+         200, 100, 300, 500,
+         fill_color=None,
+         line_width=6,
+         line_color="#7777BB"
+        )
+        for n in range(36):
+            self.canvas.draw_arc(
+             200, 100, 300, 500,
+             start_angle=n * 10,
+             end_angle=((n + 1) * 10) - 5,
+             line_width=1.5,
+             line_color="#FF0000"
+            )
+        self.canvas.draw_arc(
+         200, 100, 300, 500,
+         start_angle=0, end_angle=270,
+         line_width=0,
+         line_color="#000000",
+         connect=True,
+         fill_color="#9999FF",
+         opacity=0.4
+        )
+        self.canvas.draw_arc(
+         200, 100, 300, 500,
+         start_angle=355, end_angle=5,
+         line_width=5,
+         line_color="#000000",
+         fill_color="#000000",
+         opacity=0.4
+        )
+        self.canvas.save("svg", "arc_test.svg")
 
 
     def test_can_make_text_svg(self):

@@ -40,15 +40,63 @@ class TestGraphicsCanProduceSvg(unittest.TestCase):
 
 
     def test_arc_can_produce_svg(self):
-        pass
+        arc = Arc(
+         10, 10, 90, 90, start_angle=90, end_angle=260, line_width=15, line_style="-", line_color="#0000FF"
+        )
+        svg = arc.to_svg()
 
 
-    def test_can_make_produce_svg(self):
+    def test_text_can_produce_svg(self):
         text = Text(
-         10, 10, "test", color="#377899", font_size=98 
+         10, 10, "test", color="#377899", font_size=98
         )
         svg = text.to_svg()
 
+
+
+class TestSvgHelpers(unittest.TestCase):
+
+    def test_can_find_points(self):
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 0)[0],
+         200,
+         delta=0.001
+        )
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 0)[1],
+         100,
+         delta=0.001
+        )
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 90)[0],
+         100,
+         delta=0.001
+        )
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 90)[1],
+         25,
+         delta=0.001
+        )
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 180)[0],
+         0,
+         delta=0.001
+        )
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 180)[1],
+         100,
+         delta=0.001
+        )
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 270)[0],
+         100,
+         delta=0.001
+        )
+        self.assertAlmostEqual(
+         get_point_from_angle(100, 100, 200, 150, 270)[1],
+         175,
+         delta=0.001
+        )
 
 
 if __name__ == "__main__":
