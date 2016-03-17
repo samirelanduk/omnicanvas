@@ -74,10 +74,15 @@ def arc_to_svg(arc):
     end_point = get_point_from_angle(
      arc.center()[0], arc.center()[1], arc.width, arc.height, arc.end_angle
     )
+    greater_than_180 = (
+     arc.end_angle > arc.start_angle and arc.end_angle - arc.start_angle > 180
+    ) or (
+     arc.end_angle < arc.start_angle and arc.end_angle + (360 - arc.start_angle) > 180
+    )
     return '<path d="M %.1f,%.1f A %.1f,%.1f 0 %i 0 %.1f,%.1f%s" stroke="%s" stroke-width="%.1fpx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
      start_point[0], start_point[1],
      arc.width / 2, arc.height / 2,
-     1 if (arc.end_angle - arc.start_angle) > 180 else 0,
+     1 if greater_than_180 else 0,
      end_point[0], end_point[1],
      " L%.1f,%.1f L%.1f,%.1f" % (
       arc.center()[0], arc.center()[1], start_point[0], start_point[1]
@@ -107,13 +112,13 @@ def text_to_svg(text):
     )
 
 
-def get_point_from_angle(x, y, width, height, angle):
+def get_point_from_angle(cx, cy, width, height, angle):
     a = width / 2
     b = height / 2
     if angle == 90:
-        return (x, y - b)
+        return (cx, cy - b)
     elif angle == 270:
-        return (x, y + b)
+        return (cx, cy + b)
     else:
         denominator = math.sqrt(
          (b ** 2) + ((a ** 2) * (math.tan(math.radians(angle)) ** 2))
@@ -121,6 +126,6 @@ def get_point_from_angle(x, y, width, height, angle):
         ab = a * b
         ab_tan_angle = ab * math.tan(math.radians(angle))
         if (0 <= angle < 90) or (270 < angle <= 360):
-            return (x + (ab / denominator), y - (ab_tan_angle / denominator))
+            return (cx + (ab / denominator), cy - (ab_tan_angle / denominator))
         else:
-            return (x - (ab / denominator), y + (ab_tan_angle / denominator))
+            return (cx - (ab / denominator), cy + (ab_tan_angle / denominator))

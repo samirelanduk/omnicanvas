@@ -159,11 +159,12 @@ class ProduceSvg(unittest.TestCase):
              start_angle=n * 10,
              end_angle=((n + 1) * 10) - 5,
              line_width=1.5,
-             line_color="#FF0000"
+             line_color="#FF0000",
+             connect=True
             )
         self.canvas.draw_arc(
          200, 100, 300, 500,
-         start_angle=0, end_angle=270,
+         start_angle=180, end_angle=0,
          line_width=0,
          line_color="#000000",
          connect=True,
