@@ -12,13 +12,29 @@ SVG_TEMPLATE = "\n".join([
     '</svg>'
 ])
 
-def get_line_dash(line):
-    if line.line_style == "--":
-        return "%i,%i" % (line.line_width * 10, line.line_width * 2)
-    elif line.line_style == "..":
-        return "%i,%i" % (line.line_width * 2, line.line_width * 2)
-    else:
-        return "none"
+def get_graphic_svg(graphic):
+    stroke_dasharray = "none"
+    if graphic.line_style == "--":
+        stroke_dasharray = "%i,%i" % (graphic.line_width * 10, graphic.line_width * 2)
+    elif graphic.line_style == "..":
+        stroke_dahsarray = "%i,%i" % (graphic.line_width * 2, graphic.line_width * 2)
+    stroke_dasharray = 'stroke-dasharray="%s"' % stroke_dasharray
+
+    rotation = ""
+    if graphic.rotation is not None:
+        rotation = ' transform="rotate(%.1f %.1f %.1f)"' % (
+         graphic.rotation[2], graphic.rotation[0], graphic.rotation[1]
+        )
+
+    return 'stroke="%s" stroke-width="%.1f" stroke-opacity="%.1f" %s%s' % (
+     graphic.line_color, graphic.line_width, graphic.line_opacity, stroke_dasharray, rotation
+    )
+
+
+def get_shape_svg(shape):
+    return 'fill="%s" fill-opacity="%.3f"' % (
+     shape.fill_color if shape.fill_color else "none", shape.opacity
+    )
 
 
 def canvas_to_svg(canvas):
@@ -31,39 +47,36 @@ def canvas_to_svg(canvas):
 
 
 def line_to_svg(line):
-    return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="%.1fpx" stroke-dasharray="%s" />' % (
-     line.x1, line.y1, line.x2, line.y2, line.line_color, line.line_width, get_line_dash(line)
-    )
-
-
-def polyline_to_svg(polyline):
-    return '<polyline points="%s" stroke="%s" stroke-width="%.1fpx" stroke-dasharray="%s" fill="none" />' % (
-     " ".join(["%.1f,%.1f" %  (x, y) for x, y in polyline.points]),
-     polyline.line_color, polyline.line_width, get_line_dash(polyline)
+    return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" %s />' % (
+     line.x1, line.y1, line.x2, line.y2, get_graphic_svg(line)
     )
 
 
 def rectangle_to_svg(rectangle):
-    return '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" stroke="%s" stroke-width="%.1fpx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
+    return '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" %s %s />' % (
      rectangle.x, rectangle.y, rectangle.width, rectangle.height,
-     rectangle.line_color, rectangle.line_width, get_line_dash(rectangle),
-     rectangle.fill_color if rectangle.fill_color else "none", rectangle.opacity
+     get_graphic_svg(rectangle), get_shape_svg(rectangle)
+    )
+
+
+def polyline_to_svg(polyline):
+    return '<polyline points="%s" %s fill="none" />' % (
+     " ".join(["%.1f,%.1f" %  (x, y) for x, y in polyline.points]),
+     get_graphic_svg(polyline)
     )
 
 
 def polygon_to_svg(polygon):
-    return '<polygon points="%s" stroke="%s" stroke-width="%.1fpx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
+    return '<polygon points="%s" %s %s />' % (
      " ".join(["%.1f,%.1f" %  (x, y) for x, y in polygon.points]),
-     polygon.line_color, polygon.line_width, get_line_dash(polygon),
-     polygon.fill_color if polygon.fill_color else "none", polygon.opacity
+     get_graphic_svg(polygon), get_shape_svg(polygon)
     )
 
 
 def oval_to_svg(oval):
-    return '<ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f" stroke="%s" stroke-width="%.1fpx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
+    return '<ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f" %s %s />' % (
      oval.center()[0], oval.center()[1], oval.width  /2, oval.height / 2,
-     oval.line_color, oval.line_width, get_line_dash(oval),
-     oval.fill_color if oval.fill_color else "none", oval.opacity
+     get_graphic_svg(oval), get_shape_svg(oval)
     )
 
 
@@ -79,7 +92,7 @@ def arc_to_svg(arc):
     ) or (
      arc.end_angle < arc.start_angle and arc.end_angle + (360 - arc.start_angle) > 180
     )
-    return '<path d="M %.1f,%.1f A %.1f,%.1f 0 %i 0 %.1f,%.1f%s" stroke="%s" stroke-width="%.1fpx" stroke-dasharray="%s" fill="%s" fill-opacity="%.3f" />' % (
+    return '<path d="M %.1f,%.1f A %.1f,%.1f 0 %i 0 %.1f,%.1f%s" %s %s />' % (
      start_point[0], start_point[1],
      arc.width / 2, arc.height / 2,
      1 if greater_than_180 else 0,
@@ -87,8 +100,7 @@ def arc_to_svg(arc):
      " L%.1f,%.1f L%.1f,%.1f" % (
       arc.center()[0], arc.center()[1], start_point[0], start_point[1]
      ) if arc.connect else "",
-     arc.line_color, arc.line_width, get_line_dash(arc),
-     arc.fill_color if arc.fill_color else "none", arc.opacity
+     get_graphic_svg(arc), get_shape_svg(arc)
     )
 
 
@@ -107,8 +119,8 @@ def text_to_svg(text):
         alignment = "hanging"
     elif text.vertical_align == "bottom":
         alignment = "baseline"
-    return '<text x="%.1f" y="%.1f" fill="%s" font-family="%s" style="font-size:%ipx" text-anchor="%s" alignment-baseline="%s">%s</text>' % (
-     text.x, text.y, text.color, text.font_family, text.font_size, anchor, alignment, text.text
+    return '<text x="%.1f" y="%.1f" fill="%s" font-family="%s" style="font-size:%ipx" text-anchor="%s" alignment-baseline="%s" %s>%s</text>' % (
+     text.x, text.y, text.color, text.font_family, text.font_size, anchor, alignment, get_graphic_svg(text), text.text
     )
 
 

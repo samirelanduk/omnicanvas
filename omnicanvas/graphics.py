@@ -1,12 +1,42 @@
 from . import svg
 
-class GenericBox:
+class GenericGraphic:
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, line_style="-", line_width=1, line_color="#000000",
+     line_opacity=1, rotation=None):
+        self.line_style = line_style
+        self.line_width = line_width
+        self.line_color = line_color
+        self.line_opacity = line_opacity
+        self.rotation = rotation
+
+
+    def rotate(self, x, y, angle):
+        assert angle <= 360, "Angle %i greater than 360" % angle
+        if angle is None:
+            self.rotation = None
+        else:
+            self.rotation = [x, y, angle]
+
+
+
+class GenericShape(GenericGraphic):
+
+    def __init__(self, fill_color=None, opacity=1, **kwargs):
+        self.fill_color = fill_color
+        self.opacity = opacity
+        GenericGraphic.__init__(self, **kwargs)
+
+
+
+class GenericBox(GenericShape):
+
+    def __init__(self, x, y, width, height, **kwargs):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+        GenericShape.__init__(self, **kwargs)
 
 
     def center(self):
@@ -26,32 +56,30 @@ class GenericBox:
 
 
 
-class GenericLine:
+class Rectangle(GenericBox):
 
-    def __init__(self, line_style="-", line_width=1, line_color="#000000"):
-        self.line_style = line_style
-        self.line_width = line_width
-        self.line_color = line_color
+    def __init__(self, *args, **kwargs):
+        GenericBox.__init__(self, *args, **kwargs)
 
 
+    def __repr__(self):
+        return "<%i × %i Rectangle object at (%i,%i)>" % (
+         self.width, self.height, self.x, self.y
+        )
 
-class GenericShape(GenericLine):
 
-    def __init__(self, fill_color=None, opacity=1, **kwargs):
-        self.fill_color = fill_color
-        self.opacity = opacity
-        GenericLine.__init__(self, **kwargs)
+    to_svg = svg.rectangle_to_svg
 
 
 
-class Line(GenericLine):
+class Line(GenericGraphic):
 
     def __init__(self, x1, y1, x2, y2, **kwargs):
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
-        GenericLine.__init__(self, **kwargs)
+        GenericGraphic.__init__(self, **kwargs)
 
 
     def __repr__(self):
@@ -78,12 +106,12 @@ class Line(GenericLine):
 
 
 
-class Polyline(GenericLine):
+class Polyline(GenericGraphic):
 
     def __init__(self, *points, **kwargs):
         assert len(points) % 2 == 0, "An even number of points must be supplied"
         self.points = list(zip(points[::2], points[1::2]))
-        GenericLine.__init__(self, **kwargs)
+        GenericGraphic.__init__(self, **kwargs)
 
 
     def __repr__(self):
@@ -102,23 +130,6 @@ class Polyline(GenericLine):
 
 
 
-class Rectangle(GenericBox, GenericShape):
-
-    def __init__(self, *args, **kwargs):
-        GenericBox.__init__(self, *args)
-        GenericShape.__init__(self, **kwargs)
-
-
-    def __repr__(self):
-        return "<%i × %i Rectangle object at (%i,%i)>" % (
-         self.width, self.height, self.x, self.y
-        )
-
-
-    to_svg = svg.rectangle_to_svg
-
-
-
 class Polygon(Polyline, GenericShape):
 
     def __init__(self, *points, **kwargs):
@@ -134,11 +145,10 @@ class Polygon(Polyline, GenericShape):
 
 
 
-class Oval(GenericBox, GenericShape):
+class Oval(GenericBox):
 
     def __init__(self, *args, **kwargs):
-        GenericBox.__init__(self, *args)
-        GenericShape.__init__(self, **kwargs)
+        GenericBox.__init__(self, *args, **kwargs)
 
 
     def __repr__(self):
@@ -151,7 +161,7 @@ class Oval(GenericBox, GenericShape):
 
 
 
-class Arc(GenericBox, GenericShape):
+class Arc(GenericBox):
 
     def __init__(self, *args, start_angle, end_angle, connect=False, **kwargs):
         assert start_angle <= 360, "Start angle %i greater than 360" % start_angle
@@ -160,14 +170,13 @@ class Arc(GenericBox, GenericShape):
         self.start_angle = start_angle
         self.end_angle = end_angle
         self.connect = connect
-        GenericBox.__init__(self, *args)
-        GenericShape.__init__(self, **kwargs)
+        GenericBox.__init__(self, *args, **kwargs)
 
 
     def __repr__(self):
         return "<%i × %i %s Arc object at (%i,%i)>" % (
          self.width, self.height,
-         "Unclosed" if not self.connect else "Closed",
+         "Closed" if self.connect else "Unclosed",
          self.x, self.y
         )
 
@@ -183,10 +192,10 @@ class Arc(GenericBox, GenericShape):
 
 
 
-class Text:
+class Text(GenericGraphic):
 
     def __init__(self, x, y, text, font_family="Tahoma", font_size=24,
-     vertical_align="center", horizontal_align="center", color="#000000"):
+     vertical_align="center", horizontal_align="center", color="#000000", **kwargs):
         self.x = x
         self.y = y
         self.text = str(text)
@@ -195,6 +204,7 @@ class Text:
         self.vertical_align = vertical_align
         self.horizontal_align = horizontal_align
         self.color = color
+        GenericGraphic.__init__(self, **kwargs)
 
 
     def __repr__(self):

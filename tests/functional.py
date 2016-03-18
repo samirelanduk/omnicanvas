@@ -249,6 +249,28 @@ class ProduceSvg(unittest.TestCase):
         self.canvas.save("svg", "text_test.svg")
 
 
+    def test_can_rotate(self):
+        for i in range(36):
+            oval = self.canvas.draw_oval(
+             280, 140,
+             140, 420,
+             line_width=1.5,
+             fill_color="#8888DD",
+             opacity=0.5,
+             line_opacity=0.1
+            )
+            oval.rotate(350, 350, i * 10)
+
+            self.canvas.draw_polygon(
+             350,50, 330,70, 370,70,
+             line_width=0,
+             fill_color="#FFFF00",
+             opacity=0.7,
+             rotation=[350, 350, i * 10]
+            )
+        self.canvas.save("svg", "test_rotate.svg")
+
+
 
 
 if __name__ == "__main__":

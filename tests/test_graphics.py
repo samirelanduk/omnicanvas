@@ -5,7 +5,26 @@ from omnicanvas.graphics import *
 
 class GraphicsUnitTest(unittest.TestCase):
 
+    def check_valid_graphic(self, graphic):
+        self.assertIsInstance(graphic.line_style, str)
+        graphic.line_width + 1
+        self.assertIsInstance(graphic.line_color, str)
+        graphic.line_opacity + 0.1
+        self.assertEqual(len(graphic.line_color), 7)
+        graphic.rotate(0, 0, 45)
+
+
+    def check_valid_shape(self, shape):
+        self.check_valid_graphic(shape)
+        if shape.fill_color is not None:
+            self.assertIsInstance(shape.fill_color, str)
+            self.assertEqual(len(shape.shape_color), 7)
+        self.assertGreaterEqual(shape.opacity, 0)
+        self.assertLessEqual(shape.opacity, 1)
+
+
     def check_valid_box(self, box):
+        self.check_valid_shape(box)
         box.x + 1
         box.y + 1
         box.width + 1
@@ -16,33 +35,17 @@ class GraphicsUnitTest(unittest.TestCase):
         self.assertGreaterEqual(box.center()[1], box.y)
 
 
-    def check_valid_line(self, line):
-        self.assertIsInstance(line.line_style, str)
-        self.assertIsInstance(line.line_width, int)
-        self.assertIsInstance(line.line_color, str)
-        self.assertEqual(len(line.line_color), 7)
-
-
-    def check_valid_shape(self, shape):
-        self.check_valid_line(shape)
-        if shape.fill_color is not None:
-            self.assertIsInstance(shape.fill_color, str)
-            self.assertEqual(len(shape.shape_color), 7)
-        self.assertGreaterEqual(shape.opacity, 0)
-        self.assertLessEqual(shape.opacity, 1)
-
-
 
 class TestLineGraphic(GraphicsUnitTest):
 
     def test_doesnt_need_keyword_arguments(self):
         line = Line(1, 1, 2, 2)
-        self.check_valid_line(line)
+        self.check_valid_graphic(line)
 
 
     def test_will_accept_keywords(self):
         line = Line(1, 1, 2, 2, line_style="-", line_width=1, line_color="#000000")
-        self.check_valid_line(line)
+        self.check_valid_graphic(line)
 
 
     def test_can_resize(self):
@@ -64,40 +67,11 @@ class TestLineGraphic(GraphicsUnitTest):
 
 
 
-class TestPathGraphic(GraphicsUnitTest):
-
-    def test_path_points_format_correctly(self):
-        path = Path(10,10, 10,30, 34,45, 100,101, 19,200)
-        self.check_valid_line(path)
-        self.assertIsInstance(path.points, list)
-        for point in path.points:
-            self.assertIsInstance(point, tuple)
-            self.assertEqual(len(point), 2)
-
-
-    def test_cant_provide_odd_number_of_points(self):
-        self.assertRaises(AssertionError, lambda: Path(1, 2, 3, 4, 5))
-
-
-    def test_can_resize(self):
-        path = Path(10,10, 10,30, 34,45, 100,101, 19,200)
-        path.scale(8, 0.5)
-        self.assertEqual(path.points, [(80,5),(80,15),(272,22.5),(800,50.5),(152,100)])
-
-
-    def test_can_move(self):
-        path = Path(10,10, 10,30, 34,45, 100,101, 19,200)
-        path.translate(8, -200)
-        self.assertEqual(path.points, [(18,-190),(18,-170),(42,-155),(108,-99),(27,0)])
-
-
-
 class TestRectangleGraphic(GraphicsUnitTest):
 
     def test_can_create_rectangle(self):
         rectangle = Rectangle(1, 1, 10, 10)
         self.check_valid_box(rectangle)
-        self.check_valid_shape(rectangle)
 
 
     def test_can_resize(self):
@@ -116,6 +90,34 @@ class TestRectangleGraphic(GraphicsUnitTest):
         self.assertEqual(rectangle.y, -24)
         self.assertEqual(rectangle.width, 10)
         self.assertEqual(rectangle.height, 10)
+
+
+
+class TestPolylineGraphic(GraphicsUnitTest):
+
+    def test_path_points_format_correctly(self):
+        polyline = Polyline(10,10, 10,30, 34,45, 100,101, 19,200)
+        self.check_valid_graphic(polyline)
+        self.assertIsInstance(polyline.points, list)
+        for point in polyline.points:
+            self.assertIsInstance(point, tuple)
+            self.assertEqual(len(point), 2)
+
+
+    def test_cant_provide_odd_number_of_points(self):
+        self.assertRaises(AssertionError, lambda: Polyline(1, 2, 3, 4, 5))
+
+
+    def test_can_resize(self):
+        polyline = Polyline(10,10, 10,30, 34,45, 100,101, 19,200)
+        polyline.scale(8, 0.5)
+        self.assertEqual(polyline.points, [(80,5),(80,15),(272,22.5),(800,50.5),(152,100)])
+
+
+    def test_can_move(self):
+        polyline = Polyline(10,10, 10,30, 34,45, 100,101, 19,200)
+        polyline.translate(8, -200)
+        self.assertEqual(polyline.points, [(18,-190),(18,-170),(42,-155),(108,-99),(27,0)])
 
 
 
@@ -143,8 +145,6 @@ class TestArcGraphic(GraphicsUnitTest):
 
     def test_can_create_arc(self):
         arc = Arc(10, 10, 30, 30, start_angle=45, end_angle=290)
-        self.check_valid_box(arc)
-        self.check_valid_shape(arc)
 
 
     def test_cant_use_angles_over_360(self):
@@ -168,6 +168,7 @@ class TestTextGraphic(GraphicsUnitTest):
 
     def test_can_create_text(self):
         text = Text(20, 30, "Test")
+        self.check_valid_graphic(text)
 
 
     def test_can_resize(self):
@@ -190,7 +191,7 @@ class TestValidRepr(GraphicsUnitTest):
 
     def test_reprs_ok(self):
         line = Line(1,1,2,2)
-        path = Path(1,1,2,2,3,3)
+        polyline = Polyline(1,1,2,2,3,3)
         rectangle = Rectangle(1,1,2,2)
         polygon = Polygon(1,1,2,2,3,3,4,4)
         oval = Oval(1,1,2,2)
@@ -198,7 +199,7 @@ class TestValidRepr(GraphicsUnitTest):
         text = Text(20, 30, "Test")
 
         self.assertRegex(line.__repr__(), r"<Line object: (.+,.+) to (.+,.+)>")
-        self.assertRegex(path.__repr__(), r"<Path object: .+ points>")
+        self.assertRegex(polyline.__repr__(), r"<Polyline object: .+ points>")
         self.assertRegex(rectangle.__repr__(), r"<.+ × .+ Rectangle object at (.+,.+)>")
         self.assertRegex(polygon.__repr__(), r"<Polygon object: .+ vertices>")
         self.assertRegex(oval.__repr__(), r"<.+ × .+ Oval object centered at (.+,.+)>")
