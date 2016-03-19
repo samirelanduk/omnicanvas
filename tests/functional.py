@@ -68,7 +68,7 @@ class ProduceSvg(unittest.TestCase):
          line_width=1,
          line_color="#00FFFF"
         )
-        self.canvas.save("svg", "line_test.svg")
+        self.canvas.save("svg", "svgs/line_test.svg")
 
 
     def test_can_make_polyline_svg_file(self):
@@ -78,7 +78,7 @@ class ProduceSvg(unittest.TestCase):
          line_width=2,
          line_color="#34944D"
         )
-        self.canvas.save("svg", "polyline_test.svg")
+        self.canvas.save("svg", "svgs/polyline_test.svg")
 
 
     def test_can_make_rectangle_svg_file(self):
@@ -94,7 +94,7 @@ class ProduceSvg(unittest.TestCase):
              opacity=0.5,
              fill_color="#%02xFF%02x" % (int(255 * ((6-n)/6)), int(255 * (n/6)))
             )
-        self.canvas.save("svg", "rectangle_test.svg")
+        self.canvas.save("svg", "svgs/rectangle_test.svg")
 
 
     def test_can_make_polygon_svg(self):
@@ -127,7 +127,7 @@ class ProduceSvg(unittest.TestCase):
              line_color="#0000FF"
             )
             points = (points[2], points[1])
-        self.canvas.save("svg", "polygon_test.svg")
+        self.canvas.save("svg", "svgs/polygon_test.svg")
 
 
     def test_can_make_oval_svg(self):
@@ -143,7 +143,7 @@ class ProduceSvg(unittest.TestCase):
              opacity=0.5,
              fill_color="#%02xFF%02x" % (int(255 * ((6-n)/6)), int(255 * (n/6)))
             )
-        self.canvas.save("svg", "oval_test.svg")
+        self.canvas.save("svg", "svgs/oval_test.svg")
 
 
     def test_can_make_arc_svg(self):
@@ -179,7 +179,7 @@ class ProduceSvg(unittest.TestCase):
          fill_color="#000000",
          opacity=0.4
         )
-        self.canvas.save("svg", "arc_test.svg")
+        self.canvas.save("svg", "svgs/arc_test.svg")
 
 
     def test_can_make_text_svg(self):
@@ -246,7 +246,7 @@ class ProduceSvg(unittest.TestCase):
          font_family="Comic Sans MS",
          color="#EE9999"
         )
-        self.canvas.save("svg", "text_test.svg")
+        self.canvas.save("svg", "svgs/text_test.svg")
 
 
     def test_can_rotate(self):
@@ -268,7 +268,7 @@ class ProduceSvg(unittest.TestCase):
              opacity=0.7,
              rotation=[350, 350, i * 10]
             )
-        self.canvas.save("svg", "test_rotate.svg")
+        self.canvas.save("svg", "svgs/test_rotate.svg")
 
 
 

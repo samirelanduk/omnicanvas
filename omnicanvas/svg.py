@@ -17,7 +17,7 @@ def get_graphic_svg(graphic):
     if graphic.line_style == "--":
         stroke_dasharray = "%i,%i" % (graphic.line_width * 10, graphic.line_width * 2)
     elif graphic.line_style == "..":
-        stroke_dahsarray = "%i,%i" % (graphic.line_width * 2, graphic.line_width * 2)
+        stroke_dasharray = "%i,%i" % (graphic.line_width * 2, graphic.line_width * 2)
     stroke_dasharray = 'stroke-dasharray="%s"' % stroke_dasharray
 
     rotation = ""
