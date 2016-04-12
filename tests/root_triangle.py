@@ -22,7 +22,7 @@ for n in range(10):
      0, 0, 500, 500
     )
 
-one = 75
+one = 50
 center = (canvas.width() / 2, canvas.height() / 2)
 base_vertex = (center[0] + one, center[1])
 
