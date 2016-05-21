@@ -51,6 +51,24 @@ class CanvasCreationTests(TestCase):
         self.assertEqual(canvas.background_color, "#FFFF00")
 
 
+    def test_canvas_color_must_be_str(self):
+        with self.assertRaises(TypeError):
+            canvas = Canvas(700, 500, background_color=999944)
+        canvas = Canvas(700, 500, background_color=None)
+        self.assertIs(canvas.background_color, None)
+
+
+    def test_canvas_color_must_be_formatted_correctly(self):
+        with self.assertRaises(ValueError):
+            canvas = Canvas(700, 500, background_color="FFFF00")
+        with self.assertRaises(ValueError):
+            canvas = Canvas(700, 500, background_color="#FFF00")
+        with self.assertRaises(ValueError):
+            canvas = Canvas(700, 500, background_color="#FF0")
+        with self.assertRaises(ValueError):
+            canvas = Canvas(700, 500, background_color="#FFFG00")
+
+
 
 if __name__ == "__main__":
     main()
