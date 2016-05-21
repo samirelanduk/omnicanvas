@@ -1,6 +1,7 @@
 class Canvas:
 
-    def __init__(self, width, height, background_color=None, border_width=0):
+    def __init__(self, width, height, background_color=None, border_width=0,
+     border_style="-"):
         if isinstance(width, float):
             width = round(width)
         if not isinstance(width, int):
@@ -18,6 +19,13 @@ class Canvas:
         if not isinstance(border_width, int) and not isinstance(border_width, float):
             raise TypeError("Border width must be numeric, not '%s'" % border_width)
         self.border_width = border_width
+
+        if not isinstance(border_style, str):
+            raise TypeError("Border style must be str, not '%s'" % border_style)
+        if border_style not in ("-", "--", ".."):
+            raise ValueError("'%s' is not a valid line style" % border_style)
+        self.border_style = border_style
+
         self.graphics = []
 
 
