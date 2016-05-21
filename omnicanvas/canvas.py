@@ -1,6 +1,6 @@
 class Canvas:
 
-    def __init__(self, width, height):
+    def __init__(self, width, height, background_color=None):
         if isinstance(width, float):
             width = round(width)
         if not isinstance(width, int):
@@ -13,6 +13,7 @@ class Canvas:
             raise TypeError("Height must be numeric, not '%s'" % height)
         self.height = height
 
+        self.background_color = _process_color(background_color)
         self.graphics = []
 
 
@@ -20,3 +21,11 @@ class Canvas:
         return "<Canvas %i×%i (%i Graphics)>" % (
          self.width, self.height, len(self.graphics)
         )
+
+
+
+def _process_color(color):
+    if color is None:
+        return None
+    else:
+        return color.upper()

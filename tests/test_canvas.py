@@ -8,6 +8,7 @@ class CanvasCreationTests(TestCase):
         self.assertEqual(canvas.graphics, [])
         self.assertEqual(canvas.width, 700)
         self.assertEqual(canvas.height, 500)
+        self.assertEqual(canvas.background_color, None)
         self.assertEqual(
          str(canvas),
          "<Canvas 700×500 (0 Graphics)>"
@@ -38,6 +39,16 @@ class CanvasCreationTests(TestCase):
         self.assertEqual(canvas.height, 200)
         canvas = Canvas(100, 200.6)
         self.assertEqual(canvas.height, 201)
+
+
+    def test_can_create_canvas_with_background_color(self):
+        canvas = Canvas(700, 500, background_color="#FFFF00")
+        self.assertEqual(canvas.background_color, "#FFFF00")
+
+
+    def test_canvas_creation_will_capitalise_color(self):
+        canvas = Canvas(700, 500, background_color="#ffff00")
+        self.assertEqual(canvas.background_color, "#FFFF00")
 
 
 
