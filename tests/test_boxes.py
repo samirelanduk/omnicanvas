@@ -10,3 +10,21 @@ class BoxGraphicCreationTests(TestCase):
         self.assertEqual(box.y, 20)
         self.assertEqual(box.width, 100)
         self.assertEqual(box.height, 200)
+
+
+    def test_box_location_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            box = BoxGraphic("10", 20, 100, 200)
+        with self.assertRaises(TypeError):
+            box = BoxGraphic(10, "20", 100, 200)
+        box = BoxGraphic(10.5, 20, 100, 200)
+        box = BoxGraphic(10, 20.5, 100, 200)
+
+
+    def test_box_dimensions_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            box = BoxGraphic(10, 20, "100", 200)
+        with self.assertRaises(TypeError):
+            box = BoxGraphic(10, 20, 100, "200")
+        box = BoxGraphic(10, 20, 100.5, 200)
+        box = BoxGraphic(10, 20, 100, 200.5)
