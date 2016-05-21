@@ -1,6 +1,6 @@
 class Canvas:
 
-    def __init__(self, width, height, background_color=None):
+    def __init__(self, width, height, background_color=None, border_width=0):
         if isinstance(width, float):
             width = round(width)
         if not isinstance(width, int):
@@ -14,6 +14,10 @@ class Canvas:
         self.height = height
 
         self.background_color = _process_color(background_color)
+
+        if not isinstance(border_width, int) and not isinstance(border_width, float):
+            raise TypeError("Border width must be numeric, not '%s'" % border_width)
+        self.border_width = border_width
         self.graphics = []
 
 

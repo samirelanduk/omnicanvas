@@ -9,6 +9,7 @@ class CanvasCreationTests(TestCase):
         self.assertEqual(canvas.width, 700)
         self.assertEqual(canvas.height, 500)
         self.assertEqual(canvas.background_color, None)
+        self.assertEqual(canvas.border_width, 0)
         self.assertEqual(
          str(canvas),
          "<Canvas 700×500 (0 Graphics)>"
@@ -67,6 +68,20 @@ class CanvasCreationTests(TestCase):
             canvas = Canvas(700, 500, background_color="#FF0")
         with self.assertRaises(ValueError):
             canvas = Canvas(700, 500, background_color="#FFFG00")
+
+
+    def test_can_create_canvas_with_border_width(self):
+        canvas = Canvas(700, 500, border_width=2.5)
+        self.assertEqual(canvas.border_width, 2.5)
+
+
+    def test_border_width_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            canvas = Canvas(700, 500, border_width=None)
+        with self.assertRaises(TypeError):
+            canvas = Canvas(700, 500, border_width="1")
+        canvas = Canvas(700, 500, border_width=2.5)
+        canvas = Canvas(700, 500, border_width=2)
 
 
 
