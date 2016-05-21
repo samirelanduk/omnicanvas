@@ -1,7 +1,7 @@
 class Canvas:
 
     def __init__(self, width, height, background_color=None, border_width=0,
-     border_style="-"):
+     border_style="-", border_color="#000000"):
         if isinstance(width, float):
             width = round(width)
         if not isinstance(width, int):
@@ -14,7 +14,10 @@ class Canvas:
             raise TypeError("Height must be numeric, not '%s'" % height)
         self.height = height
 
-        self.background_color = _process_color(background_color)
+        if background_color is None:
+            self.background_color = None
+        else:
+            self.background_color = _process_color(background_color)
 
         if not isinstance(border_width, int) and not isinstance(border_width, float):
             raise TypeError("Border width must be numeric, not '%s'" % border_width)
@@ -25,6 +28,8 @@ class Canvas:
         if border_style not in ("-", "--", ".."):
             raise ValueError("'%s' is not a valid line style" % border_style)
         self.border_style = border_style
+
+        self.border_color = _process_color(border_color)
 
         self.graphics = []
 
@@ -37,9 +42,7 @@ class Canvas:
 
 
 def _process_color(color):
-    if color is None:
-        return None
-    elif not isinstance(color, str):
+    if not isinstance(color, str):
         raise TypeError("Color must be str, not '%s'" % color)
     elif not _is_valid_color(color):
         raise ValueError("'%s' is not a valid color" % color)
