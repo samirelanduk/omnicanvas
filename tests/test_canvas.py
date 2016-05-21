@@ -14,6 +14,15 @@ class CanvasCreationTests(TestCase):
         )
 
 
+    def test_dimensions_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            Canvas("700", 500)
+        with self.assertRaises(TypeError):
+            Canvas(700, "500")
+        with self.assertRaises(TypeError):
+            Canvas("700", "500")
+
+
 
 if __name__ == "__main__":
     main()
