@@ -5,3 +5,8 @@ class Graphic:
 
 class ShapeGraphic(Graphic):
     pass
+
+
+
+class BoxGraphic(ShapeGraphic):
+    pass
