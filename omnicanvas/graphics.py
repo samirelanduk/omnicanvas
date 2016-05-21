@@ -10,3 +10,8 @@ class ShapeGraphic(Graphic):
 
 class BoxGraphic(ShapeGraphic):
     pass
+
+
+
+class Rectangle(BoxGraphic):
+    pass
