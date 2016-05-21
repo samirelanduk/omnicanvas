@@ -1,10 +1,14 @@
+from .colors import _process_color
+
 class Graphic:
     pass
 
 
 
 class ShapeGraphic(Graphic):
-    pass
+
+    def __init__(self, fill_color="#FFFFFF"):
+        self.fill_color = _process_color(fill_color)
 
 
 
