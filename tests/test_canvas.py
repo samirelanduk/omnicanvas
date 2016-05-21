@@ -1,4 +1,4 @@
-from unittest import main, TestCase
+from unittest import TestCase
 from omnicanvas.canvas import Canvas
 
 class CanvasCreationTests(TestCase):
