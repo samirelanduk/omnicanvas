@@ -10,3 +10,8 @@ class RectangleCreationTests(TestCase):
         self.assertEqual(rectangle.y, 30)
         self.assertEqual(rectangle.width, 400)
         self.assertEqual(rectangle.height, 400)
+        self.assertEqual(rectangle.fill_color, "#FFFFFF")
+        self.assertEqual(rectangle.opacity, 1)
+        self.assertEqual(rectangle.line_width, 1)
+        self.assertEqual(rectangle.line_style, "-")
+        self.assertEqual(rectangle.line_color, "#000000")

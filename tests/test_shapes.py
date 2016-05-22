@@ -8,6 +8,9 @@ class ShapeGraphicCreationTests(TestCase):
         self.assertIsInstance(shape, Graphic)
         self.assertEqual(shape.fill_color, "#FFFFFF")
         self.assertEqual(shape.opacity, 1)
+        self.assertEqual(shape.line_width, 1)
+        self.assertEqual(shape.line_style, "-")
+        self.assertEqual(shape.line_color, "#000000")
 
 
     def test_can_create_shape_graphic_with_fill(self):

@@ -10,6 +10,11 @@ class BoxGraphicCreationTests(TestCase):
         self.assertEqual(box.y, 20)
         self.assertEqual(box.width, 100)
         self.assertEqual(box.height, 200)
+        self.assertEqual(box.fill_color, "#FFFFFF")
+        self.assertEqual(box.opacity, 1)
+        self.assertEqual(box.line_width, 1)
+        self.assertEqual(box.line_style, "-")
+        self.assertEqual(box.line_color, "#000000")
 
 
     def test_box_location_must_be_numeric(self):

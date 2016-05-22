@@ -19,7 +19,9 @@ class Graphic:
 
 class ShapeGraphic(Graphic):
 
-    def __init__(self, fill_color="#FFFFFF", opacity=1):
+    def __init__(self, *args, fill_color="#FFFFFF", opacity=1, **kwargs):
+        Graphic.__init__(self, *args, **kwargs)
+
         self.fill_color = _process_color(fill_color)
 
         if not isinstance(opacity, int) and not isinstance(opacity, float):
@@ -34,7 +36,9 @@ class ShapeGraphic(Graphic):
 
 class BoxGraphic(ShapeGraphic):
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height, *args, **kwargs):
+        ShapeGraphic.__init__(self, *args, **kwargs)
+
         if not isinstance(x, int) and not isinstance(x, float):
             raise TypeError("x must be numeric, not '%s'" % x)
         self.x = x
@@ -54,4 +58,6 @@ class BoxGraphic(ShapeGraphic):
 
 
 class Rectangle(BoxGraphic):
-    pass
+
+    def __init__(self, *args, **kwargs):
+        BoxGraphic.__init__(self, *args, **kwargs)
