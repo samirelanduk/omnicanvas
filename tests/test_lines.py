@@ -3,7 +3,7 @@ from omnicanvas.graphics import Graphic, Line
 
 class LineCreationTests(TestCase):
 
-    def test_can_create_rectangle(self):
+    def test_can_create_line(self):
         line = Line(10, 30, 90, 70)
         self.assertIsInstance(line, Graphic)
         self.assertEqual(line.x1, 10)

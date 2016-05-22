@@ -92,3 +92,15 @@ class Line(Graphic):
         return "<Line (%i,%i) to (%i,%i)>" % (
          self.x1, self.y1, self.x2, self.y2
         )
+
+
+
+class Polygon(ShapeGraphic):
+
+    def __init__(self, *coordinates, **kwargs):
+        ShapeGraphic.__init__(self, **kwargs)
+        self.coordinates = list(coordinates)
+
+
+    def __repr__(self):
+        return("<Polygon (%i points)>" % (len(self.coordinates) / 2))
