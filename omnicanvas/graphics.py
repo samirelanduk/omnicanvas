@@ -74,9 +74,17 @@ class Line(Graphic):
 
     def __init__(self, x1, y1, x2, y2, *args, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
+        if not isinstance(x1, int) and not isinstance(x1, float):
+            raise TypeError("x1 must be numeric, not '%s'" % x1)
         self.x1 = x1
+        if not isinstance(y1, int) and not isinstance(y1, float):
+            raise TypeError("y1 must be numeric, not '%s'" % y1)
         self.y1 = y1
+        if not isinstance(x2, int) and not isinstance(x2, float):
+            raise TypeError("x2 must be numeric, not '%s'" % x2)
         self.x2 = x2
+        if not isinstance(y2, int) and not isinstance(y2, float):
+            raise TypeError("y2 must be numeric, not '%s'" % y2)
         self.y2 = y2
 
 

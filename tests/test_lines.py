@@ -14,3 +14,18 @@ class LineCreationTests(TestCase):
         self.assertEqual(line.line_style, "-")
         self.assertEqual(line.line_color, "#000000")
         self.assertEqual(str(line), "<Line (10,30) to (90,70)>")
+
+
+    def test_line_coordinates_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            line = Line("10", 30, 90, 70)
+        line = Line(10.5, 30, 90, 70)
+        with self.assertRaises(TypeError):
+            line = Line(10, "30", 90, 70)
+        line = Line(10, 30.5, 90, 70)
+        with self.assertRaises(TypeError):
+            line = Line(10, 30, "90", 70)
+        line = Line(10, 30, 90.5, 70)
+        with self.assertRaises(TypeError):
+            line = Line(10, 30, 90, "70")
+        line = Line(10, 30, 90, 70.5)
