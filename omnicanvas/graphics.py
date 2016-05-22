@@ -61,3 +61,9 @@ class Rectangle(BoxGraphic):
 
     def __init__(self, *args, **kwargs):
         BoxGraphic.__init__(self, *args, **kwargs)
+
+
+    def __repr__(self):
+        return "<Rectangle %i×%i at (%i,%i)>" % (
+         self.width, self.height, self.x, self.y
+        )
