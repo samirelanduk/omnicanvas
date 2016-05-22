@@ -7,8 +7,16 @@ class Graphic:
 
 class ShapeGraphic(Graphic):
 
-    def __init__(self, fill_color="#FFFFFF"):
+    def __init__(self, fill_color="#FFFFFF", opacity=1):
         self.fill_color = _process_color(fill_color)
+
+        if not isinstance(opacity, int) and not isinstance(opacity, float):
+            raise TypeError("opacity must be numeric, not '%s'" % opacity)
+        if not 0 <= opacity <= 1:
+            raise ValueError(
+             "opacity must be between 0 and 1, not %s" % (str(opacity))
+            )
+        self.opacity=opacity
 
 
 

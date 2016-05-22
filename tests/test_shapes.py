@@ -7,6 +7,7 @@ class ShapeGraphicCreationTests(TestCase):
         shape = ShapeGraphic()
         self.assertIsInstance(shape, Graphic)
         self.assertEqual(shape.fill_color, "#FFFFFF")
+        self.assertEqual(shape.opacity, 1)
 
 
     def test_can_create_shape_graphic_with_fill(self):
@@ -35,3 +36,25 @@ class ShapeGraphicCreationTests(TestCase):
             shape = ShapeGraphic(fill_color="#FF0")
         with self.assertRaises(ValueError):
             shape = ShapeGraphic(fill_color="#FFFG00")
+
+
+    def test_can_create_shape_graphic_with_opacity(self):
+        shape = ShapeGraphic(opacity=0.5)
+        self.assertEqual(shape.opacity, 0.5)
+
+
+    def test_opacity_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            shape = ShapeGraphic(opacity="100")
+        with self.assertRaises(TypeError):
+            shape = ShapeGraphic(opacity=None)
+        shape = ShapeGraphic(opacity=0.5)
+
+
+    def test_opacity_must_be_between_0_and_1(self):
+        with self.assertRaises(ValueError):
+            shape = ShapeGraphic(opacity=-1)
+        with self.assertRaises(ValueError):
+            shape = ShapeGraphic(opacity=1.1)
+        shape = ShapeGraphic(opacity=0)
+        shape = ShapeGraphic(opacity=1)
