@@ -1,7 +1,11 @@
 from .colors import _process_color
 
 class Graphic:
-    pass
+
+    def __init__(self, line_width=1):
+        if not isinstance(line_width, int) and not isinstance(line_width, float):
+            raise TypeError("line_width must be numeric, not '%s'" % line_width)
+        self.line_width = line_width
 
 
 
