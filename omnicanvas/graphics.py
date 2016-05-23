@@ -99,6 +99,12 @@ class Polygon(ShapeGraphic):
 
     def __init__(self, *coordinates, **kwargs):
         ShapeGraphic.__init__(self, **kwargs)
+
+        for value in coordinates:
+            if not isinstance(value, int) and not isinstance(value, float):
+                raise TypeError("'%s' is an invalid coordinate" % value)
+        if len(coordinates) % 2 != 0:
+            raise ValueError("There must be an even number of coordinates")
         self.coordinates = list(coordinates)
 
 
