@@ -125,9 +125,11 @@ class Text(Graphic):
         if not isinstance(y, int) and not isinstance(y, float):
             raise TypeError("y must be numeric, not '%s'" % y)
         self.y = y
-        
+
         self.text = text
 
 
     def __repr__(self):
-        return "<Text ('%s')>" % str(self.text)
+        return "<Text ('%s')>" % (
+         str(self.text) if len(str(self.text)) < 21 else str(self.text)[:20] + "..."
+        )

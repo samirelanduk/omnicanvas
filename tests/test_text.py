@@ -21,3 +21,13 @@ class TextCreationTests(TestCase):
             text = Text(50, "50", "Test")
         text = Text(50.5, 50, "Test")
         text = Text(50, 50.5, "Test")
+
+
+
+class TextReprTests(TestCase):
+
+    def test_repr_displays_in_full_below_20_chars(self):
+        text = Text(50, 50, "01234567890123456789")
+        self.assertEqual(str(text), "<Text ('01234567890123456789')>")
+        text = Text(50, 50, "012345678901234567890")
+        self.assertEqual(str(text), "<Text ('01234567890123456789...')>")
