@@ -110,3 +110,17 @@ class Polygon(ShapeGraphic):
 
     def __repr__(self):
         return("<Polygon (%i points)>" % (len(self.coordinates) / 2))
+
+
+
+class Text(Graphic):
+
+    def __init__(self, x, y, text, *args, **kwargs):
+        Graphic.__init__(self, *args, **kwargs)
+        self.x = x
+        self.y = y
+        self.text = text
+
+
+    def __repr__(self):
+        return "<Text ('%s')>" % str(self.text)
