@@ -115,7 +115,8 @@ class Polygon(ShapeGraphic):
 
 class Text(Graphic):
 
-    def __init__(self, x, y, text, *args, font_size=18, horizontal_align="center", **kwargs):
+    def __init__(self, x, y, text, *args, font_size=18,
+     horizontal_align="center", vertical_align="center", **kwargs):
         Graphic.__init__(self, *args, **kwargs)
 
         if not isinstance(x, int) and not isinstance(x, float):
@@ -141,6 +142,16 @@ class Text(Graphic):
              "'%s' is not a valid horizontal alignment" % horizontal_align
             )
         self.horizontal_align = horizontal_align
+
+        if not isinstance(vertical_align, str):
+            raise TypeError(
+             "vertical align must be str, not '%s'" % vertical_align
+            )
+        if vertical_align not in ("top", "center", "bottom"):
+            raise ValueError(
+             "'%s' is not a valid vertical alignment" % vertical_align
+            )
+        self.vertical_align = vertical_align
 
 
     def __repr__(self):
