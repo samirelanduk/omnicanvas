@@ -9,6 +9,7 @@ class TextCreationTests(TestCase):
         self.assertEqual(text.x, 50)
         self.assertEqual(text.y, 50)
         self.assertEqual(text.font_size, 18)
+        self.assertEqual(text.horizontal_align, "center")
         self.assertEqual(text.line_width, 1)
         self.assertEqual(text.line_style, "-")
         self.assertEqual(text.line_color, "#000000")
@@ -33,6 +34,23 @@ class TextCreationTests(TestCase):
         with self.assertRaises(TypeError):
             text = Text(50, 50, "Test", font_size="12")
         text = Text(50, 50, "Test", font_size=12.5)
+
+
+    def test_can_create_text_with_horizontal_align(self):
+        text = Text(50, 50, "Test", horizontal_align="center")
+        self.assertEqual(text.horizontal_align, "center")
+
+
+    def test_horizontal_align_must_be_str(self):
+        with self.assertRaises(TypeError):
+            text = Text(50, 50, "Test", horizontal_align=None)
+        with self.assertRaises(TypeError):
+            text = Text(50, 50, "Test", horizontal_align=23)
+
+
+    def test_horizontal_align_must_be_valid_text(self):
+        with self.assertRaises(ValueError):
+            text = Text(50, 50, "Test", horizontal_align="middle")
 
 
 

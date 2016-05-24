@@ -115,7 +115,7 @@ class Polygon(ShapeGraphic):
 
 class Text(Graphic):
 
-    def __init__(self, x, y, text, *args, font_size=18, **kwargs):
+    def __init__(self, x, y, text, *args, font_size=18, horizontal_align="center", **kwargs):
         Graphic.__init__(self, *args, **kwargs)
 
         if not isinstance(x, int) and not isinstance(x, float):
@@ -131,6 +131,16 @@ class Text(Graphic):
         if not isinstance(font_size, int) and not isinstance(font_size, float):
             raise TypeError("Font size must be numeric, not '%s'" % font_size)
         self.font_size = font_size
+
+        if not isinstance(horizontal_align, str):
+            raise TypeError(
+             "horizontal align must be str, not '%s'" % horizontal_align
+            )
+        if horizontal_align not in ("left", "center", "right"):
+            raise ValueError(
+             "'%s' is not a valid horizontal alignment" % horizontal_align
+            )
+        self.horizontal_align = horizontal_align
 
 
     def __repr__(self):
