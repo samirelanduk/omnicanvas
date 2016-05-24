@@ -16,3 +16,14 @@ class RectangleCreationTests(TestCase):
         self.assertEqual(rectangle.line_style, "-")
         self.assertEqual(rectangle.line_color, "#000000")
         self.assertEqual(str(rectangle), "<Rectangle 400×500 at (10,30)>")
+
+
+
+class SvgTests(TestCase):
+
+    def test_can_make_basic_svg(self):
+        rectangle = Rectangle(10, 30, 400, 500)
+        self.assertEqual(
+         rectangle.to_svg(),
+         '<rect x="10.0" y="30.0" width="400.0" height="500.0" />'
+        )

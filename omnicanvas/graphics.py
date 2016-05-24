@@ -1,4 +1,5 @@
 from .colors import _process_color
+from . import svg
 
 class Graphic:
 
@@ -67,6 +68,9 @@ class Rectangle(BoxGraphic):
         return "<Rectangle %i×%i at (%i,%i)>" % (
          self.width, self.height, self.x, self.y
         )
+
+
+    to_svg = svg.generate_rectangle_svg
 
 
 
