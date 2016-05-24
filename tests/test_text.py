@@ -12,3 +12,12 @@ class TextCreationTests(TestCase):
         self.assertEqual(text.line_style, "-")
         self.assertEqual(text.line_color, "#000000")
         self.assertEqual(str(text), "<Text ('Test')>")
+
+
+    def test_text_location_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            text = Text("50", 50, "Test")
+        with self.assertRaises(TypeError):
+            text = Text(50, "50", "Test")
+        text = Text(50.5, 50, "Test")
+        text = Text(50, 50.5, "Test")

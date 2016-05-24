@@ -117,8 +117,15 @@ class Text(Graphic):
 
     def __init__(self, x, y, text, *args, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
+
+        if not isinstance(x, int) and not isinstance(x, float):
+            raise TypeError("x must be numeric, not '%s'" % x)
         self.x = x
+
+        if not isinstance(y, int) and not isinstance(y, float):
+            raise TypeError("y must be numeric, not '%s'" % y)
         self.y = y
+        
         self.text = text
 
 
