@@ -115,7 +115,7 @@ class Polygon(ShapeGraphic):
 
 class Text(Graphic):
 
-    def __init__(self, x, y, text, *args, **kwargs):
+    def __init__(self, x, y, text, *args, font_size=18, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
 
         if not isinstance(x, int) and not isinstance(x, float):
@@ -127,6 +127,10 @@ class Text(Graphic):
         self.y = y
 
         self.text = text
+
+        if not isinstance(font_size, int) and not isinstance(font_size, float):
+            raise TypeError("Font size must be numeric, not '%s'" % font_size)
+        self.font_size = font_size
 
 
     def __repr__(self):

@@ -8,6 +8,7 @@ class TextCreationTests(TestCase):
         self.assertIsInstance(text, Graphic)
         self.assertEqual(text.x, 50)
         self.assertEqual(text.y, 50)
+        self.assertEqual(text.font_size, 18)
         self.assertEqual(text.line_width, 1)
         self.assertEqual(text.line_style, "-")
         self.assertEqual(text.line_color, "#000000")
@@ -21,6 +22,17 @@ class TextCreationTests(TestCase):
             text = Text(50, "50", "Test")
         text = Text(50.5, 50, "Test")
         text = Text(50, 50.5, "Test")
+
+
+    def test_can_create_text_with_font_size(self):
+        text = Text(50, 50, "Test", font_size=12)
+        self.assertEqual(text.font_size, 12)
+
+
+    def test_font_size_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            text = Text(50, 50, "Test", font_size="12")
+        text = Text(50, 50, "Test", font_size=12.5)
 
 
 
