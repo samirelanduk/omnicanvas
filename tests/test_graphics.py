@@ -87,3 +87,39 @@ class GraphicSvgTests(TestCase):
          graphic.graphic_svg(),
          "stroke:#000000;stroke-width:2.4;"
         )
+
+
+    def test_graphic_can_produce_line_pattern_svg(self):
+        graphic = Graphic(line_style="--")
+        self.assertEqual(
+         graphic.graphic_svg(),
+         "stroke:#000000;stroke-dasharray:10.0,5.0;"
+        )
+        graphic = Graphic(line_style="..")
+        self.assertEqual(
+         graphic.graphic_svg(),
+         "stroke:#000000;stroke-dasharray:1.0,2.0;"
+        )
+
+
+    def test_line_pattern_changes_with_line_width(self):
+        graphic = Graphic(line_style="--", line_width=2.5)
+        self.assertEqual(
+         graphic.graphic_svg(),
+         "stroke:#000000;stroke-width:2.5;stroke-dasharray:25.0,12.5;"
+        )
+        graphic = Graphic(line_style="..", line_width=2.5)
+        self.assertEqual(
+         graphic.graphic_svg(),
+         "stroke:#000000;stroke-width:2.5;stroke-dasharray:2.5,5.0;"
+        )
+        graphic = Graphic(line_style="--", line_width=10)
+        self.assertEqual(
+         graphic.graphic_svg(),
+         "stroke:#000000;stroke-width:10.0;stroke-dasharray:100.0,50.0;"
+        )
+        graphic = Graphic(line_style="..", line_width=10)
+        self.assertEqual(
+         graphic.graphic_svg(),
+         "stroke:#000000;stroke-width:10.0;stroke-dasharray:10.0,20.0;"
+        )

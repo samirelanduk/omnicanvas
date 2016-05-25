@@ -1,8 +1,15 @@
 def generate_graphic_svg(graphic):
     width = "stroke-width:%.1f;" % graphic.line_width
-    return "stroke:%s;%s" % (
+    pattern = "stroke-dasharray:%s;" % {
+     "-": "1,0",
+     "--": "%.1f,%.1f" % (10 * graphic.line_width, 5 * graphic.line_width),
+     "..": "%.1f,%.1f" % (1 * graphic.line_width, 2 * graphic.line_width)
+    }[graphic.line_style]
+
+    return "stroke:%s;%s%s" % (
      graphic.line_color,
-     width if graphic.line_width != 1 else ""
+     width if graphic.line_width != 1 else "",
+     pattern if graphic.line_style != "-" else ""
     )
 
 
