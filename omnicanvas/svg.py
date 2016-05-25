@@ -1,5 +1,8 @@
 def generate_shape_svg(shape):
-    return "fill:%s;" % shape.fill_color
+    opacity = "fill-opacity:%.3f;" % shape.opacity
+    return "fill:%s;%s" % (
+     shape.fill_color, opacity if shape.opacity != 1 else ""
+    )
 
 
 def generate_rectangle_svg(rectangle):
