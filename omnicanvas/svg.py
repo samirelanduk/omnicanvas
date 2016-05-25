@@ -69,6 +69,6 @@ def generate_text_svg(text):
      text.y,
      horizontal_align,
      vertical_align,
-     text.graphic_svg(),
+     text.shape_svg(),
      text.text
     )

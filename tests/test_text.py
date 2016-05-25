@@ -1,16 +1,18 @@
 from unittest import TestCase
-from omnicanvas.graphics import Graphic, Text
+from omnicanvas.graphics import ShapeGraphic, Text
 
 class TextCreationTests(TestCase):
 
     def test_can_create_text(self):
         text = Text(50, 50, "Test")
-        self.assertIsInstance(text, Graphic)
+        self.assertIsInstance(text, ShapeGraphic)
         self.assertEqual(text.x, 50)
         self.assertEqual(text.y, 50)
         self.assertEqual(text.font_size, 18)
         self.assertEqual(text.horizontal_align, "center")
         self.assertEqual(text.vertical_align, "center")
+        self.assertEqual(text.fill_color, "#000000")
+        self.assertEqual(text.opacity, 1)
         self.assertEqual(text.line_width, 0)
         self.assertEqual(text.line_style, "-")
         self.assertEqual(text.line_color, "#000000")
@@ -89,7 +91,7 @@ class SvgTests(TestCase):
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="middle"'
-         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 
 
@@ -98,13 +100,13 @@ class SvgTests(TestCase):
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="start" alignment-baseline="middle"'
-         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
         text = Text(50, 50, "Test", horizontal_align="right")
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="end" alignment-baseline="middle"'
-         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 
 
@@ -120,13 +122,13 @@ class SvgTests(TestCase):
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="hanging"'
-         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
         text = Text(50, 50, "Test", vertical_align="bottom")
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="baseline"'
-         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 
 

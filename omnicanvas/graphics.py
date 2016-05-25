@@ -137,11 +137,11 @@ class Polygon(ShapeGraphic):
 
 
 
-class Text(Graphic):
+class Text(ShapeGraphic):
 
-    def __init__(self, x, y, text, *args, font_size=18, line_width=0,
-     horizontal_align="center", vertical_align="center", **kwargs):
-        Graphic.__init__(self, *args, line_width=line_width, **kwargs)
+    def __init__(self, x, y, text, *args, font_size=18, fill_color="#000000",
+     line_width=0, horizontal_align="center", vertical_align="center", **kwargs):
+        ShapeGraphic.__init__(self, *args, fill_color=fill_color, line_width=line_width, **kwargs)
 
         if not isinstance(x, int) and not isinstance(x, float):
             raise TypeError("x must be numeric, not '%s'" % x)
