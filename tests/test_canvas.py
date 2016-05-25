@@ -205,7 +205,7 @@ class CanvasSvgTests(TestCase):
         canvas = Canvas(300, 200)
         self.assertEqual(
          canvas.to_svg(),
-         "<svg>\n\n</svg>"
+         '<svg width="300" height="200">\n\n</svg>'
         )
 
 
@@ -215,7 +215,7 @@ class CanvasSvgTests(TestCase):
         self.assertEqual(
          canvas.to_svg(),
          "\n".join((
-          "<svg>",
+          '<svg width="300" height="200">',
           canvas.graphics[0].to_svg(),
           "</svg>"
          ))
