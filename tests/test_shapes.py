@@ -68,11 +68,14 @@ class ShapeSvgTests(TestCase):
 
     def test_shape_can_produce_fill_svg(self):
         shape = ShapeGraphic()
-        self.assertEqual(shape.shape_svg(), "fill:#FFFFFF;")
+        self.assertEqual(shape.shape_svg(), "fill:#FFFFFF;stroke:#000000;")
         shape = ShapeGraphic(fill_color="#67DE43")
-        self.assertEqual(shape.shape_svg(), "fill:#67DE43;")
+        self.assertEqual(shape.shape_svg(), "fill:#67DE43;stroke:#000000;")
 
 
     def test_shape_can_produce_opacity_svg(self):
         shape = ShapeGraphic(opacity=0.34)
-        self.assertEqual(shape.shape_svg(), "fill:#FFFFFF;fill-opacity:0.340;")
+        self.assertEqual(
+         shape.shape_svg(),
+         "fill:#FFFFFF;fill-opacity:0.340;stroke:#000000;"
+        )

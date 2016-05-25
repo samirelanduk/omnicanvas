@@ -17,6 +17,9 @@ class Graphic:
         self.line_color = _process_color(line_color)
 
 
+    graphic_svg = svg.generate_graphic_svg
+
+
 
 class ShapeGraphic(Graphic):
 
@@ -37,7 +40,7 @@ class ShapeGraphic(Graphic):
     shape_svg = svg.generate_shape_svg
 
 
-    
+
 class BoxGraphic(ShapeGraphic):
 
     def __init__(self, x, y, width, height, *args, **kwargs):

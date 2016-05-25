@@ -1,7 +1,13 @@
+def generate_graphic_svg(graphic):
+    return "stroke:%s;" % graphic.line_color
+
+
 def generate_shape_svg(shape):
     opacity = "fill-opacity:%.3f;" % shape.opacity
-    return "fill:%s;%s" % (
-     shape.fill_color, opacity if shape.opacity != 1 else ""
+    return "fill:%s;%s%s" % (
+     shape.fill_color,
+     opacity if shape.opacity != 1 else "",
+     shape.graphic_svg()
     )
 
 

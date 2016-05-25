@@ -69,3 +69,11 @@ class GraphicCreationTests(TestCase):
             graphic = Graphic(line_color="#F00")
         with self.assertRaises(ValueError):
             graphic = Graphic(line_color="#FF0G00")
+
+
+
+class GraphicSvgTests(TestCase):
+
+    def test_graphic_can_produce_stroke_svg(self):
+        graphic = Graphic()
+        self.assertEqual(graphic.graphic_svg(), "stroke:#000000;")
