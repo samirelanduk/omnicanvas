@@ -55,10 +55,20 @@ def generate_text_svg(text):
      "center": "middle",
      "right": "end"
     }[text.horizontal_align]
-    return '<text x="%.1f" y="%.1f" text-anchor="%s" style="%s">%s</text>' % (
+    if text.vertical_align not in ("top", "center", "bottom"):
+        raise ValueError(
+         "'%s' is not a valid vertical_align value" % text.vertical_align
+        )
+    vertical_align = {
+     "top": "hanging",
+     "center": "middle",
+     "bottom": "baseline"
+    }[text.vertical_align]
+    return '<text x="%.1f" y="%.1f" text-anchor="%s" alignment-baseline="%s" style="%s">%s</text>' % (
      text.x,
      text.y,
      horizontal_align,
+     vertical_align,
      text.graphic_svg(),
      text.text
     )
