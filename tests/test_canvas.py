@@ -182,3 +182,17 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(len(self.canvas.graphics), 2)
         self.assertEqual(self.canvas.graphics[-1].opacity, 0.1)
         self.assertEqual(self.canvas.graphics[-1].line_width, 1)
+
+
+    def test_can_add_text(self):
+        self.canvas.add_text(10, 30, "TEXT")
+        self.assertIsInstance(
+         self.canvas.graphics[-1],
+         graphics.Text
+        )
+        self.assertEqual(self.canvas.graphics[-1].text, "TEXT")
+        self.canvas.add_text(10, 30, "TEXT", vertical_align="top")
+        self.assertEqual(len(self.canvas.graphics), 2)
+        self.assertEqual(self.canvas.graphics[-1].vertical_align, "top")
+        self.assertEqual(self.canvas.graphics[-1].opacity, 1)
+        self.assertEqual(self.canvas.graphics[-1].line_width, 0)

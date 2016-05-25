@@ -53,3 +53,7 @@ class Canvas:
 
     def add_polygon(self, *args, **kwargs):
         self.graphics.append(graphics.Polygon(*args, **kwargs))
+
+
+    def add_text(self, *args, **kwargs):
+        self.graphics.append(graphics.Text(*args, **kwargs))
