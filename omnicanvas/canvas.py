@@ -60,4 +60,9 @@ class Canvas:
         self.graphics.append(graphics.Text(*args, **kwargs))
 
 
+    def save(self, path):
+        with open(path, "w") as f:
+            f.write(self.to_svg())
+
+
     to_svg = svg.generate_canvas_svg

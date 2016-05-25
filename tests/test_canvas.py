@@ -1,3 +1,4 @@
+import os
 from unittest import TestCase
 from omnicanvas.canvas import Canvas
 import omnicanvas.graphics as graphics
@@ -232,3 +233,21 @@ class CanvasSvgTests(TestCase):
           "</svg>"
          ))
         )
+
+
+
+class CanvasSavingTests(TestCase):
+
+    def tearDown(self):
+        try:
+            os.remove("test.svg")
+        except OSError:
+            pass
+
+
+    def test_can_save_canvas_as_svg(self):
+        canvas = Canvas(300, 200)
+        canvas.save("test.svg")
+        self.assertIn("test.svg", os.listdir())
+        with open("test.svg") as f:
+            self.assertEqual(f.read(), canvas.to_svg())
