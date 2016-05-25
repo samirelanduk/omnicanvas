@@ -77,3 +77,13 @@ class GraphicSvgTests(TestCase):
     def test_graphic_can_produce_stroke_svg(self):
         graphic = Graphic()
         self.assertEqual(graphic.graphic_svg(), "stroke:#000000;")
+        graphic = Graphic(line_color="#ABCDEF")
+        self.assertEqual(graphic.graphic_svg(), "stroke:#ABCDEF;")
+
+
+    def test_graphic_can_produce_line_width_svg(self):
+        graphic = Graphic(line_width=2.4)
+        self.assertEqual(
+         graphic.graphic_svg(),
+         "stroke:#000000;stroke-width:2.4;"
+        )

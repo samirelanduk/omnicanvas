@@ -1,5 +1,9 @@
 def generate_graphic_svg(graphic):
-    return "stroke:%s;" % graphic.line_color
+    width = "stroke-width:%.1f;" % graphic.line_width
+    return "stroke:%s;%s" % (
+     graphic.line_color,
+     width if graphic.line_width != 1 else ""
+    )
 
 
 def generate_shape_svg(shape):
