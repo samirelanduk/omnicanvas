@@ -34,3 +34,12 @@ def generate_line_svg(line):
     return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" style="%s" />' % (
      line.x1, line.y1, line.x2, line.y2, line.graphic_svg()
     )
+
+
+def generate_polygon_svg(polygon):
+    return '<polygon points="%s" style="%s" />' % (
+     ", ".join(["%.1f,%.1f" % (
+      point[0], point[1]
+     ) for point in polygon.coordinates_to_xy_pairs()]),
+     polygon.shape_svg()
+    )

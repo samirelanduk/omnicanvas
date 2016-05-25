@@ -125,6 +125,17 @@ class Polygon(ShapeGraphic):
         return("<Polygon (%i points)>" % (len(self.coordinates) / 2))
 
 
+    def coordinates_to_xy_pairs(self):
+        if len(self.coordinates) % 2 != 0:
+            raise ValueError(
+             "Cannot process polygon coordiantes with odd number of values"
+            )
+        return tuple(zip(self.coordinates[:-1:2], self.coordinates[1::2]))
+
+
+    to_svg = svg.generate_polygon_svg
+
+
 
 class Text(Graphic):
 
