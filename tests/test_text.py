@@ -11,7 +11,7 @@ class TextCreationTests(TestCase):
         self.assertEqual(text.font_size, 18)
         self.assertEqual(text.horizontal_align, "center")
         self.assertEqual(text.vertical_align, "center")
-        self.assertEqual(text.line_width, 1)
+        self.assertEqual(text.line_width, 0)
         self.assertEqual(text.line_style, "-")
         self.assertEqual(text.line_color, "#000000")
         self.assertEqual(str(text), "<Text ('Test')>")
@@ -88,5 +88,5 @@ class SvgTests(TestCase):
         text = Text(50, 50, "Test")
         self.assertEqual(
          text.to_svg(),
-         '<text x="50.0" y="50.0" style="stroke:#000000;">Test</text>'
+         '<text x="50.0" y="50.0" style="stroke:#000000;stroke-width:0.0;">Test</text>'
         )
