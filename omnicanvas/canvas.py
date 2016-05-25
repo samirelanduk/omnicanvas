@@ -1,4 +1,5 @@
 from .colors import _process_color
+from . import graphics
 
 class Canvas:
 
@@ -40,3 +41,7 @@ class Canvas:
         return "<Canvas %i×%i (%i Graphics)>" % (
          self.width, self.height, len(self.graphics)
         )
+
+
+    def add_rectangle(self, *args, **kwargs):
+        self.graphics.append(graphics.Rectangle(*args, **kwargs))

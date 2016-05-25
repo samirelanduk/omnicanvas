@@ -1,5 +1,6 @@
 from unittest import TestCase
 from omnicanvas.canvas import Canvas
+import omnicanvas.graphics as graphics
 
 class CanvasCreationTests(TestCase):
 
@@ -131,3 +132,25 @@ class CanvasCreationTests(TestCase):
             canvas = Canvas(700, 500, border_color="#FF0")
         with self.assertRaises(ValueError):
             canvas = Canvas(700, 500, border_color="#FFFG00")
+
+
+
+class GraphicAdditionTests(TestCase):
+
+    def setUp(self):
+        self.canvas = Canvas(400, 400)
+
+
+    def test_can_add_rectangle(self):
+        self.canvas.add_rectangle(10, 10, 50, 100)
+        self.assertIsInstance(
+         self.canvas.graphics[-1],
+         graphics.Rectangle
+        )
+        self.assertEqual(self.canvas.graphics[-1].width, 50)
+        self.assertEqual(self.canvas.graphics[-1].height, 100)
+        self.canvas.add_rectangle(10, 10, 50, 100, opacity=0.3, line_style="..")
+        self.assertEqual(len(self.canvas.graphics), 2)
+        self.assertEqual(self.canvas.graphics[-1].opacity, 0.3)
+        self.assertEqual(self.canvas.graphics[-1].line_style, "..")
+        self.assertEqual(self.canvas.graphics[-1].line_width, 1)
