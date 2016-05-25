@@ -196,3 +196,27 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(self.canvas.graphics[-1].vertical_align, "top")
         self.assertEqual(self.canvas.graphics[-1].opacity, 1)
         self.assertEqual(self.canvas.graphics[-1].line_width, 0)
+
+
+
+class CanvasSvgTests(TestCase):
+
+    def test_can_make_shell_svg(self):
+        canvas = Canvas(300, 200)
+        self.assertEqual(
+         canvas.to_svg(),
+         "<svg>\n\n</svg>"
+        )
+
+
+    def test_canvas_svg_contains_graphic_svg(self):
+        canvas = Canvas(300, 200)
+        canvas.add_line(0, 0, 300, 200)
+        self.assertEqual(
+         canvas.to_svg(),
+         "\n".join((
+          "<svg>",
+          canvas.graphics[0].to_svg(),
+          "</svg>"
+         ))
+        )

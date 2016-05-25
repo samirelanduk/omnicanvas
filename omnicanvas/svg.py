@@ -72,3 +72,9 @@ def generate_text_svg(text):
      text.shape_svg(),
      text.text
     )
+
+
+def generate_canvas_svg(canvas):
+    return "<svg>\n%s\n</svg>" % "\n".join(
+     [graphic.to_svg() for graphic in canvas.graphics]
+    )

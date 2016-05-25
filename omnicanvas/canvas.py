@@ -1,5 +1,6 @@
 from .colors import _process_color
 from . import graphics
+from . import svg
 
 class Canvas:
 
@@ -57,3 +58,6 @@ class Canvas:
 
     def add_text(self, *args, **kwargs):
         self.graphics.append(graphics.Text(*args, **kwargs))
+
+
+    to_svg = svg.generate_canvas_svg
