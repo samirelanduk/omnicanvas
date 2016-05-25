@@ -74,8 +74,15 @@ def generate_text_svg(text):
     )
 
 
+SVG_BASE = """<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="%i" height="%i">
+%s
+%s
+</svg>"""
+
+
 def generate_canvas_svg(canvas):
-    return '<svg width="%i" height="%i">\n%s\n%s\n</svg>' % (
+    return SVG_BASE % (
      canvas.width,
      canvas.height,
      ('<rect x="0" y="0" width="%i" height="%i" style="fill:%s;stroke-width:0; />"' % (

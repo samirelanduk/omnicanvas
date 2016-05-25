@@ -206,7 +206,9 @@ class CanvasSvgTests(TestCase):
         canvas = Canvas(300, 200)
         self.assertEqual(
          canvas.to_svg(),
-         '<svg width="300" height="200">\n\n\n</svg>'
+         '<?xml version="1.0" encoding="UTF-8"?>\n'
+         '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">\n'
+         '\n\n</svg>'
         )
 
 
@@ -216,7 +218,8 @@ class CanvasSvgTests(TestCase):
         self.assertEqual(
          canvas.to_svg(),
          "\n".join((
-          '<svg width="300" height="200">\n',
+          '<?xml version="1.0" encoding="UTF-8"?>\n'
+          '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">\n',
           canvas.graphics[0].to_svg(),
           "</svg>"
          ))
@@ -228,7 +231,8 @@ class CanvasSvgTests(TestCase):
         self.assertEqual(
          canvas.to_svg(),
          "\n".join((
-          '<svg width="300" height="200">',
+          '<?xml version="1.0" encoding="UTF-8"?>\n'
+          '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">',
           '<rect x="0" y="0" width="300" height="200" style="fill:#123456;stroke-width:0; />"\n',
           "</svg>"
          ))
