@@ -34,7 +34,10 @@ class ShapeGraphic(Graphic):
         self.opacity=opacity
 
 
+    shape_svg = svg.generate_shape_svg
 
+
+    
 class BoxGraphic(ShapeGraphic):
 
     def __init__(self, x, y, width, height, *args, **kwargs):

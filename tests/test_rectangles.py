@@ -25,5 +25,5 @@ class SvgTests(TestCase):
         rectangle = Rectangle(10, 30, 400, 500)
         self.assertEqual(
          rectangle.to_svg(),
-         '<rect x="10.0" y="30.0" width="400.0" height="500.0" />'
+         '<rect x="10.0" y="30.0" width="400.0" height="500.0" style="fill:#FFFFFF;"/>'
         )
