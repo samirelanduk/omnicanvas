@@ -43,3 +43,12 @@ def generate_polygon_svg(polygon):
      ) for point in polygon.coordinates_to_xy_pairs()]),
      polygon.shape_svg()
     )
+
+
+def generate_text_svg(text):
+    return '<text x="%.1f" y="%.1f" style="%s">%s</text>' % (
+     text.x,
+     text.y,
+     text.graphic_svg(),
+     text.text
+    )

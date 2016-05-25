@@ -182,3 +182,6 @@ class Text(Graphic):
         return "<Text ('%s')>" % (
          str(self.text) if len(str(self.text)) < 21 else str(self.text)[:20] + "..."
         )
+
+
+    to_svg = svg.generate_text_svg

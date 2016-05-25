@@ -79,3 +79,14 @@ class TextReprTests(TestCase):
         self.assertEqual(str(text), "<Text ('01234567890123456789')>")
         text = Text(50, 50, "012345678901234567890")
         self.assertEqual(str(text), "<Text ('01234567890123456789...')>")
+
+
+
+class SvgTests(TestCase):
+
+    def test_can_make_basic_svg(self):
+        text = Text(50, 50, "Test")
+        self.assertEqual(
+         text.to_svg(),
+         '<text x="50.0" y="50.0" style="stroke:#000000;">Test</text>'
+        )
