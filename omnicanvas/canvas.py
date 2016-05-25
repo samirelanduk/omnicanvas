@@ -49,3 +49,7 @@ class Canvas:
 
     def add_line(self, *args, **kwargs):
         self.graphics.append(graphics.Line(*args, **kwargs))
+
+
+    def add_polygon(self, *args, **kwargs):
+        self.graphics.append(graphics.Polygon(*args, **kwargs))

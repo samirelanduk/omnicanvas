@@ -169,3 +169,16 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(self.canvas.graphics[-1].line_color, "#999999")
         self.assertEqual(self.canvas.graphics[-1].line_style, "..")
         self.assertEqual(self.canvas.graphics[-1].line_width, 1)
+
+
+    def test_can_add_polygon(self):
+        self.canvas.add_polygon(10, 30, 100, 45, 45, 40)
+        self.assertIsInstance(
+         self.canvas.graphics[-1],
+         graphics.Polygon
+        )
+        self.assertEqual(self.canvas.graphics[-1].coordinates[-1], 40)
+        self.canvas.add_polygon(10, 30, 100, 45, 45, 40, opacity=0.1)
+        self.assertEqual(len(self.canvas.graphics), 2)
+        self.assertEqual(self.canvas.graphics[-1].opacity, 0.1)
+        self.assertEqual(self.canvas.graphics[-1].line_width, 1)
