@@ -45,3 +45,7 @@ class Canvas:
 
     def add_rectangle(self, *args, **kwargs):
         self.graphics.append(graphics.Rectangle(*args, **kwargs))
+
+
+    def add_line(self, *args, **kwargs):
+        self.graphics.append(graphics.Line(*args, **kwargs))

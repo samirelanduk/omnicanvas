@@ -154,3 +154,18 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(self.canvas.graphics[-1].opacity, 0.3)
         self.assertEqual(self.canvas.graphics[-1].line_style, "..")
         self.assertEqual(self.canvas.graphics[-1].line_width, 1)
+
+
+    def test_can_add_line(self):
+        self.canvas.add_line(10, 10, 50, 100)
+        self.assertIsInstance(
+         self.canvas.graphics[-1],
+         graphics.Line
+        )
+        self.assertEqual(self.canvas.graphics[-1].x1, 10)
+        self.assertEqual(self.canvas.graphics[-1].y2, 100)
+        self.canvas.add_line(10, 10, 50, 100, line_color="#999999", line_style="..")
+        self.assertEqual(len(self.canvas.graphics), 2)
+        self.assertEqual(self.canvas.graphics[-1].line_color, "#999999")
+        self.assertEqual(self.canvas.graphics[-1].line_style, "..")
+        self.assertEqual(self.canvas.graphics[-1].line_width, 1)
