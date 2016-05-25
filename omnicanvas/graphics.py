@@ -104,6 +104,9 @@ class Line(Graphic):
         )
 
 
+    to_svg = svg.generate_line_svg
+
+
 
 class Polygon(ShapeGraphic):
 

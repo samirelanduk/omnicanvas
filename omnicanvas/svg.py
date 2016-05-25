@@ -25,6 +25,12 @@ def generate_shape_svg(shape):
 
 
 def generate_rectangle_svg(rectangle):
-    return '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" style="%s"/>' % (
+    return '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" style="%s" />' % (
      rectangle.x, rectangle.y, rectangle.width, rectangle.height, rectangle.shape_svg()
+    )
+
+
+def generate_line_svg(line):
+    return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" style="%s" />' % (
+     line.x1, line.y1, line.x2, line.y2, line.graphic_svg()
     )

@@ -29,3 +29,14 @@ class LineCreationTests(TestCase):
         with self.assertRaises(TypeError):
             line = Line(10, 30, 90, "70")
         line = Line(10, 30, 90, 70.5)
+
+
+
+class LineSvgTests(TestCase):
+
+    def test_can_make_basic_svg(self):
+        line = Line(10, 30, 90, 70)
+        self.assertEqual(
+         line.to_svg(),
+         '<line x1="10.0" y1="30.0" x2="90.0" y2="70.0" style="stroke:#000000;" />'
+        )
