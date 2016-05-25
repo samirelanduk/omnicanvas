@@ -123,3 +123,10 @@ class GraphicSvgTests(TestCase):
          graphic.graphic_svg(),
          "stroke:#000000;stroke-width:10.0;stroke-dasharray:10.0,20.0;"
         )
+
+
+    def test_cannot_use_invalid_line_style(self):
+        graphic = Graphic(line_style="--")
+        graphic.line_style = "8--8"
+        with self.assertRaises(ValueError):
+            graphic.graphic_svg()
