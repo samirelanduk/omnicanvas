@@ -75,9 +75,12 @@ def generate_text_svg(text):
 
 
 def generate_canvas_svg(canvas):
-    return '<svg width="%i" height="%i">\n%s\n</svg>' % (
-    canvas.width,
-    canvas.height,
+    return '<svg width="%i" height="%i">\n%s\n%s\n</svg>' % (
+     canvas.width,
+     canvas.height,
+     ('<rect x="0" y="0" width="%i" height="%i" style="fill:%s;stroke-width:0; />"' % (
+      canvas.width, canvas.height, canvas.background_color
+     )) if canvas.background_color else "",
      "\n".join(
       [graphic.to_svg() for graphic in canvas.graphics]
      )
