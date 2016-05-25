@@ -46,9 +46,19 @@ def generate_polygon_svg(polygon):
 
 
 def generate_text_svg(text):
-    return '<text x="%.1f" y="%.1f" style="%s">%s</text>' % (
+    if text.horizontal_align not in ("left", "center", "right"):
+        raise ValueError(
+         "'%s' is not a valid horizontal_align value" % text.horizontal_align
+        )
+    horizontal_align = {
+     "left": "start",
+     "center": "middle",
+     "right": "end"
+    }[text.horizontal_align]
+    return '<text x="%.1f" y="%.1f" text-anchor="%s" style="%s">%s</text>' % (
      text.x,
      text.y,
+     horizontal_align,
      text.graphic_svg(),
      text.text
     )

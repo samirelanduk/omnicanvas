@@ -88,5 +88,28 @@ class SvgTests(TestCase):
         text = Text(50, 50, "Test")
         self.assertEqual(
          text.to_svg(),
-         '<text x="50.0" y="50.0" style="stroke:#000000;stroke-width:0.0;">Test</text>'
+         '<text x="50.0" y="50.0" text-anchor="middle"'
+         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
         )
+
+
+    def test_can_create_text_with_different_horizontal_alignment(self):
+        text = Text(50, 50, "Test", horizontal_align="left")
+        self.assertEqual(
+         text.to_svg(),
+         '<text x="50.0" y="50.0" text-anchor="start"'
+         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
+        )
+        text = Text(50, 50, "Test", horizontal_align="right")
+        self.assertEqual(
+         text.to_svg(),
+         '<text x="50.0" y="50.0" text-anchor="end"'
+         ' style="stroke:#000000;stroke-width:0.0;">Test</text>'
+        )
+
+
+    def test_text_will_check_horizontal_align_value_before_using(self):
+        text = Text(50, 50, "Test")
+        text.horizontal_align = "start"
+        with self.assertRaises(ValueError):
+            text.to_svg()
