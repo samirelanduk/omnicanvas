@@ -166,3 +166,13 @@ class GraphicSvgTests(TestCase):
         graphic.line_style = "8--8"
         with self.assertRaises(ValueError):
             graphic.graphic_svg()
+
+
+    def test_can_produce_rotation(self):
+        graphic = Graphic()
+        self.assertEqual(graphic.rotation_svg(), "")
+        graphic = Graphic(rotation=(10, 10, 90))
+        self.assertEqual(
+         graphic.rotation_svg(),
+         ' transform="rotate(90.0 10.0 10.0)"'
+        )

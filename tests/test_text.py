@@ -138,3 +138,13 @@ class SvgTests(TestCase):
         text.vertical_align = "start"
         with self.assertRaises(ValueError):
             text.to_svg()
+
+
+    def test_can_create_rotated_text_svg(self):
+        text = Text(50, 50, "Test", rotation=(200, 200, 45))
+        self.assertEqual(
+         text.to_svg(),
+         '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="middle"'
+         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;"'
+         ' transform="rotate(45.0 200.0 200.0)">Test</text>'
+        )

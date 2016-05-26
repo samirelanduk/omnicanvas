@@ -41,3 +41,12 @@ class LineSvgTests(TestCase):
          line.to_svg(),
          '<line x1="10.0" y1="30.0" x2="90.0" y2="70.0" style="stroke:#000000;" />'
         )
+
+
+    def test_can_create_rotated_line_svg(self):
+        line = Line(10, 30, 90, 70, rotation=(200, 200, 45))
+        self.assertEqual(
+         line.to_svg(),
+         '<line x1="10.0" y1="30.0" x2="90.0" y2="70.0" style="stroke:#000000;"'
+         ' transform="rotate(45.0 200.0 200.0)" />'
+        )

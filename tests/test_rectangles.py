@@ -29,3 +29,12 @@ class SvgTests(TestCase):
          '<rect x="10.0" y="30.0" width="400.0" height="500.0"'
          ' style="fill:#FFFFFF;stroke:#000000;" />'
         )
+
+
+    def test_can_create_rotated_rectangle_svg(self):
+        rectangle = Rectangle(10, 30, 400, 500, rotation=(200, 200, 45))
+        self.assertEqual(
+         rectangle.to_svg(),
+         '<rect x="10.0" y="30.0" width="400.0" height="500.0"'
+         ' style="fill:#FFFFFF;stroke:#000000;" transform="rotate(45.0 200.0 200.0)" />'
+        )

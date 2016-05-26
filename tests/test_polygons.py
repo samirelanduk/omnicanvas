@@ -55,3 +55,12 @@ class SvgTests(TestCase):
          '<polygon points="10.0,30.0, 60.0,100.0, 45.0,45.0, 0.0,40.0"'
          ' style="fill:#FFFFFF;stroke:#000000;" />'
         )
+
+
+    def test_can_create_rotated_polygon_svg(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40, rotation=(200, 200, 45))
+        self.assertEqual(
+         polygon.to_svg(),
+         '<polygon points="10.0,30.0, 60.0,100.0, 45.0,45.0, 0.0,40.0"'
+         ' style="fill:#FFFFFF;stroke:#000000;" transform="rotate(45.0 200.0 200.0)" />'
+        )
