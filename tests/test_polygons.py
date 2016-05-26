@@ -12,6 +12,7 @@ class PolygonCreationTests(TestCase):
         self.assertEqual(polygon.line_width, 1)
         self.assertEqual(polygon.line_style, "-")
         self.assertEqual(polygon.line_color, "#000000")
+        self.assertEqual(polygon.rotation, (0, 0, 0))
         self.assertEqual(str(polygon), "<Polygon (4 points)>")
 
 

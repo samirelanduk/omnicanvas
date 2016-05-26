@@ -8,6 +8,7 @@ class GraphicCreationTests(TestCase):
         self.assertEqual(graphic.line_width, 1)
         self.assertEqual(graphic.line_style, "-")
         self.assertEqual(graphic.line_color, "#000000")
+        self.assertEqual(graphic.rotation, (0, 0, 0))
 
 
     def test_can_create_graphic_with_line_width(self):
@@ -70,6 +71,41 @@ class GraphicCreationTests(TestCase):
         with self.assertRaises(ValueError):
             graphic = Graphic(line_color="#FF0G00")
 
+
+    def test_can_create_graphic_with_rotation(self):
+        graphic = Graphic(rotation=(10, 10, 45))
+        self.assertEqual(graphic.rotation, (10, 10, 45))
+
+
+    def test_graphic_rotation_must_be_tuple(self):
+        with self.assertRaises(TypeError):
+            graphic = Graphic(rotation=[10, 10, 45])
+
+
+    def test_graphic_rotation_must_be_of_length_three(self):
+        with self.assertRaises(ValueError):
+            graphic = Graphic(rotation=(10, 10))
+        with self.assertRaises(ValueError):
+            graphic = Graphic(rotation=(10, 10, 45, 45))
+
+
+    def test_graphic_rotations_are_numeric(self):
+        with self.assertRaises(TypeError):
+            graphic = Graphic(rotation=(10, 10, "10"))
+        with self.assertRaises(TypeError):
+            graphic = Graphic(rotation=(10, "10", 10))
+        with self.assertRaises(TypeError):
+            graphic = Graphic(rotation=("10", 10, 10))
+        graphic = Graphic(rotation=(1.5, 1.5, 45.5))
+
+
+    def test_graphic_rotation_must_be_within_zero_and_360_degrees(self):
+        with self.assertRaises(ValueError):
+            graphic = Graphic(rotation=(10, 10, -1))
+        with self.assertRaises(ValueError):
+            graphic = Graphic(rotation=(10, 10, 400))
+        graphic = Graphic(rotation=(1.5, 1.5, 0))
+        graphic = Graphic(rotation=(1.5, 1.5, 360))
 
 
 class GraphicSvgTests(TestCase):

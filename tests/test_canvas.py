@@ -233,7 +233,7 @@ class CanvasSvgTests(TestCase):
          "\n".join((
           '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">',
-          '<rect x="0" y="0" width="300" height="200" style="fill:#123456;stroke-width:0; />"\n',
+          '<rect x="0" y="0" width="300" height="200" style="fill:#123456;stroke-width:0;" />\n',
           "</svg>"
          ))
         )

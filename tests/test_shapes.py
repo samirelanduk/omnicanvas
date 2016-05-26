@@ -11,6 +11,7 @@ class ShapeGraphicCreationTests(TestCase):
         self.assertEqual(shape.line_width, 1)
         self.assertEqual(shape.line_style, "-")
         self.assertEqual(shape.line_color, "#000000")
+        self.assertEqual(shape.rotation, (0, 0, 0))
 
 
     def test_can_create_shape_graphic_with_fill(self):

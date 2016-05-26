@@ -3,7 +3,7 @@ from . import svg
 
 class Graphic:
 
-    def __init__(self, line_width=1, line_style="-", line_color="#000000"):
+    def __init__(self, line_width=1, line_style="-", line_color="#000000", rotation=(0, 0, 0)):
         if not isinstance(line_width, int) and not isinstance(line_width, float):
             raise TypeError("line_width must be numeric, not '%s'" % line_width)
         self.line_width = line_width
@@ -15,6 +15,21 @@ class Graphic:
         self.line_style = line_style
 
         self.line_color = _process_color(line_color)
+
+        if not isinstance(rotation, tuple):
+            raise TypeError("Rotations must be tuples, not '%s'" % str(rotation))
+        if len(rotation) != 3:
+            raise ValueError(
+             "Rotations must be tuples of length 3, not %i" % len(rotation)
+            )
+        for value in rotation:
+            if not isinstance(value, int) and not isinstance(value, float):
+                raise TypeError("Rotation values must be numeric, not '%s'" % value)
+        if not 0 <= rotation[2] <= 360:
+            raise ValueError(
+             "Rotation must be between 0 and 360, not %s" % str(rotation[2])
+            )
+        self.rotation = rotation
 
 
     graphic_svg = svg.generate_graphic_svg
