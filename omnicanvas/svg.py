@@ -88,6 +88,7 @@ def generate_text_svg(text):
 
 
 SVG_BASE = """<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with OmniCanvas (omnicanvas.readthedocs.io) -->
 <svg xmlns="http://www.w3.org/2000/svg" width="%i" height="%i">
 %s
 %s
