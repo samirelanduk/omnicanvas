@@ -74,67 +74,6 @@ class CanvasCreationTests(TestCase):
             canvas = Canvas(700, 500, background_color="#FFFG00")
 
 
-    def test_can_create_canvas_with_border_width(self):
-        canvas = Canvas(700, 500, border_width=2.5)
-        self.assertEqual(canvas.border_width, 2.5)
-
-
-    def test_canvas_border_width_must_be_numeric(self):
-        with self.assertRaises(TypeError):
-            canvas = Canvas(700, 500, border_width=None)
-        with self.assertRaises(TypeError):
-            canvas = Canvas(700, 500, border_width="1")
-        canvas = Canvas(700, 500, border_width=2.5)
-        canvas = Canvas(700, 500, border_width=2)
-
-
-    def test_can_create_canvas_with_border_style(self):
-        canvas = Canvas(700, 500, border_style="--")
-        self.assertEqual(canvas.border_style, "--")
-
-
-    def test_canvas_border_style_must_be_str(self):
-        with self.assertRaises(TypeError):
-            canvas = Canvas(700, 500, border_style=(1,1))
-        with self.assertRaises(TypeError):
-            canvas = Canvas(700, 500, border_style=None)
-
-
-    def test_canvas_border_style_must_be_valid(self):
-        with self.assertRaises(ValueError):
-            canvas = Canvas(700, 500, border_style="")
-        with self.assertRaises(ValueError):
-            canvas = Canvas(700, 500, border_style="888")
-
-
-    def test_can_create_canvas_with_border_color(self):
-        canvas = Canvas(700, 500, border_color="#FF0000")
-        self.assertEqual(canvas.border_color, "#FF0000")
-
-
-    def test_canvas_border_will_capitalise_color(self):
-        canvas = Canvas(700, 500, border_color="#ffff00")
-        self.assertEqual(canvas.border_color, "#FFFF00")
-
-
-    def test_canvas_border_color_must_be_str(self):
-        with self.assertRaises(TypeError):
-            canvas = Canvas(700, 500, border_color=999944)
-        with self.assertRaises(TypeError):
-            canvas = Canvas(700, 500, border_color=None)
-
-
-    def test_canvas_border_color_must_be_formatted_correctly(self):
-        with self.assertRaises(ValueError):
-            canvas = Canvas(700, 500, border_color="FFFF00")
-        with self.assertRaises(ValueError):
-            canvas = Canvas(700, 500, border_color="#FFF00")
-        with self.assertRaises(ValueError):
-            canvas = Canvas(700, 500, border_color="#FF0")
-        with self.assertRaises(ValueError):
-            canvas = Canvas(700, 500, border_color="#FFFG00")
-
-
 
 class GraphicAdditionTests(TestCase):
 
