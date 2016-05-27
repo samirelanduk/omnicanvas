@@ -1,22 +1,21 @@
-.. OmniCanvas documentation master file, created by
-   sphinx-quickstart on Thu May 26 23:20:00 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+OmniCanvas Documentation
+========================
 
-Welcome to OmniCanvas's documentation!
-======================================
+OmniCanvas is a Python canvas which supports basic two-dimensional graphics,
+and outputs to various graphics formats - currently just SVG.
 
-Contents:
+Example
+-------
 
-.. toctree::
-   :maxdepth: 2
+  >>> import omnicanvas
+  >>> canvas = omnicanvas.Canvas(700, 400)
+  >>> canvas.add_rectangle(10, 20, 300, 200, fill_color="#CC0000")
+  >>> canvas.graphics[0]
+  <Rectangle 300×200 at (10,20)>
+  >>> canvas.save("example.svg")
 
+See the overview for more examples, or the full API for a full listing of
+features.
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+Table of Contents
+-----------------
