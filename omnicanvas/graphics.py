@@ -39,6 +39,7 @@ class Graphic:
 
     graphic_svg = svg.generate_graphic_svg
     rotation_svg = svg.generate_rotation_svg
+    data_svg = svg.generate_data_svg
 
 
 

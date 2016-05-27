@@ -204,3 +204,28 @@ class GraphicSvgTests(TestCase):
         graphic.rotation = (1, 1, 400)
         with self.assertRaises(ValueError):
             graphic.rotation_svg()
+
+
+    def test_data_in_svg(self):
+        graphic = Graphic(data={"onclick":"func(true);"})
+        self.assertEqual(graphic.data_svg(), ' onclick="func(true);"')
+        graphic = Graphic(data={"onclick":"func(true);", "a": "b"})
+        self.assertIn(
+         'onclick="func(true);"',
+         graphic.data_svg()
+        )
+        self.assertIn(
+         'a="b"',
+         graphic.data_svg()
+        )
+        self.assertIn(
+         ' ',
+         graphic.data_svg()
+        )
+
+
+    def test_data_must_be_dict_for_svg(self):
+        graphic = Graphic()
+        graphic.data = []
+        with self.assertRaises(TypeError):
+            graphic.data_svg()

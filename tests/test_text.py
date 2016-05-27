@@ -149,3 +149,15 @@ class SvgTests(TestCase):
          ' style="fill:#000000;stroke:#000000;stroke-width:0.0;"'
          ' transform="rotate(45.0 200.0 200.0)">Test</text>'
         )
+
+
+    def test_data_in_line_svg(self):
+        text = Text(50, 50, "Test", data={"onclick":"func(true);", "a": "b"})
+        self.assertIn(
+         'onclick="func(true);"',
+         text.to_svg()
+        )
+        self.assertIn(
+         'a="b"',
+         text.to_svg()
+        )

@@ -37,6 +37,14 @@ def generate_rotation_svg(graphic):
     )) if graphic.rotation != (0, 0, 0) else ""
 
 
+def generate_data_svg(graphic):
+    if not isinstance(graphic.data, dict):
+        raise TypeError("Data must be dict, not '%s'" % graphic.data)
+    return " " + " ".join(
+     ['%s="%s"' % (str(key), str(graphic.data[key])) for key in graphic.data]
+    ) if graphic.data else ""
+
+
 def generate_shape_svg(shape):
     opacity = "fill-opacity:%.3f;" % shape.opacity
     return "fill:%s;%s%s" % (
@@ -47,29 +55,37 @@ def generate_shape_svg(shape):
 
 
 def generate_rectangle_svg(rectangle):
-    return '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" style="%s"%s />' % (
+    return '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" style="%s"%s%s />' % (
      rectangle.x,
      rectangle.y,
      rectangle.width,
      rectangle.height,
      rectangle.shape_svg(),
-     rectangle.rotation_svg()
+     rectangle.rotation_svg(),
+     rectangle.data_svg()
     )
 
 
 def generate_line_svg(line):
-    return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" style="%s"%s />' % (
-     line.x1, line.y1, line.x2, line.y2, line.graphic_svg(), line.rotation_svg()
+    return '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" style="%s"%s%s />' % (
+     line.x1,
+     line.y1,
+     line.x2,
+     line.y2,
+     line.graphic_svg(),
+     line.rotation_svg(),
+     line.data_svg()
     )
 
 
 def generate_polygon_svg(polygon):
-    return '<polygon points="%s" style="%s"%s />' % (
+    return '<polygon points="%s" style="%s"%s%s />' % (
      ", ".join(["%.1f,%.1f" % (
       point[0], point[1]
      ) for point in polygon.coordinates_to_xy_pairs()]),
      polygon.shape_svg(),
-     polygon.rotation_svg()
+     polygon.rotation_svg(),
+     polygon.data_svg(),
     )
 
 
@@ -92,13 +108,14 @@ def generate_text_svg(text):
      "center": "middle",
      "bottom": "baseline"
     }[text.vertical_align]
-    return '<text x="%.1f" y="%.1f" text-anchor="%s" alignment-baseline="%s" style="%s"%s>%s</text>' % (
+    return '<text x="%.1f" y="%.1f" text-anchor="%s" alignment-baseline="%s" style="%s"%s%s>%s</text>' % (
      text.x,
      text.y,
      horizontal_align,
      vertical_align,
      text.shape_svg(),
      text.rotation_svg(),
+     text.data_svg(),
      text.text
     )
 

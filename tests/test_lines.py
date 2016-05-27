@@ -51,3 +51,15 @@ class LineSvgTests(TestCase):
          '<line x1="10.0" y1="30.0" x2="90.0" y2="70.0" style="stroke:#000000;"'
          ' transform="rotate(45.0 200.0 200.0)" />'
         )
+
+
+    def test_data_in_line_svg(self):
+        line = Line(10, 30, 90, 70, data={"onclick":"func(true);", "a": "b"})
+        self.assertIn(
+         'onclick="func(true);"',
+         line.to_svg()
+        )
+        self.assertIn(
+         'a="b"',
+         line.to_svg()
+        )

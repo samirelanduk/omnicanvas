@@ -39,3 +39,17 @@ class SvgTests(TestCase):
          '<rect x="10.0" y="30.0" width="400.0" height="500.0"'
          ' style="fill:#FFFFFF;stroke:#000000;" transform="rotate(45.0 200.0 200.0)" />'
         )
+
+
+    def test_data_in_rectangle_svg(self):
+        rectangle = Rectangle(
+         10, 30, 400, 500, data={"onclick":"func(true);", "a": "b"}
+        )
+        self.assertIn(
+         'onclick="func(true);"',
+         rectangle.to_svg()
+        )
+        self.assertIn(
+         'a="b"',
+         rectangle.to_svg()
+        )
