@@ -16,6 +16,22 @@ def generate_graphic_svg(graphic):
 
 
 def generate_rotation_svg(graphic):
+    if graphic.rotation != (0, 0, 0):
+        if not isinstance(graphic.rotation, tuple):
+            raise TypeError(
+             "Rotations must be tuples, not '%s'" % str(graphic.rotation)
+            )
+        if len(graphic.rotation) != 3:
+            raise ValueError(
+             "Rotations must be tuples of length 3, not %i" % len(graphic.rotation)
+            )
+        for value in graphic.rotation:
+            if not isinstance(value, int) and not isinstance(value, float):
+                raise TypeError("Rotation values must be numeric, not '%s'" % value)
+        if not 0 <= graphic.rotation[2] <= 360:
+            raise ValueError(
+             "Rotation must be between 0 and 360, not %s" % str(graphic.rotation[2])
+            )
     return (' transform="rotate(%.1f %.1f %.1f)"' % (
      graphic.rotation[2], graphic.rotation[0], graphic.rotation[1]
     )) if graphic.rotation != (0, 0, 0) else ""

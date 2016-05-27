@@ -176,3 +176,19 @@ class GraphicSvgTests(TestCase):
          graphic.rotation_svg(),
          ' transform="rotate(90.0 10.0 10.0)"'
         )
+
+
+    def test_cannot_produce_rotation_svg_from_invalid_rotation(self):
+        graphic = Graphic()
+        graphic.rotation = list(graphic.rotation)
+        with self.assertRaises(TypeError):
+            graphic.rotation_svg()
+        graphic.rotation = (1, 1, 1, 1)
+        with self.assertRaises(ValueError):
+            graphic.rotation_svg()
+        graphic.rotation = (1, 1, "1")
+        with self.assertRaises(TypeError):
+            graphic.rotation_svg()
+        graphic.rotation = (1, 1, 400)
+        with self.assertRaises(ValueError):
+            graphic.rotation_svg()
