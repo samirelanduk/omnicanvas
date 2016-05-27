@@ -16,6 +16,7 @@ class BoxGraphicCreationTests(TestCase):
         self.assertEqual(box.line_style, "-")
         self.assertEqual(box.line_color, "#000000")
         self.assertEqual(box.rotation, (0, 0, 0))
+        self.assertEqual(box.data, {})
 
 
     def test_box_location_must_be_numeric(self):

@@ -9,6 +9,7 @@ class GraphicCreationTests(TestCase):
         self.assertEqual(graphic.line_style, "-")
         self.assertEqual(graphic.line_color, "#000000")
         self.assertEqual(graphic.rotation, (0, 0, 0))
+        self.assertEqual(graphic.data, {})
 
 
     def test_can_create_graphic_with_line_width(self):
@@ -106,6 +107,17 @@ class GraphicCreationTests(TestCase):
             graphic = Graphic(rotation=(10, 10, 400))
         graphic = Graphic(rotation=(1.5, 1.5, 0))
         graphic = Graphic(rotation=(1.5, 1.5, 360))
+
+
+    def test_can_create_graphic_with_data(self):
+        graphic = Graphic(data={"key": "value"})
+        self.assertEqual(graphic.data, {"key": "value"})
+
+
+    def test_data_must_be_dict(self):
+        with self.assertRaises(TypeError):
+            graphic = Graphic(data=["key", "value"])
+
 
 
 class GraphicSvgTests(TestCase):

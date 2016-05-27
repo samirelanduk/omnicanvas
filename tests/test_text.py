@@ -17,6 +17,7 @@ class TextCreationTests(TestCase):
         self.assertEqual(text.line_style, "-")
         self.assertEqual(text.line_color, "#000000")
         self.assertEqual(text.rotation, (0, 0, 0))
+        self.assertEqual(text.data, {})
         self.assertEqual(str(text), "<Text ('Test')>")
 
 

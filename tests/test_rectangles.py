@@ -16,6 +16,7 @@ class RectangleCreationTests(TestCase):
         self.assertEqual(rectangle.line_style, "-")
         self.assertEqual(rectangle.line_color, "#000000")
         self.assertEqual(rectangle.rotation, (0, 0, 0))
+        self.assertEqual(rectangle.data, {})
         self.assertEqual(str(rectangle), "<Rectangle 400×500 at (10,30)>")
 
 

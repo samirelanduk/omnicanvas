@@ -14,6 +14,7 @@ class LineCreationTests(TestCase):
         self.assertEqual(line.line_style, "-")
         self.assertEqual(line.line_color, "#000000")
         self.assertEqual(line.rotation, (0, 0, 0))
+        self.assertEqual(line.data, {})
         self.assertEqual(str(line), "<Line (10,30) to (90,70)>")
 
 
