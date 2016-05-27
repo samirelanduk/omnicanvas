@@ -19,3 +19,7 @@ features.
 
 Table of Contents
 -----------------
+
+.. toctree ::
+
+    installing
