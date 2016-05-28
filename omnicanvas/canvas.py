@@ -1,4 +1,4 @@
-from .colors import _process_color
+from .colors import process_color
 from . import graphics
 from . import svg
 
@@ -20,7 +20,7 @@ class Canvas:
         if background_color is None:
             self.background_color = None
         else:
-            self.background_color = _process_color(background_color)
+            self.background_color = process_color(background_color)
 
         self.graphics = []
 

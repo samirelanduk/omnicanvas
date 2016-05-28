@@ -1,4 +1,4 @@
-from .colors import _process_color
+from .colors import process_color
 from . import svg
 
 class Graphic:
@@ -15,7 +15,7 @@ class Graphic:
             raise ValueError("'%s' is not a valid line style" % line_style)
         self.line_style = line_style
 
-        self.line_color = _process_color(line_color)
+        self.line_color = process_color(line_color)
 
         if not isinstance(rotation, tuple):
             raise TypeError("Rotations must be tuples, not '%s'" % str(rotation))
@@ -48,7 +48,7 @@ class ShapeGraphic(Graphic):
     def __init__(self, *args, fill_color="#FFFFFF", opacity=1, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
 
-        self.fill_color = _process_color(fill_color)
+        self.fill_color = process_color(fill_color)
 
         if not isinstance(opacity, int) and not isinstance(opacity, float):
             raise TypeError("opacity must be numeric, not '%s'" % opacity)
