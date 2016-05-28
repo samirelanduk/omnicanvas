@@ -101,13 +101,13 @@ class SvgTests(TestCase):
         text = Text(50, 50, "Test", horizontal_align="left")
         self.assertEqual(
          text.to_svg(),
-         '<text x="50.0" y="50.0" text-anchor="start" alignment-baseline="middle"'
+         '<text x="50.0" y="50.0" text-anchor="end" alignment-baseline="middle"'
          ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
         text = Text(50, 50, "Test", horizontal_align="right")
         self.assertEqual(
          text.to_svg(),
-         '<text x="50.0" y="50.0" text-anchor="end" alignment-baseline="middle"'
+         '<text x="50.0" y="50.0" text-anchor="start" alignment-baseline="middle"'
          ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 
@@ -123,13 +123,13 @@ class SvgTests(TestCase):
         text = Text(50, 50, "Test", vertical_align="top")
         self.assertEqual(
          text.to_svg(),
-         '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="hanging"'
+         '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="baseline"'
          ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
         text = Text(50, 50, "Test", vertical_align="bottom")
         self.assertEqual(
          text.to_svg(),
-         '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="baseline"'
+         '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="hanging"'
          ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 

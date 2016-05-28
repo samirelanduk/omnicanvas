@@ -114,6 +114,8 @@ def create_union_flag(height):
      fill_color="#CC0000",
     )
 
+    canvas.add_text(360, 180, "Rule Britannia", font_size=40)
+
     return canvas
 
 # Create a flag of height 360px (and so width 720px)
