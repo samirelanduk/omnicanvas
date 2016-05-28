@@ -14,8 +14,8 @@ Example
   <Rectangle 300×200 at (10,20)>
   >>> canvas.save("example.svg")
 
-See the overview for more examples, or the full API for a full listing of
-features.
+See the the :doc:`examples page <examples>` for more examples, or the full API
+for a full listing of features.
 
 Table of Contents
 -----------------
@@ -23,3 +23,4 @@ Table of Contents
 .. toctree ::
 
     installing
+    examples
