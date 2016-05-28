@@ -11,9 +11,6 @@ class CanvasCreationTests(TestCase):
         self.assertEqual(canvas.width, 700)
         self.assertEqual(canvas.height, 500)
         self.assertEqual(canvas.background_color, None)
-        self.assertEqual(canvas.border_width, 0)
-        self.assertEqual(canvas.border_style, "-")
-        self.assertEqual(canvas.border_color, "#000000")
         self.assertEqual(
          str(canvas),
          "<Canvas 700×500 (0 Graphics)>"
