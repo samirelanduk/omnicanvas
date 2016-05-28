@@ -23,5 +23,6 @@ Table of Contents
 .. toctree ::
 
     installing
+    overview
     examples
     changelog
