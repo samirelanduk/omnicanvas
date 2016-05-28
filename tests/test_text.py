@@ -93,7 +93,7 @@ class SvgTests(TestCase):
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="middle"'
-         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 
 
@@ -102,13 +102,13 @@ class SvgTests(TestCase):
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="start" alignment-baseline="middle"'
-         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
         text = Text(50, 50, "Test", horizontal_align="right")
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="end" alignment-baseline="middle"'
-         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 
 
@@ -124,13 +124,13 @@ class SvgTests(TestCase):
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="hanging"'
-         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
         text = Text(50, 50, "Test", vertical_align="bottom")
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="baseline"'
-         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
+         ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
 
 
@@ -141,12 +141,21 @@ class SvgTests(TestCase):
             text.to_svg()
 
 
+    def test_font_size_in_text_svg(self):
+        text = Text(50, 50, "Test", font_size=34.4)
+        self.assertEqual(
+         text.to_svg(),
+         '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="middle"'
+         ' style="font-size:34.4;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
+        )
+
+
     def test_can_create_rotated_text_svg(self):
         text = Text(50, 50, "Test", rotation=(200, 200, 45))
         self.assertEqual(
          text.to_svg(),
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="middle"'
-         ' style="fill:#000000;stroke:#000000;stroke-width:0.0;"'
+         ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;"'
          ' transform="rotate(45.0 200.0 200.0)">Test</text>'
         )
 

@@ -108,11 +108,12 @@ def generate_text_svg(text):
      "center": "middle",
      "bottom": "baseline"
     }[text.vertical_align]
-    return '<text x="%.1f" y="%.1f" text-anchor="%s" alignment-baseline="%s" style="%s"%s%s>%s</text>' % (
+    return '<text x="%.1f" y="%.1f" text-anchor="%s" alignment-baseline="%s" style="font-size:%.1f;%s"%s%s>%s</text>' % (
      text.x,
      text.y,
      horizontal_align,
      vertical_align,
+     text.font_size,
      text.shape_svg(),
      text.rotation_svg(),
      text.data_svg(),
