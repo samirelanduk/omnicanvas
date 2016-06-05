@@ -1,7 +1,47 @@
+"""This module contains the various Graphics objects which can be painted to
+the canvas."""
+
 from .colors import process_color
 from . import svg
 
 class Graphic:
+    """The base class of all Graphics - it would not generally need to be
+    instantiated at this abstract level.
+
+    Its properties generally relate to lines, as all Graphics have an edge of
+    some kind.
+
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Graphic.
+
+    .. py:attribute:: line_width:
+
+        The width of the Graphic's line in pixels.
+
+    .. py:attribute:: line_style:
+
+        The line pattern. Acceptable values are ``-`` (default), ``..`` \
+        (dotted) or ``--`` (dashed).
+
+    .. py:attribute:: line_color:
+
+        The colour of the Graphic's line.
+
+    .. py:attribute:: rotation:
+
+        Any rotation to be applied, in the format (x of rotation point, y of\
+        rotation point, angle). For example, to rotate the Graphic 45 degrees
+        anti-clockwise about the point (100, 200) you would supply
+        ``(100, 200, 315)``.
+
+    .. py:attribute:: data:
+
+        Any data to be associated with the Graphic, as a ``dict``."""
 
     def __init__(self, line_width=1, line_style="-", line_color="#000000",
      rotation=(0, 0, 0), data=None):
@@ -44,6 +84,24 @@ class Graphic:
 
 
 class ShapeGraphic(Graphic):
+    """Base class: :py:class:`Graphic`
+
+    Shapes are Graphics which have an interior space of some kind, which in
+    practice is most Graphics which aren't just lines.
+
+    Its properties relate to the appearence of this interior space. It would not
+    generally be instantiated directly.
+
+    :param str fill_color: Defaults to '#FFFFFF'.
+    :param opacity: The degree of transparency, from 0 to 1 (0 being\
+    invisible).
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Shape."""
 
     def __init__(self, *args, fill_color="#FFFFFF", opacity=1, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
@@ -64,6 +122,26 @@ class ShapeGraphic(Graphic):
 
 
 class BoxGraphic(ShapeGraphic):
+    """Base class: :py:class:`ShapeGraphic`
+
+    BoxGraphics are shapes which are either a box themselves (such as
+    :py:class:`.Rectangle`) or are defined by some kind of bounding box. It
+    would not generally be instantiated directly.
+
+    :param x: The x-value of the top-left corner.
+    :param y: The y-value of the top-left corner.
+    :param width: The box's width in pixels.
+    :param height: The box's height in pixels.
+    :param str fill_color: Defaults to '#FFFFFF'.
+    :param opacity: The degree of transparency, from 0 to 1 (0 being\
+    invisible).
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Shape."""
 
     def __init__(self, x, y, width, height, *args, **kwargs):
         ShapeGraphic.__init__(self, *args, **kwargs)
@@ -87,6 +165,24 @@ class BoxGraphic(ShapeGraphic):
 
 
 class Rectangle(BoxGraphic):
+    """Base class: :py:class:`BoxGraphic`
+
+    A rectangular graphic. Not sure what else to say about this to be honest.
+
+    :param x: The x-value of the top-left corner.
+    :param y: The y-value of the top-left corner.
+    :param width: The box's width in pixels.
+    :param height: The box's height in pixels.
+    :param str fill_color: Defaults to '#FFFFFF'.
+    :param opacity: The degree of transparency, from 0 to 1 (0 being\
+    invisible).
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Shape."""
 
     def __init__(self, *args, **kwargs):
         BoxGraphic.__init__(self, *args, **kwargs)
@@ -103,6 +199,17 @@ class Rectangle(BoxGraphic):
 
 
 class Line(Graphic):
+    """Base class: :py:class:`Graphic`
+
+    A straight line between two points.
+
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Graphic."""
 
     def __init__(self, x1, y1, x2, y2, *args, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
@@ -131,6 +238,22 @@ class Line(Graphic):
 
 
 class Polygon(ShapeGraphic):
+    """Base class: :py:class:`ShapeGraphic`
+
+    Polygons are shapes with an arbitrary number of vertices.
+
+    :param *coordinates: The coordinates as a sequence of alternating x and y \
+    values.
+    :param str fill_color: Defaults to '#FFFFFF'.
+    :param opacity: The degree of transparency, from 0 to 1 (0 being\
+    invisible).
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Shape."""
 
     def __init__(self, *coordinates, **kwargs):
         ShapeGraphic.__init__(self, **kwargs)
@@ -148,6 +271,9 @@ class Polygon(ShapeGraphic):
 
 
     def coordinates_to_xy_pairs(self):
+        """Returns the polygon's coordinates as a sequence of tuples, where
+        each tuple is in the form (x value, y value)."""
+
         if len(self.coordinates) % 2 != 0:
             raise ValueError(
              "Cannot process polygon coordiantes with odd number of values"
@@ -160,6 +286,28 @@ class Polygon(ShapeGraphic):
 
 
 class Text(ShapeGraphic):
+    """Base class: :py:class:`ShapeGraphic`
+
+    Graphics of textual information.
+
+    :param x: The text's x location.
+    :param y: The text's y location.
+    :param str text: The text to display.
+    :param font_size: The font size of the text when displayed.
+    :param horizontal_align: The horizontal alignment of the text. Acceptable\
+    values are ``left``, ``center`` (default) and ``right``.
+    :param vertical_align: The vertical alignment of the text. Acceptable\
+    values are ``top``, ``center`` (default) and ``bottom``.
+    :param str fill_color: Defaults to '#FFFFFF'.
+    :param opacity: The degree of transparency, from 0 to 1 (0 being\
+    invisible).
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Shape."""
 
     def __init__(self, x, y, text, *args, font_size=18, fill_color="#000000",
      line_width=0, horizontal_align="center", vertical_align="center", **kwargs):
