@@ -101,7 +101,40 @@ class ShapeGraphic(Graphic):
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
     (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Shape."""
+    :param dict data: Any data to be associated with the Shape.
+
+    .. py:attribute:: fill_color:
+
+        The colour of the Shape's interior, as a hex string.
+
+    .. py:attribute:: opacity:
+
+        The degree of transparency of the Shape's interior, from 1.0 (fully\
+        visible) to 0.0 (completely invisible).
+
+    .. py:attribute:: line_width:
+
+        The width of the Shape's border in pixels.
+
+    .. py:attribute:: line_style:
+
+        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
+        (dotted) or ``--`` (dashed).
+
+    .. py:attribute:: line_color:
+
+        The colour of the Shape's border.
+
+    .. py:attribute:: rotation:
+
+        Any rotation to be applied, in the format (x of rotation point, y of\
+        rotation point, angle). For example, to rotate the Shape 45 degrees
+        anti-clockwise about the point (100, 200) you would supply
+        ``(100, 200, 315)``.
+
+    .. py:attribute:: data:
+
+        Any data to be associated with the Shape, as a ``dict``."""
 
     def __init__(self, *args, fill_color="#FFFFFF", opacity=1, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
@@ -130,8 +163,8 @@ class BoxGraphic(ShapeGraphic):
 
     :param x: The x-value of the top-left corner.
     :param y: The y-value of the top-left corner.
-    :param width: The box's width in pixels.
-    :param height: The box's height in pixels.
+    :param width: The Box's width in pixels.
+    :param height: The Box's height in pixels.
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
@@ -141,7 +174,56 @@ class BoxGraphic(ShapeGraphic):
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
     (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Shape."""
+    :param dict data: Any data to be associated with the Box.
+
+    .. py:attribute:: x:
+
+        The x-value of the top-left corner.
+
+    .. py:attribute:: y:
+
+        The y-value of the top-left corner.
+
+    .. py:attribute:: width:
+
+        The Box's width in pixels.
+
+    .. py:attribute:: height:
+
+        The Box's height in pixels.
+
+    .. py:attribute:: fill_color:
+
+        The colour of the Box's interior, as a hex string.
+
+    .. py:attribute:: opacity:
+
+        The degree of transparency of the Box's interior, from 1.0 (fully\
+        visible) to 0.0 (completely invisible).
+
+    .. py:attribute:: line_width:
+
+        The width of the Box's border in pixels.
+
+    .. py:attribute:: line_style:
+
+        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
+        (dotted) or ``--`` (dashed).
+
+    .. py:attribute:: line_color:
+
+        The colour of the Box's border.
+
+    .. py:attribute:: rotation:
+
+        Any rotation to be applied, in the format (x of rotation point, y of\
+        rotation point, angle). For example, to rotate the Box 45 degrees
+        anti-clockwise about the point (100, 200) you would supply
+        ``(100, 200, 315)``.
+
+    .. py:attribute:: data:
+
+        Any data to be associated with the Box, as a ``dict``."""
 
     def __init__(self, x, y, width, height, *args, **kwargs):
         ShapeGraphic.__init__(self, *args, **kwargs)
@@ -171,8 +253,8 @@ class Rectangle(BoxGraphic):
 
     :param x: The x-value of the top-left corner.
     :param y: The y-value of the top-left corner.
-    :param width: The box's width in pixels.
-    :param height: The box's height in pixels.
+    :param width: The Rectangle's width in pixels.
+    :param height: The Rectangle's height in pixels.
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
@@ -182,7 +264,56 @@ class Rectangle(BoxGraphic):
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
     (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Shape."""
+    :param dict data: Any data to be associated with the Shape.
+
+    .. py:attribute:: x:
+
+        The x-value of the top-left corner.
+
+    .. py:attribute:: y:
+
+        The y-value of the top-left corner.
+
+    .. py:attribute:: width:
+
+        The Rectangle's width in pixels.
+
+    .. py:attribute:: height:
+
+        The Rectangle's height in pixels.
+
+    .. py:attribute:: fill_color:
+
+        The colour of the Rectangle's interior, as a hex string.
+
+    .. py:attribute:: opacity:
+
+        The degree of transparency of the Rectangle's interior, from 1.0 (fully\
+        visible) to 0.0 (completely invisible).
+
+    .. py:attribute:: line_width:
+
+        The width of the Rectangle's border in pixels.
+
+    .. py:attribute:: line_style:
+
+        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
+        (dotted) or ``--`` (dashed).
+
+    .. py:attribute:: line_color:
+
+        The colour of the Rectangle's border.
+
+    .. py:attribute:: rotation:
+
+        Any rotation to be applied, in the format (x of rotation point, y of\
+        rotation point, angle). For example, to rotate the Rectangle 45 degrees
+        anti-clockwise about the point (100, 200) you would supply
+        ``(100, 200, 315)``.
+
+    .. py:attribute:: data:
+
+        Any data to be associated with the Rectangle, as a ``dict``."""
 
     def __init__(self, *args, **kwargs):
         BoxGraphic.__init__(self, *args, **kwargs)
@@ -209,7 +340,47 @@ class Line(Graphic):
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
     (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Graphic."""
+    :param dict data: Any data to be associated with the Graphic.
+
+    .. py:attribute:: x1:
+
+        The x-value of the start point.
+
+    .. py:attribute:: y1:
+
+        The y-value of the start point.
+
+    .. py:attribute:: x2:
+
+        The x-value of the end point.
+
+    .. py:attribute:: y2:
+
+        The y-value of the end point.
+
+    .. py:attribute:: line_width:
+
+        The width of the Line in pixels.
+
+    .. py:attribute:: line_style:
+
+        The Line pattern. Acceptable values are ``-`` (default), ``..`` \
+        (dotted) or ``--`` (dashed).
+
+    .. py:attribute:: line_color:
+
+        The colour of the Line.
+
+    .. py:attribute:: rotation:
+
+        Any rotation to be applied, in the format (x of rotation point, y of\
+        rotation point, angle). For example, to rotate the Line 45 degrees
+        anti-clockwise about the point (100, 200) you would supply
+        ``(100, 200, 315)``.
+
+    .. py:attribute:: data:
+
+        Any data to be associated with the Line, as a ``dict``."""
 
     def __init__(self, x1, y1, x2, y2, *args, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
@@ -242,7 +413,7 @@ class Polygon(ShapeGraphic):
 
     Polygons are shapes with an arbitrary number of vertices.
 
-    :param *coordinates: The coordinates as a sequence of alternating x and y \
+    :param \*coordinates: The coordinates as a sequence of alternating x and y \
     values.
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
@@ -253,7 +424,47 @@ class Polygon(ShapeGraphic):
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
     (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Shape."""
+    :param dict data: Any data to be associated with the Polygon.
+
+    .. py:attribute:: coordinates:
+
+        A sequence of values representing the coordinates of the Polygon's \
+        vertices, as alternating x and y values. For example, \
+        ``(50, 50, 70, 100, 30, 70)`` would be the coordinates of a small\
+        triangle.
+
+    .. py:attribute:: fill_color:
+
+        The colour of the Polygon's interior, as a hex string.
+
+    .. py:attribute:: opacity:
+
+        The degree of transparency of the Polygon's interior, from 1.0 (fully\
+        visible) to 0.0 (completely invisible).
+
+    .. py:attribute:: line_width:
+
+        The width of the Polygon's border in pixels.
+
+    .. py:attribute:: line_style:
+
+        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
+        (dotted) or ``--`` (dashed).
+
+    .. py:attribute:: line_color:
+
+        The colour of the Polygon's border.
+
+    .. py:attribute:: rotation:
+
+        Any rotation to be applied, in the format (x of rotation point, y of\
+        rotation point, angle). For example, to rotate the Polygon 45 degrees\
+        anti-clockwise about the point (100, 200) you would supply
+        ``(100, 200, 315)``.
+
+    .. py:attribute:: data:
+
+        Any data to be associated with the Polygon, as a ``dict``."""
 
     def __init__(self, *coordinates, **kwargs):
         ShapeGraphic.__init__(self, **kwargs)
@@ -290,13 +501,13 @@ class Text(ShapeGraphic):
 
     Graphics of textual information.
 
-    :param x: The text's x location.
-    :param y: The text's y location.
+    :param x: The Text's x location.
+    :param y: The Text's y location.
     :param str text: The text to display.
-    :param font_size: The font size of the text when displayed.
-    :param horizontal_align: The horizontal alignment of the text. Acceptable\
+    :param font_size: The font size of the Text when displayed.
+    :param horizontal_align: The horizontal alignment of the Text. Acceptable\
     values are ``left``, ``center`` (default) and ``right``.
-    :param vertical_align: The vertical alignment of the text. Acceptable\
+    :param vertical_align: The vertical alignment of the Text. Acceptable\
     values are ``top``, ``center`` (default) and ``bottom``.
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
@@ -307,7 +518,66 @@ class Text(ShapeGraphic):
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
     (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Shape."""
+    :param dict data: Any data to be associated with the Text.
+
+    .. py:attribute:: x:
+
+        The x-value of the Text.
+
+    .. py:attribute:: y:
+
+        The y-value of the Text.
+
+    .. py:attribute:: font_size:
+
+        The font size of the Text.
+
+    .. py:attribute:: horizontal_align:
+
+        Determines what the coordinate of the Text represents. If ``center``
+        the coordinate will represent the middle of the Text. If ``left`` the
+        Text will be to the left of the coordinate and if ``right`` the Text
+        will be to the right.
+
+    .. py:attribute:: vertical_align:
+
+        Determines what the coordinate of the Text represents. If ``center``
+        the coordinate will represent the middle of the Text. If ``top`` the
+        Text will be above the coordinate and if ``bottom`` the Text
+        will be below it.
+
+    .. py:attribute:: fill_color:
+
+        The colour of the Text as a hex string.
+
+    .. py:attribute:: opacity:
+
+        The degree of transparency of the Text, from 1.0 (fully\
+        visible) to 0.0 (completely invisible).
+
+    .. py:attribute:: line_width:
+
+        The width of the Text's border in pixels.
+
+    .. py:attribute:: line_style:
+
+        The Text border line pattern. Acceptable values are ``-`` (default), \
+        ``..`` (dotted) or ``--`` (dashed).
+
+    .. py:attribute:: line_color:
+
+        The colour of the Text's border.
+
+    .. py:attribute:: rotation:
+
+        Any rotation to be applied, in the format (x of rotation point, y of\
+        rotation point, angle). For example, to rotate the Text 45 degrees
+        anti-clockwise about the point (100, 200) you would supply
+        ``(100, 200, 315)``.
+
+    .. py:attribute:: data:
+
+        Any data to be associated with the Text, as a ``dict``."""
 
     def __init__(self, x, y, text, *args, font_size=18, fill_color="#000000",
      line_width=0, horizontal_align="center", vertical_align="center", **kwargs):

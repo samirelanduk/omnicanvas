@@ -142,4 +142,7 @@ class Canvas:
     to_svg = svg.generate_canvas_svg
     """Returns the SVG text of the canvas.
 
+    Any ``data`` attributes of the Graphics contained will be rendered as SVG
+    attributes.
+
     :rtype: ``str``"""
