@@ -10,7 +10,7 @@ def process_color(color):
 
     if not isinstance(color, str):
         raise TypeError("Color must be str, not '%s'" % color)
-    elif not _is_valid_color(color):
+    elif not is_valid_color(color):
         raise ValueError("'%s' is not a valid color" % color)
     else:
         return color.upper()
