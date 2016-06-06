@@ -1,6 +1,8 @@
 """This module contains various functions usued internally to process colours,
 mainly for validation pruposes currently."""
 
+import colorsys
+
 def process_color(color):
     """Raises exceptions if a colour does not meet requirements.
 
@@ -32,3 +34,25 @@ def is_valid_color(color):
         if char.upper() not in "0123456789ABCDEF":
             return False
     return True
+
+
+def hsl_to_rgb(hue, saturation, lightness):
+    if not isinstance(hue, int) and not isinstance(hue, float):
+        raise TypeError("hue must be numeric, not '%s'" % hue)
+    if not isinstance(saturation, int) and not isinstance(saturation, float):
+        raise TypeError("saturation must be numeric, not '%s'" % saturation)
+    if not isinstance(lightness, int) and not isinstance(lightness, float):
+        raise TypeError("lightness must be numeric, not '%s'" % lightness)
+    if not (0 <= hue <= 360):
+        raise ValueError("hue must be between 0 and 360, not '%s'" % str(hue))
+    if not (0 <= saturation <= 100):
+        raise ValueError(
+         "saturation must be between 0 and 100, not '%s'" % str(saturation)
+        )
+    if not (0 <= lightness <= 100):
+        raise ValueError(
+         "lightness must be between 0 and 100, not '%s'" % str(lightness)
+        )
+
+    r, g, b = colorsys.hls_to_rgb(hue / 360, lightness / 100, saturation / 100)
+    return ("#%02x%02x%02x" % (int(r * 255), int(g * 255), int(b * 255))).upper()
