@@ -55,6 +55,22 @@ class Canvas:
         )
 
 
+    def width(self):
+        return self._width
+
+
+    def height(self):
+        return self._height
+
+
+    def background_color(self):
+        return self._background_color
+
+
+    def graphics(self):
+        return self._graphics
+
+
     def add_rectangle(self, *args, **kwargs):
         """Adds a :py:class:`.Rectangle` to the canvas.
 

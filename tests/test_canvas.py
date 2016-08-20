@@ -76,6 +76,17 @@ class CanvasCreationTests(TestCase):
 
 
 
+class CanvasPropertyTests(TestCase):
+
+    def test_basic_propertie(self):
+        canvas = Canvas(700, 500, background_color="#FFFF00")
+        self.assertIs(canvas.width(), canvas._width)
+        self.assertIs(canvas.height(), canvas._height)
+        self.assertIs(canvas.background_color(), canvas._background_color)
+        self.assertIs(canvas.graphics(), canvas._graphics)
+
+
+
 '''class GraphicAdditionTests(TestCase):
 
     def setUp(self):
