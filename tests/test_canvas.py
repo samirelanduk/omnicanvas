@@ -7,10 +7,14 @@ class CanvasCreationTests(TestCase):
 
     def test_can_create_canvas(self):
         canvas = Canvas(700, 500)
-        self.assertEqual(canvas.graphics, [])
-        self.assertEqual(canvas.width, 700)
-        self.assertEqual(canvas.height, 500)
-        self.assertEqual(canvas.background_color, None)
+        self.assertEqual(canvas._graphics, [])
+        self.assertEqual(canvas._width, 700)
+        self.assertEqual(canvas._height, 500)
+        self.assertEqual(canvas._background_color, None)
+
+
+    def test_canvas_repr(self):
+        canvas = Canvas(700, 500)
         self.assertEqual(
          str(canvas),
          "<Canvas 700×500 (0 Graphics)>"
@@ -28,36 +32,36 @@ class CanvasCreationTests(TestCase):
 
     def test_float_dimensions_converted_to_int(self):
         canvas = Canvas(100.0, 200)
-        self.assertEqual(canvas.width, 100)
-        self.assertIsInstance(canvas.width, int)
+        self.assertEqual(canvas._width, 100)
+        self.assertIsInstance(canvas._width, int)
         canvas = Canvas(100.1, 200)
-        self.assertEqual(canvas.width, 100)
+        self.assertEqual(canvas._width, 100)
         canvas = Canvas(100.6, 200)
-        self.assertEqual(canvas.width, 101)
+        self.assertEqual(canvas._width, 101)
         canvas = Canvas(100, 200.0)
-        self.assertEqual(canvas.height, 200)
-        self.assertIsInstance(canvas.height, int)
+        self.assertEqual(canvas._height, 200)
+        self.assertIsInstance(canvas._height, int)
         canvas = Canvas(100, 200.1)
-        self.assertEqual(canvas.height, 200)
+        self.assertEqual(canvas._height, 200)
         canvas = Canvas(100, 200.6)
-        self.assertEqual(canvas.height, 201)
+        self.assertEqual(canvas._height, 201)
 
 
     def test_can_create_canvas_with_background_color(self):
         canvas = Canvas(700, 500, background_color="#FFFF00")
-        self.assertEqual(canvas.background_color, "#FFFF00")
+        self.assertEqual(canvas._background_color, "#FFFF00")
 
 
     def test_canvas_creation_will_capitalise_color(self):
         canvas = Canvas(700, 500, background_color="#ffff00")
-        self.assertEqual(canvas.background_color, "#FFFF00")
+        self.assertEqual(canvas._background_color, "#FFFF00")
 
 
     def test_canvas_color_must_be_str(self):
         with self.assertRaises(TypeError):
             canvas = Canvas(700, 500, background_color=999944)
         canvas = Canvas(700, 500, background_color=None)
-        self.assertIs(canvas.background_color, None)
+        self.assertIs(canvas._background_color, None)
 
 
     def test_canvas_color_must_be_formatted_correctly(self):
@@ -72,7 +76,7 @@ class CanvasCreationTests(TestCase):
 
 
 
-class GraphicAdditionTests(TestCase):
+'''class GraphicAdditionTests(TestCase):
 
     def setUp(self):
         self.canvas = Canvas(400, 400)
@@ -81,58 +85,58 @@ class GraphicAdditionTests(TestCase):
     def test_can_add_rectangle(self):
         self.canvas.add_rectangle(10, 10, 50, 100)
         self.assertIsInstance(
-         self.canvas.graphics[-1],
+         self.canvas._graphics[-1],
          graphics.Rectangle
         )
-        self.assertEqual(self.canvas.graphics[-1].width, 50)
-        self.assertEqual(self.canvas.graphics[-1].height, 100)
+        self.assertEqual(self.canvas._graphics[-1]._width, 50)
+        self.assertEqual(self.canvas._graphics[-1]._height, 100)
         self.canvas.add_rectangle(10, 10, 50, 100, opacity=0.3, line_style="..")
-        self.assertEqual(len(self.canvas.graphics), 2)
-        self.assertEqual(self.canvas.graphics[-1].opacity, 0.3)
-        self.assertEqual(self.canvas.graphics[-1].line_style, "..")
-        self.assertEqual(self.canvas.graphics[-1].line_width, 1)
+        self.assertEqual(len(self.canvas._graphics), 2)
+        self.assertEqual(self.canvas._graphics[-1]._opacity, 0.3)
+        self.assertEqual(self.canvas._graphics[-1]._line_style, "..")
+        self.assertEqual(self.canvas._graphics[-1]._line_width, 1)
 
 
     def test_can_add_line(self):
         self.canvas.add_line(10, 10, 50, 100)
         self.assertIsInstance(
-         self.canvas.graphics[-1],
+         self.canvas._graphics[-1],
          graphics.Line
         )
-        self.assertEqual(self.canvas.graphics[-1].x1, 10)
-        self.assertEqual(self.canvas.graphics[-1].y2, 100)
+        self.assertEqual(self.canvas._graphics[-1].x1, 10)
+        self.assertEqual(self.canvas._graphics[-1].y2, 100)
         self.canvas.add_line(10, 10, 50, 100, line_color="#999999", line_style="..")
-        self.assertEqual(len(self.canvas.graphics), 2)
-        self.assertEqual(self.canvas.graphics[-1].line_color, "#999999")
-        self.assertEqual(self.canvas.graphics[-1].line_style, "..")
-        self.assertEqual(self.canvas.graphics[-1].line_width, 1)
+        self.assertEqual(len(self.canvas._graphics), 2)
+        self.assertEqual(self.canvas._graphics[-1].line_color, "#999999")
+        self.assertEqual(self.canvas._graphics[-1].line_style, "..")
+        self.assertEqual(self.canvas._graphics[-1].line_width, 1)
 
 
     def test_can_add_polygon(self):
         self.canvas.add_polygon(10, 30, 100, 45, 45, 40)
         self.assertIsInstance(
-         self.canvas.graphics[-1],
+         self.canvas._graphics[-1],
          graphics.Polygon
         )
-        self.assertEqual(self.canvas.graphics[-1].coordinates[-1], 40)
+        self.assertEqual(self.canvas._graphics[-1].coordinates[-1], 40)
         self.canvas.add_polygon(10, 30, 100, 45, 45, 40, opacity=0.1)
-        self.assertEqual(len(self.canvas.graphics), 2)
-        self.assertEqual(self.canvas.graphics[-1].opacity, 0.1)
-        self.assertEqual(self.canvas.graphics[-1].line_width, 1)
+        self.assertEqual(len(self.canvas._graphics), 2)
+        self.assertEqual(self.canvas._graphics[-1].opacity, 0.1)
+        self.assertEqual(self.canvas._graphics[-1].line_width, 1)
 
 
     def test_can_add_text(self):
         self.canvas.add_text(10, 30, "TEXT")
         self.assertIsInstance(
-         self.canvas.graphics[-1],
+         self.canvas._graphics[-1],
          graphics.Text
         )
-        self.assertEqual(self.canvas.graphics[-1].text, "TEXT")
+        self.assertEqual(self.canvas._graphics[-1].text, "TEXT")
         self.canvas.add_text(10, 30, "TEXT", vertical_align="top")
-        self.assertEqual(len(self.canvas.graphics), 2)
-        self.assertEqual(self.canvas.graphics[-1].vertical_align, "top")
-        self.assertEqual(self.canvas.graphics[-1].opacity, 1)
-        self.assertEqual(self.canvas.graphics[-1].line_width, 0)
+        self.assertEqual(len(self.canvas._graphics), 2)
+        self.assertEqual(self.canvas._graphics[-1]._vertical_align, "top")
+        self.assertEqual(self.canvas._graphics[-1]._opacity, 1)
+        self.assertEqual(self.canvas._graphics[-1]._line_width, 0)
 
 
 
@@ -158,7 +162,7 @@ class CanvasSvgTests(TestCase):
           '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<!-- Created with OmniCanvas (omnicanvas.readthedocs.io) -->\n'
           '<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">\n',
-          canvas.graphics[0].to_svg(),
+          canvas._graphics[0].to_svg(),
           "</svg>"
          ))
         )
@@ -193,4 +197,4 @@ class CanvasSavingTests(TestCase):
         canvas.save("test.svg")
         self.assertIn("test.svg", os.listdir())
         with open("test.svg") as f:
-            self.assertEqual(f.read(), canvas.to_svg())
+            self.assertEqual(f.read(), canvas.to_svg())'''
