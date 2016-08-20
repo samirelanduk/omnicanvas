@@ -55,12 +55,26 @@ class Canvas:
         )
 
 
-    def width(self):
-        return self._width
+    def width(self, width=None):
+        if width is None:
+            return self._width
+        else:
+            if isinstance(width, float):
+                width = round(width)
+            if not isinstance(width, int):
+                raise TypeError("Width must be numeric, not '%s'" % width)
+            self._width = width
 
 
-    def height(self):
-        return self._height
+    def height(self, height=None):
+        if height is None:
+            return self._height
+        else:
+            if isinstance(height, float):
+                height = round(height)
+            if not isinstance(height, int):
+                raise TypeError("Height must be numeric, not '%s'" % height)
+            self._height = height
 
 
     def background_color(self):

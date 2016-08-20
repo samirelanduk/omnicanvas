@@ -86,6 +86,36 @@ class CanvasPropertyTests(TestCase):
         self.assertIs(canvas.graphics(), canvas._graphics)
 
 
+    def test_can_set_dimensions(self):
+        canvas = Canvas(700, 500)
+        canvas.width(600)
+        self.assertEqual(canvas.width(), 600)
+        canvas.height(800)
+        self.assertEqual(canvas.height(), 800)
+
+
+    def test_dimensions_must_be_numeric(self):
+        canvas = Canvas(700, 500)
+        with self.assertRaises(TypeError):
+            canvas.width("100")
+        with self.assertRaises(TypeError):
+            canvas.height("500")
+
+
+    def test_float_dimensions_converted_to_int(self):
+        canvas = Canvas(700, 500)
+        canvas.width(600.0)
+        self.assertEqual(canvas._width, 600)
+        self.assertIsInstance(canvas._width, int)
+        canvas.width(100.1)
+        self.assertEqual(canvas._width, 100)
+        canvas.height(600.0)
+        self.assertEqual(canvas._height, 600)
+        self.assertIsInstance(canvas._height, int)
+        canvas.height(100.1)
+        self.assertEqual(canvas._height, 100)
+
+
 
 '''class GraphicAdditionTests(TestCase):
 
