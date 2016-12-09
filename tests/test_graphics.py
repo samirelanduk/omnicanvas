@@ -120,6 +120,21 @@ class GraphicCreationTests(TestCase):
 
 
 
+class GraphicPropertyTests(TestCase):
+
+    def test_basic_propertie(self):
+        graphic = Graphic(
+         line_width=1, line_style="--", line_color="#FFFFFF",
+         rotation=(10, 10, 45), data={"key": "Value"}
+        )
+        self.assertIs(graphic.line_width(), graphic._line_width)
+        self.assertIs(graphic.line_style(), graphic._line_style)
+        self.assertIs(graphic.line_color(), graphic._line_color)
+        self.assertIs(graphic.rotation(), graphic._rotation)
+        self.assertIs(graphic.data(), graphic._data)
+
+
+
 '''class GraphicSvgTests(TestCase):
 
     def test_graphic_can_produce_stroke_svg(self):

@@ -77,6 +77,26 @@ class Graphic:
         self._data = data if data is not None else {}
 
 
+    def line_width(self):
+        return self._line_width
+
+
+    def line_style(self):
+        return self._line_style
+
+
+    def line_color(self):
+        return self._line_color
+
+
+    def rotation(self):
+        return self._rotation
+
+
+    def data(self):
+        return self._data
+
+
     graphic_svg = svg.generate_graphic_svg
     rotation_svg = svg.generate_rotation_svg
     data_svg = svg.generate_data_svg
