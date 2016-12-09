@@ -122,7 +122,7 @@ class GraphicCreationTests(TestCase):
 
 class GraphicPropertyTests(TestCase):
 
-    def test_basic_propertie(self):
+    def test_basic_properties(self):
         graphic = Graphic(
          line_width=1, line_style="--", line_color="#FFFFFF",
          rotation=(10, 10, 45), data={"key": "Value"}

@@ -202,6 +202,14 @@ class ShapeGraphic(Graphic):
         self._opacity = opacity
 
 
+    def fill_color(self):
+        return self._fill_color
+
+
+    def opacity(self):
+        return self._opacity
+
+
     shape_svg = svg.generate_shape_svg
 
 

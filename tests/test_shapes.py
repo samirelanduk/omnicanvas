@@ -66,6 +66,15 @@ class ShapeGraphicCreationTests(TestCase):
 
 
 
+class ShapeGraphicPropertyTests(TestCase):
+
+    def test_basic_properties(self):
+        shape = ShapeGraphic(fill_color="#0000FF", opacity=0.4)
+        self.assertIs(shape.fill_color(), shape._fill_color)
+        self.assertIs(shape.opacity(), shape._opacity)
+
+
+
 '''class ShapeSvgTests(TestCase):
 
     def test_shape_can_produce_fill_svg(self):
