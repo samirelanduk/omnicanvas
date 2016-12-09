@@ -47,15 +47,15 @@ class Graphic:
      rotation=(0, 0, 0), data=None):
         if not isinstance(line_width, int) and not isinstance(line_width, float):
             raise TypeError("line_width must be numeric, not '%s'" % line_width)
-        self.line_width = line_width
+        self._line_width = line_width
 
         if not isinstance(line_style, str):
             raise TypeError("Line style must be str, not '%s'" % line_style)
         if line_style not in ("-", "--", ".."):
             raise ValueError("'%s' is not a valid line style" % line_style)
-        self.line_style = line_style
+        self._line_style = line_style
 
-        self.line_color = process_color(line_color)
+        self._line_color = process_color(line_color)
 
         if not isinstance(rotation, tuple):
             raise TypeError("Rotations must be tuples, not '%s'" % str(rotation))
@@ -70,11 +70,11 @@ class Graphic:
             raise ValueError(
              "Rotation must be between 0 and 360, not %s" % str(rotation[2])
             )
-        self.rotation = rotation
+        self._rotation = rotation
 
         if data is not None and not isinstance(data, dict):
             raise TypeError("Data must be dict, not '%s'" % data)
-        self.data = data if data is not None else {}
+        self._data = data if data is not None else {}
 
 
     graphic_svg = svg.generate_graphic_svg

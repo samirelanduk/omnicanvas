@@ -5,122 +5,122 @@ class GraphicCreationTests(TestCase):
 
     def test_can_create_graphic(self):
         graphic = Graphic()
-        self.assertEqual(graphic.line_width, 1)
-        self.assertEqual(graphic.line_style, "-")
-        self.assertEqual(graphic.line_color, "#000000")
-        self.assertEqual(graphic.rotation, (0, 0, 0))
-        self.assertEqual(graphic.data, {})
+        self.assertEqual(graphic._line_width, 1)
+        self.assertEqual(graphic._line_style, "-")
+        self.assertEqual(graphic._line_color, "#000000")
+        self.assertEqual(graphic._rotation, (0, 0, 0))
+        self.assertEqual(graphic._data, {})
 
 
     def test_can_create_graphic_with_line_width(self):
         graphic = Graphic(line_width=2.4)
-        self.assertEqual(graphic.line_width, 2.4)
+        self.assertEqual(graphic._line_width, 2.4)
 
 
     def test_line_width_must_be_numeric(self):
         with self.assertRaises(TypeError):
-            graphic = Graphic(line_width=None)
+            Graphic(line_width=None)
         with self.assertRaises(TypeError):
-            graphic = Graphic(line_width="2")
-        graphic = Graphic(line_width=2.4)
-        graphic = Graphic(line_width=2)
+            Graphic(line_width="2")
+        Graphic(line_width=2.4)
+        Graphic(line_width=2)
 
 
     def test_can_create_graphic_with_line_style(self):
         graphic = Graphic(line_style="--")
-        self.assertEqual(graphic.line_style, "--")
+        self.assertEqual(graphic._line_style, "--")
 
 
     def test_line_style_must_be_str(self):
         with self.assertRaises(TypeError):
-            graphic = Graphic(line_style=(1,1))
+            Graphic(line_style=(1,1))
         with self.assertRaises(TypeError):
-            graphic = Graphic(line_style=None)
+            Graphic(line_style=None)
 
 
     def test_line_style_must_be_valid(self):
         with self.assertRaises(ValueError):
-            graphic = Graphic(line_style="")
+            Graphic(line_style="")
         with self.assertRaises(ValueError):
-            graphic = Graphic(line_style="888")
+            Graphic(line_style="888")
 
 
     def test_can_create_graphic_with_line_color(self):
         graphic = Graphic(line_color="#FF0000")
-        self.assertEqual(graphic.line_color, "#FF0000")
+        self.assertEqual(graphic._line_color, "#FF0000")
 
 
     def test_graphic_line_will_capitalise_color(self):
         graphic = Graphic(line_color="#ff0000")
-        self.assertEqual(graphic.line_color, "#FF0000")
+        self.assertEqual(graphic._line_color, "#FF0000")
 
 
     def test_line_color_must_be_str(self):
         with self.assertRaises(TypeError):
-            graphic = Graphic(line_color=998877)
+            Graphic(line_color=998877)
         with self.assertRaises(TypeError):
-            graphic = Graphic(line_color=None)
+            Graphic(line_color=None)
 
 
     def test_line_color_must_be_formatted_correctly(self):
         with self.assertRaises(ValueError):
-            graphic = Graphic(line_color="FF0000")
+            Graphic(line_color="FF0000")
         with self.assertRaises(ValueError):
-            graphic = Graphic(line_color="#FF000")
+            Graphic(line_color="#FF000")
         with self.assertRaises(ValueError):
-            graphic = Graphic(line_color="#F00")
+            Graphic(line_color="#F00")
         with self.assertRaises(ValueError):
-            graphic = Graphic(line_color="#FF0G00")
+            Graphic(line_color="#FF0G00")
 
 
     def test_can_create_graphic_with_rotation(self):
         graphic = Graphic(rotation=(10, 10, 45))
-        self.assertEqual(graphic.rotation, (10, 10, 45))
+        self.assertEqual(graphic._rotation, (10, 10, 45))
 
 
     def test_graphic_rotation_must_be_tuple(self):
         with self.assertRaises(TypeError):
-            graphic = Graphic(rotation=[10, 10, 45])
+            Graphic(rotation=[10, 10, 45])
 
 
     def test_graphic_rotation_must_be_of_length_three(self):
         with self.assertRaises(ValueError):
-            graphic = Graphic(rotation=(10, 10))
+            Graphic(rotation=(10, 10))
         with self.assertRaises(ValueError):
-            graphic = Graphic(rotation=(10, 10, 45, 45))
+            Graphic(rotation=(10, 10, 45, 45))
 
 
-    def test_graphic_rotations_are_numeric(self):
+    def test_graphic_rotations_must_be_numeric(self):
         with self.assertRaises(TypeError):
-            graphic = Graphic(rotation=(10, 10, "10"))
+            Graphic(rotation=(10, 10, "10"))
         with self.assertRaises(TypeError):
-            graphic = Graphic(rotation=(10, "10", 10))
+            Graphic(rotation=(10, "10", 10))
         with self.assertRaises(TypeError):
-            graphic = Graphic(rotation=("10", 10, 10))
+            Graphic(rotation=("10", 10, 10))
         graphic = Graphic(rotation=(1.5, 1.5, 45.5))
 
 
     def test_graphic_rotation_must_be_within_zero_and_360_degrees(self):
         with self.assertRaises(ValueError):
-            graphic = Graphic(rotation=(10, 10, -1))
+            Graphic(rotation=(10, 10, -1))
         with self.assertRaises(ValueError):
-            graphic = Graphic(rotation=(10, 10, 400))
-        graphic = Graphic(rotation=(1.5, 1.5, 0))
-        graphic = Graphic(rotation=(1.5, 1.5, 360))
+            Graphic(rotation=(10, 10, 400))
+        Graphic(rotation=(1.5, 1.5, 0))
+        Graphic(rotation=(1.5, 1.5, 360))
 
 
     def test_can_create_graphic_with_data(self):
         graphic = Graphic(data={"key": "value"})
-        self.assertEqual(graphic.data, {"key": "value"})
+        self.assertEqual(graphic._data, {"key": "value"})
 
 
     def test_data_must_be_dict(self):
         with self.assertRaises(TypeError):
-            graphic = Graphic(data=["key", "value"])
+            Graphic(data=["key", "value"])
 
 
 
-class GraphicSvgTests(TestCase):
+'''class GraphicSvgTests(TestCase):
 
     def test_graphic_can_produce_stroke_svg(self):
         graphic = Graphic()
@@ -228,4 +228,4 @@ class GraphicSvgTests(TestCase):
         graphic = Graphic()
         graphic.data = []
         with self.assertRaises(TypeError):
-            graphic.data_svg()
+            graphic.data_svg()'''
