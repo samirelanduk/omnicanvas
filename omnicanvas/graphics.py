@@ -191,7 +191,7 @@ class ShapeGraphic(Graphic):
     def __init__(self, *args, fill_color="#FFFFFF", opacity=1, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
 
-        self.fill_color = process_color(fill_color)
+        self._fill_color = process_color(fill_color)
 
         if not isinstance(opacity, int) and not isinstance(opacity, float):
             raise TypeError("opacity must be numeric, not '%s'" % opacity)
@@ -199,7 +199,7 @@ class ShapeGraphic(Graphic):
             raise ValueError(
              "opacity must be between 0 and 1, not %s" % (str(opacity))
             )
-        self.opacity=opacity
+        self._opacity = opacity
 
 
     shape_svg = svg.generate_shape_svg
