@@ -134,6 +134,20 @@ class GraphicPropertyTests(TestCase):
         self.assertIs(graphic.data(), graphic._data)
 
 
+    def test_can_set_line_width(self):
+        graphic = Graphic(line_width=2.0)
+        graphic.line_width(3.5)
+        self.assertEqual(graphic.line_width(), 3.5)
+
+
+    def test_set_line_width_must_be_numeric(self):
+        graphic = Graphic(line_width=2.0)
+        with self.assertRaises(TypeError):
+            graphic.line_width("2")
+        graphic.line_width(2.4)
+        graphic.line_width(2)
+
+
 
 '''class GraphicSvgTests(TestCase):
 

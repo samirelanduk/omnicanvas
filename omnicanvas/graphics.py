@@ -77,8 +77,16 @@ class Graphic:
         self._data = data if data is not None else {}
 
 
-    def line_width(self):
-        return self._line_width
+    def line_width(self, line_width=None):
+        if line_width is None:
+            return self._line_width
+        else:
+            if not isinstance(line_width, int) and\
+             not isinstance(line_width, float):
+                raise TypeError(
+                 "line_width must be numeric, not '%s'" % line_width
+                )
+            self._line_width = line_width
 
 
     def line_style(self):
