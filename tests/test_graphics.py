@@ -199,6 +199,33 @@ class GraphicPropertyTests(TestCase):
             graphic.line_color("#FG0000")
 
 
+    def test_can_rotate_graphic(self):
+        graphic = Graphic(rotation=(10, 10, 45))
+        graphic.rotate(40, 40, 270)
+        self.assertEqual(graphic.rotation(), (40, 40, 270))
+
+
+    def test_set_graphic_rotations_must_be_numeric(self):
+        graphic = Graphic(rotation=(10, 10, 45))
+        with self.assertRaises(TypeError):
+            graphic.rotate(40, 40, "270")
+        with self.assertRaises(TypeError):
+            graphic.rotate(40, "40", 270)
+        with self.assertRaises(TypeError):
+            graphic.rotate("40", 40, 270)
+        graphic.rotate(40.5, 40.1, 270.99)
+
+
+    def test_set_graphic_rotation_must_be_within_zero_and_360_degrees(self):
+        graphic = Graphic(rotation=(10, 10, 45))
+        with self.assertRaises(ValueError):
+            graphic.rotate(40, 40, -1)
+        with self.assertRaises(ValueError):
+            graphic.rotate(40, 40, 400)
+        graphic.rotate(40, 40, 0)
+        graphic.rotate(40, 40, 360)
+
+
 
 '''class GraphicSvgTests(TestCase):
 

@@ -113,6 +113,18 @@ class Graphic:
         return self._rotation
 
 
+    def rotate(self, x_pivot, y_pivot, angle):
+        rotation = (x_pivot, y_pivot, angle)
+        for value in rotation:
+            if not isinstance(value, int) and not isinstance(value, float):
+                raise TypeError("Rotation values must be numeric, not '%s'" % value)
+        if not 0 <= rotation[2] <= 360:
+            raise ValueError(
+             "Rotation must be between 0 and 360, not %s" % str(rotation[2])
+            )
+        self._rotation = rotation
+
+
     def data(self):
         return self._data
 
