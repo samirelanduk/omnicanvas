@@ -104,6 +104,28 @@ class ShapeGraphicPropertyTests(TestCase):
             shape.fill_color("#330K00")
 
 
+    def test_can_set_opacity(self):
+        shape = ShapeGraphic(opacity=0.4)
+        shape.opacity(0.9)
+        self.assertEqual(shape.opacity(), 0.9)
+
+
+    def test_set_opacity_must_be_numeric(self):
+        shape = ShapeGraphic(opacity=0.4)
+        with self.assertRaises(TypeError):
+            shape.opacity("9")
+
+
+    def test_set_opacity_must_be_between_0_and_1(self):
+        shape = ShapeGraphic(opacity=0.4)
+        with self.assertRaises(ValueError):
+            shape.opacity(-1)
+        with self.assertRaises(ValueError):
+            shape.opacity(1.1)
+        shape.opacity(0)
+        shape.opacity(1)
+
+
 
 '''class ShapeSvgTests(TestCase):
 
