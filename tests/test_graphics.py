@@ -148,6 +148,27 @@ class GraphicPropertyTests(TestCase):
         graphic.line_width(2)
 
 
+    def test_can_set_line_style(self):
+        graphic = Graphic(line_style="--")
+        graphic.line_style("-")
+        self.assertEqual(graphic.line_style(), "-")
+
+
+    def test_set_line_style_must_be_str(self):
+        graphic = Graphic(line_style="--")
+        graphic = Graphic(line_style="--")
+        with self.assertRaises(TypeError):
+            graphic.line_style((1,1))
+
+
+    def test_set_line_style_must_be_valid(self):
+        graphic = Graphic(line_style="--")
+        with self.assertRaises(ValueError):
+            graphic.line_style("")
+        with self.assertRaises(ValueError):
+            graphic.line_style("888")
+
+
 
 '''class GraphicSvgTests(TestCase):
 

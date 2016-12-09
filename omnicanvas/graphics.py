@@ -4,6 +4,8 @@ the canvas."""
 from .colors import process_color
 from . import svg
 
+ALLOWED_LINESTYLES = ("-", "--", "..")
+
 class Graphic:
     """The base class of all Graphics - it would not generally need to be
     instantiated at this abstract level.
@@ -51,7 +53,7 @@ class Graphic:
 
         if not isinstance(line_style, str):
             raise TypeError("Line style must be str, not '%s'" % line_style)
-        if line_style not in ("-", "--", ".."):
+        if line_style not in ALLOWED_LINESTYLES:
             raise ValueError("'%s' is not a valid line style" % line_style)
         self._line_style = line_style
 
@@ -89,8 +91,15 @@ class Graphic:
             self._line_width = line_width
 
 
-    def line_style(self):
-        return self._line_style
+    def line_style(self, line_style=None):
+        if line_style is None:
+            return self._line_style
+        else:
+            if not isinstance(line_style, str):
+                raise TypeError("Line style must be str, not '%s'" % line_style)
+            if line_style not in ALLOWED_LINESTYLES:
+                raise ValueError("'%s' is not a valid line style" % line_style)
+            self._line_style = line_style
 
 
     def line_color(self):
