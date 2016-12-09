@@ -35,3 +35,14 @@ class BoxGraphicCreationTests(TestCase):
             BoxGraphic(10, 20, 100, "200")
         BoxGraphic(10, 20, 100.5, 200)
         BoxGraphic(10, 20, 100, 200.5)
+
+
+
+class BoxGraphicPropertyTests(TestCase):
+
+    def test_basic_properties(self):
+        box = BoxGraphic(10, 20, 100, 200)
+        self.assertIs(box.x(), box._x)
+        self.assertIs(box.y(), box._y)
+        self.assertIs(box.width(), box._width)
+        self.assertIs(box.height(), box._height)

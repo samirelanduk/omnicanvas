@@ -317,6 +317,22 @@ class BoxGraphic(ShapeGraphic):
         self._height = height
 
 
+    def x(self):
+        return self._x
+
+
+    def y(self):
+        return self._y
+
+
+    def width(self):
+        return self._width
+
+
+    def height(self):
+        return self._height
+
+
 
 class Rectangle(BoxGraphic):
     """Base class: :py:class:`BoxGraphic`
