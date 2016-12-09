@@ -169,6 +169,36 @@ class GraphicPropertyTests(TestCase):
             graphic.line_style("888")
 
 
+    def test_can_set_line_color(self):
+        graphic = Graphic(line_color="#FF0000")
+        graphic.line_color("#00FF00")
+        self.assertEqual(graphic.line_color(), "#00FF00")
+
+
+    def test_set_graphic_line_will_capitalise_color(self):
+        graphic = Graphic(line_color="#FF0000")
+        graphic.line_color("#ff0000")
+        self.assertEqual(graphic._line_color, "#FF0000")
+
+
+    def test_set_line_color_must_be_str(self):
+        graphic = Graphic(line_color="#FF0000")
+        with self.assertRaises(TypeError):
+            graphic.line_color(998877)
+
+
+    def test_set_line_color_must_be_formatted_correctly(self):
+        graphic = Graphic(line_color="#FF0000")
+        with self.assertRaises(ValueError):
+            graphic.line_color("FF0000")
+        with self.assertRaises(ValueError):
+            graphic.line_color("#F0000")
+        with self.assertRaises(ValueError):
+            graphic.line_color("#F00")
+        with self.assertRaises(ValueError):
+            graphic.line_color("#FG0000")
+
+
 
 '''class GraphicSvgTests(TestCase):
 

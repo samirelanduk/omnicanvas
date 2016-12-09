@@ -102,8 +102,11 @@ class Graphic:
             self._line_style = line_style
 
 
-    def line_color(self):
-        return self._line_color
+    def line_color(self, line_color=None):
+        if line_color is None:
+            return self._line_color
+        else:
+            self._line_color = process_color(line_color)
 
 
     def rotation(self):
