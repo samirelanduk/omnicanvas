@@ -77,8 +77,11 @@ class Canvas:
             self._height = height
 
 
-    def background_color(self):
-        return self._background_color
+    def background_color(self, background_color=None):
+        if background_color is None:
+            return self._background_color
+        else:
+            self._background_color = process_color(background_color)
 
 
     def graphics(self):

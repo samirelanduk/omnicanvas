@@ -116,6 +116,40 @@ class CanvasPropertyTests(TestCase):
         self.assertEqual(canvas._height, 100)
 
 
+    def test_can_set_background_color(self):
+        canvas = Canvas(700, 500)
+        canvas.background_color("#FFFFFF")
+        self.assertEqual(canvas.background_color(), "#FFFFFF")
+        canvas.background_color("#787878")
+        self.assertEqual(canvas.background_color(), "#787878")
+
+
+    def test_setting_lowercase_color_will_capitalise(self):
+        canvas = Canvas(700, 500)
+        canvas.background_color("#ffffff")
+        self.assertEqual(canvas.background_color(), "#FFFFFF")
+        canvas.background_color("#Aa7Ebc")
+        self.assertEqual(canvas.background_color(), "#AA7EBC")
+
+
+    def test_set_canvas_color_must_be_str(self):
+        canvas = Canvas(700, 500)
+        with self.assertRaises(TypeError):
+            canvas.background_color(999944)
+
+
+    def test_set_canvas_color_must_be_formatted_correctly(self):
+        canvas = Canvas(700, 500)
+        with self.assertRaises(ValueError):
+            canvas.background_color("FFFE40")
+        with self.assertRaises(ValueError):
+            canvas.background_color("#EEE56")
+        with self.assertRaises(ValueError):
+            canvas.background_color("FF0")
+        with self.assertRaises(ValueError):
+            canvas.background_color("FFG000")
+
+
 
 '''class GraphicAdditionTests(TestCase):
 
