@@ -202,8 +202,11 @@ class ShapeGraphic(Graphic):
         self._opacity = opacity
 
 
-    def fill_color(self):
-        return self._fill_color
+    def fill_color(self, fill_color=None):
+        if fill_color is None:
+            return self._fill_color
+        else:
+            self._fill_color = process_color(fill_color)
 
 
     def opacity(self):

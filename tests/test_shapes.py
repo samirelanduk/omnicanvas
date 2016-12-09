@@ -74,6 +74,36 @@ class ShapeGraphicPropertyTests(TestCase):
         self.assertIs(shape.opacity(), shape._opacity)
 
 
+    def test_can_set_fill_color(self):
+        shape = ShapeGraphic(fill_color="#0000FF")
+        shape.fill_color("#00FF00")
+        self.assertEqual(shape.fill_color(), "#00FF00")
+
+
+    def test_setting_fill_color_will_capitalise_color(self):
+        shape = ShapeGraphic(fill_color="#0000FF")
+        shape.fill_color("#00ff00")
+        self.assertEqual(shape.fill_color(), "#00FF00")
+
+
+    def test_set_shape_color_must_be_str(self):
+        shape = ShapeGraphic(fill_color="#0000FF")
+        with self.assertRaises(TypeError):
+            shape.fill_color(330000)
+
+
+    def test_set_shape_color_must_be_formatted_correctly(self):
+        shape = ShapeGraphic(fill_color="#0000FF")
+        with self.assertRaises(ValueError):
+            shape.fill_color("330000")
+        with self.assertRaises(ValueError):
+            shape.fill_color("#33000")
+        with self.assertRaises(ValueError):
+            shape.fill_color("#330")
+        with self.assertRaises(ValueError):
+            shape.fill_color("#330K00")
+
+
 
 '''class ShapeSvgTests(TestCase):
 
