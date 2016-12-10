@@ -38,6 +38,45 @@ class LineCreationTests(TestCase):
 
 
 
+class LinePropertiesTests(TestCase):
+
+    def test_basic_line_properties(self):
+        line = Line(10, 30, 90, 70)
+        self.assertIs(line.x1(), line._x1)
+        self.assertIs(line.y1(), line._y1)
+        self.assertIs(line.x2(), line._x2)
+        self.assertIs(line.y2(), line._y2)
+
+
+    def test_can_set_line_coordinates(self):
+        line = Line(10, 30, 90, 70)
+        line.x1(100)
+        self.assertEqual(line.x1(), 100)
+        line.y1(100)
+        self.assertEqual(line.y1(), 100)
+        line.x2(100)
+        self.assertEqual(line.x2(), 100)
+        line.y2(100)
+        self.assertEqual(line.y2(), 100)
+
+
+    def test_set_line_coordinates_must_be_numeric(self):
+        line = Line(10, 30, 90, 70)
+        with self.assertRaises(TypeError):
+            line.x1("10")
+        line.x1(100.5)
+        with self.assertRaises(TypeError):
+            line.y1("10")
+        line.y1(100.5)
+        with self.assertRaises(TypeError):
+            line.x2("10")
+        line.x2(100.5)
+        with self.assertRaises(TypeError):
+            line.y2("10")
+        line.y2(100.5)
+
+
+
 '''class LineSvgTests(TestCase):
 
     def test_can_make_basic_svg(self):
