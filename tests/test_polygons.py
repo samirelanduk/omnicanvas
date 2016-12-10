@@ -42,8 +42,13 @@ class PolygonPropertiesTests(TestCase):
 
     def test_basic_properties(self):
         polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
-        self.assertIs(polygon.coordinates(), polygon._coordinates)
+        self.assertEqual(polygon.coordinates(), polygon._coordinates)
 
+
+    def test_coordinates_are_read_only(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
+        polygon.coordinates().append(70)
+        self.assertEqual(polygon.coordinates(), [10, 30, 60, 100, 45, 45, 0, 40])
 
 
 '''class PointsTests(TestCase):

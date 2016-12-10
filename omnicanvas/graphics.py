@@ -628,7 +628,7 @@ class Polygon(ShapeGraphic):
 
 
     def coordinates(self):
-        return self._coordinates
+        return list(self._coordinates)
 
 
     def coordinates_to_xy_pairs(self):
