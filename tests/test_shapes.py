@@ -127,7 +127,7 @@ class ShapeGraphicPropertyTests(TestCase):
 
 
 
-'''class ShapeSvgTests(TestCase):
+class ShapeSvgTests(TestCase):
 
     def test_shape_can_produce_fill_svg(self):
         shape = ShapeGraphic()
@@ -141,4 +141,4 @@ class ShapeGraphicPropertyTests(TestCase):
         self.assertEqual(
          shape.shape_svg(),
          "fill:#FFFFFF;fill-opacity:0.340;stroke:#000000;"
-        )'''
+        )

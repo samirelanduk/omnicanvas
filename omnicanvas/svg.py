@@ -26,10 +26,10 @@ def generate_data_svg(graphic):
 
 
 def generate_shape_svg(shape):
-    opacity = "fill-opacity:%.3f;" % shape.opacity
+    opacity = "fill-opacity:%.3f;" % shape.opacity()
     return "fill:%s;%s%s" % (
-     shape.fill_color,
-     opacity if shape.opacity != 1 else "",
+     shape.fill_color(),
+     opacity if shape.opacity() != 1 else "",
      shape.graphic_svg()
     )
 
