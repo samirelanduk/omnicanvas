@@ -25,7 +25,7 @@ class RectangleCreationTests(TestCase):
 
 
 
-'''class SvgTests(TestCase):
+class SvgTests(TestCase):
 
     def test_can_make_basic_svg(self):
         rectangle = Rectangle(10, 30, 400, 500)
@@ -56,4 +56,4 @@ class RectangleCreationTests(TestCase):
         self.assertIn(
          'a="b"',
          rectangle.to_svg()
-        )'''
+        )
