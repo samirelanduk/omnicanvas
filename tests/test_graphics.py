@@ -227,7 +227,7 @@ class GraphicPropertyTests(TestCase):
 
 
 
-'''class GraphicSvgTests(TestCase):
+class GraphicSvgTests(TestCase):
 
     def test_graphic_can_produce_stroke_svg(self):
         graphic = Graphic()
@@ -280,13 +280,6 @@ class GraphicPropertyTests(TestCase):
         )
 
 
-    def test_cannot_use_invalid_line_style(self):
-        graphic = Graphic(line_style="--")
-        graphic.line_style = "8--8"
-        with self.assertRaises(ValueError):
-            graphic.graphic_svg()
-
-
     def test_can_produce_rotation(self):
         graphic = Graphic()
         self.assertEqual(graphic.rotation_svg(), "")
@@ -295,22 +288,6 @@ class GraphicPropertyTests(TestCase):
          graphic.rotation_svg(),
          ' transform="rotate(90.0 10.0 10.0)"'
         )
-
-
-    def test_cannot_produce_rotation_svg_from_invalid_rotation(self):
-        graphic = Graphic()
-        graphic.rotation = list(graphic.rotation)
-        with self.assertRaises(TypeError):
-            graphic.rotation_svg()
-        graphic.rotation = (1, 1, 1, 1)
-        with self.assertRaises(ValueError):
-            graphic.rotation_svg()
-        graphic.rotation = (1, 1, "1")
-        with self.assertRaises(TypeError):
-            graphic.rotation_svg()
-        graphic.rotation = (1, 1, 400)
-        with self.assertRaises(ValueError):
-            graphic.rotation_svg()
 
 
     def test_data_in_svg(self):
@@ -329,10 +306,3 @@ class GraphicPropertyTests(TestCase):
          ' ',
          graphic.data_svg()
         )
-
-
-    def test_data_must_be_dict_for_svg(self):
-        graphic = Graphic()
-        graphic.data = []
-        with self.assertRaises(TypeError):
-            graphic.data_svg()'''
