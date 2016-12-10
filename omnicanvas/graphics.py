@@ -746,17 +746,17 @@ class Text(ShapeGraphic):
 
         if not isinstance(x, int) and not isinstance(x, float):
             raise TypeError("x must be numeric, not '%s'" % x)
-        self.x = x
+        self._x = x
 
         if not isinstance(y, int) and not isinstance(y, float):
             raise TypeError("y must be numeric, not '%s'" % y)
-        self.y = y
+        self._y = y
 
-        self.text = text
+        self._text = text
 
         if not isinstance(font_size, int) and not isinstance(font_size, float):
             raise TypeError("Font size must be numeric, not '%s'" % font_size)
-        self.font_size = font_size
+        self._font_size = font_size
 
         if not isinstance(horizontal_align, str):
             raise TypeError(
@@ -766,7 +766,7 @@ class Text(ShapeGraphic):
             raise ValueError(
              "'%s' is not a valid horizontal alignment" % horizontal_align
             )
-        self.horizontal_align = horizontal_align
+        self._horizontal_align = horizontal_align
 
         if not isinstance(vertical_align, str):
             raise TypeError(
@@ -776,12 +776,13 @@ class Text(ShapeGraphic):
             raise ValueError(
              "'%s' is not a valid vertical alignment" % vertical_align
             )
-        self.vertical_align = vertical_align
+        self._vertical_align = vertical_align
 
 
     def __repr__(self):
+        text = str(self._text)
         return "<Text ('%s')>" % (
-         str(self.text) if len(str(self.text)) < 21 else str(self.text)[:20] + "..."
+         text if len(text) < 21 else text[:20] + "..."
         )
 
 
