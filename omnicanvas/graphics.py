@@ -618,7 +618,9 @@ class Polygon(ShapeGraphic):
                 raise TypeError("'%s' is an invalid coordinate" % value)
         if len(coordinates) % 2 != 0:
             raise ValueError("There must be an even number of coordinates")
-        self.coordinates = list(coordinates)
+        if len(coordinates) < 6:
+            raise ValueError("There must be at least three vertices")
+        self._coordinates = list(coordinates)
 
 
     def __repr__(self):
