@@ -804,8 +804,13 @@ class Text(ShapeGraphic):
             self._y = y
 
 
-    def font_size(self):
-        return self._font_size
+    def font_size(self, font_size=None):
+        if font_size is None:
+            return self._font_size
+        else:
+            if not isinstance(font_size, int) and not isinstance(font_size, float):
+                raise TypeError("font_size must be numeric, not '%s'" % font_size)
+            self._font_size = font_size
 
 
     def horizontal_align(self):

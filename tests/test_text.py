@@ -119,6 +119,19 @@ class TextPropertiesTests(TestCase):
         text.y(10.5)
 
 
+    def test_can_set_font_size(self):
+        text = Text(50, 50, "Test", font_size=30)
+        text.font_size(40)
+        self.assertEqual(text.font_size(), 40)
+
+
+    def test_set_font_size_must_be_numeric(self):
+        text = Text(50, 50, "Test", font_size=30)
+        with self.assertRaises(TypeError):
+            text.font_size("10")
+        text.font_size(10.5)
+
+
 
 '''class SvgTests(TestCase):
 
