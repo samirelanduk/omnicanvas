@@ -96,6 +96,7 @@ class TextPropertiesTests(TestCase):
         )
         self.assertIs(text.x(), text._x)
         self.assertIs(text.y(), text._y)
+        self.assertIs(text.text(), text._text)
         self.assertIs(text.font_size(), text._font_size)
         self.assertIs(text.vertical_align(), text._vertical_align)
         self.assertIs(text.horizontal_align(), text._horizontal_align)
@@ -117,6 +118,12 @@ class TextPropertiesTests(TestCase):
             text.y("20")
         text.x(10.5)
         text.y(10.5)
+
+
+    def test_can_set_text(self):
+        text = Text(50, 50, "Test")
+        text.text("NewText")
+        self.assertEqual(text.text(), "NewText")
 
 
     def test_can_set_font_size(self):

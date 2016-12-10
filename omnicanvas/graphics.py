@@ -804,6 +804,13 @@ class Text(ShapeGraphic):
             self._y = y
 
 
+    def text(self, text=None):
+        if text is None:
+            return self._text
+        else:
+            self._text = text
+
+
     def font_size(self, font_size=None):
         if font_size is None:
             return self._font_size
