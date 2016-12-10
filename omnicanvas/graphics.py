@@ -813,8 +813,19 @@ class Text(ShapeGraphic):
             self._font_size = font_size
 
 
-    def horizontal_align(self):
-        return self._horizontal_align
+    def horizontal_align(self, horizontal_align=None):
+        if horizontal_align is None:
+            return self._horizontal_align
+        else:
+            if not isinstance(horizontal_align, str):
+                raise TypeError(
+                 "horizontal align must be str, not '%s'" % horizontal_align
+                )
+            if horizontal_align not in ("left", "center", "right"):
+                raise ValueError(
+                 "'%s' is not a valid horizontal alignment" % horizontal_align
+                )
+            self._horizontal_align = horizontal_align
 
 
     def vertical_align(self):

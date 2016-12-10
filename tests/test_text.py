@@ -132,6 +132,24 @@ class TextPropertiesTests(TestCase):
         text.font_size(10.5)
 
 
+    def test_can_set_horizontal_align(self):
+        text = Text(50, 50, "Test", horizontal_align="left")
+        text.horizontal_align("right")
+        self.assertEqual(text.horizontal_align(), "right")
+
+
+    def test_set_horizontal_align_must_be_str(self):
+        text = Text(50, 50, "Test", horizontal_align="left")
+        with self.assertRaises(TypeError):
+            text.horizontal_align(23)
+
+
+    def test_horizontal_align_must_be_valid_text(self):
+        text = Text(50, 50, "Test", horizontal_align="left")
+        with self.assertRaises(ValueError):
+            text.horizontal_align("middle")
+
+
 
 '''class SvgTests(TestCase):
 
