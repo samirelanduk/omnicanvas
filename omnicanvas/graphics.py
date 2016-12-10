@@ -494,21 +494,21 @@ class Line(Graphic):
         Graphic.__init__(self, *args, **kwargs)
         if not isinstance(x1, int) and not isinstance(x1, float):
             raise TypeError("x1 must be numeric, not '%s'" % x1)
-        self.x1 = x1
+        self._x1 = x1
         if not isinstance(y1, int) and not isinstance(y1, float):
             raise TypeError("y1 must be numeric, not '%s'" % y1)
-        self.y1 = y1
+        self._y1 = y1
         if not isinstance(x2, int) and not isinstance(x2, float):
             raise TypeError("x2 must be numeric, not '%s'" % x2)
-        self.x2 = x2
+        self._x2 = x2
         if not isinstance(y2, int) and not isinstance(y2, float):
             raise TypeError("y2 must be numeric, not '%s'" % y2)
-        self.y2 = y2
+        self._y2 = y2
 
 
     def __repr__(self):
         return "<Line (%i,%i) to (%i,%i)>" % (
-         self.x1, self.y1, self.x2, self.y2
+         self._x1, self._y1, self._x2, self._y2
         )
 
 
