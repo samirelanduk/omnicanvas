@@ -95,7 +95,7 @@ class PolygonPropertiesTests(TestCase):
         )
 
 
-'''
+
 class SvgTests(TestCase):
 
     def test_can_make_basic_svg(self):
@@ -127,4 +127,4 @@ class SvgTests(TestCase):
         self.assertIn(
          'a="b"',
          polygon.to_svg()
-        )'''
+        )

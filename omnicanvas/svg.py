@@ -62,7 +62,7 @@ def generate_polygon_svg(polygon):
     return '<polygon points="%s" style="%s"%s%s />' % (
      ", ".join(["%.1f,%.1f" % (
       point[0], point[1]
-     ) for point in polygon.coordinates_to_xy_pairs()]),
+     ) for point in polygon.coordinates(xy_pairs=True)]),
      polygon.shape_svg(),
      polygon.rotation_svg(),
      polygon.data_svg(),
