@@ -335,12 +335,22 @@ class BoxGraphic(ShapeGraphic):
             self._y = y
 
 
-    def width(self):
-        return self._width
+    def width(self, width=None):
+        if width is None:
+            return self._width
+        else:
+            if not isinstance(width, int) and not isinstance(width, float):
+                raise TypeError("width must be numeric, not '%s'" % width)
+            self._width = width
 
 
-    def height(self):
-        return self._height
+    def height(self, height=None):
+        if height is None:
+            return self._height
+        else:
+            if not isinstance(height, int) and not isinstance(height, float):
+                raise TypeError("height must be numeric, not '%s'" % height)
+            self._height = height
 
 
 

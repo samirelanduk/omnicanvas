@@ -64,3 +64,21 @@ class BoxGraphicPropertyTests(TestCase):
             box.y("20")
         box.x(10.5)
         box.y(10.5)
+
+
+    def test_can_set_box_size(self):
+        box = BoxGraphic(10, 20, 100, 200)
+        box.width(200)
+        self.assertEqual(box.width(), 200)
+        box.height(-10)
+        self.assertEqual(box.height(), -10)
+
+
+    def test_set_box_size_must_be_numeric(self):
+        box = BoxGraphic(10, 20, 100, 200)
+        with self.assertRaises(TypeError):
+            box.width("10")
+        with self.assertRaises(TypeError):
+            box.height("20")
+        box.width(10.5)
+        box.height(10.5)
