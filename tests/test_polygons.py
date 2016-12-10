@@ -87,24 +87,15 @@ class PolygonPropertiesTests(TestCase):
             polygon.remove_vertex(1)
 
 
-'''class PointsTests(TestCase):
-
-    def test_can_turn_points_into_coordinate_tuple(self):
+    def test_can_get_coordinates_as_coordinate_tuples(self):
         polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
         self.assertEqual(
-         polygon.coordinates_to_xy_pairs(),
+         polygon.coordinates(xy_pairs=True),
          ((10, 30), (60, 100), (45, 45), (0, 40))
         )
 
 
-    def test_coordinate_generation_warns_about_odd_number_of_coordinates(self):
-        polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
-        polygon.coordinates.pop()
-        with self.assertRaises(ValueError):
-             polygon.coordinates_to_xy_pairs()
-
-
-
+'''
 class SvgTests(TestCase):
 
     def test_can_make_basic_svg(self):

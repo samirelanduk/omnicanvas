@@ -628,8 +628,11 @@ class Polygon(ShapeGraphic):
         return("<Polygon (%i points)>" % (len(self.coordinates) / 2))
 
 
-    def coordinates(self):
-        return list(self._coordinates)
+    def coordinates(self, xy_pairs=False):
+        if xy_pairs:
+            return tuple(zip(self._coordinates[:-1:2], self._coordinates[1::2]))
+        else:
+            return list(self._coordinates)
 
 
     def add_vertex(self, x, y):
@@ -648,17 +651,6 @@ class Polygon(ShapeGraphic):
             raise TypeError("Vertex index must be int")
         self._coordinates.pop(index * 2)
         self._coordinates.pop(index * 2)
-
-
-    def coordinates_to_xy_pairs(self):
-        """Returns the polygon's coordinates as a sequence of tuples, where
-        each tuple is in the form (x value, y value)."""
-
-        if len(self.coordinates) % 2 != 0:
-            raise ValueError(
-             "Cannot process polygon coordiantes with odd number of values"
-            )
-        return tuple(zip(self.coordinates[:-1:2], self.coordinates[1::2]))
 
 
     to_svg = svg.generate_polygon_svg
