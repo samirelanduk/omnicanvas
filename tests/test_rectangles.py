@@ -6,22 +6,26 @@ class RectangleCreationTests(TestCase):
     def test_can_create_rectangle(self):
         rectangle = Rectangle(10, 30, 400, 500)
         self.assertIsInstance(rectangle, BoxGraphic)
-        self.assertEqual(rectangle.x, 10)
-        self.assertEqual(rectangle.y, 30)
-        self.assertEqual(rectangle.width, 400)
-        self.assertEqual(rectangle.height, 500)
-        self.assertEqual(rectangle.fill_color, "#FFFFFF")
-        self.assertEqual(rectangle.opacity, 1)
-        self.assertEqual(rectangle.line_width, 1)
-        self.assertEqual(rectangle.line_style, "-")
-        self.assertEqual(rectangle.line_color, "#000000")
-        self.assertEqual(rectangle.rotation, (0, 0, 0))
-        self.assertEqual(rectangle.data, {})
+        self.assertEqual(rectangle._x, 10)
+        self.assertEqual(rectangle._y, 30)
+        self.assertEqual(rectangle._width, 400)
+        self.assertEqual(rectangle._height, 500)
+        self.assertEqual(rectangle._fill_color, "#FFFFFF")
+        self.assertEqual(rectangle._opacity, 1)
+        self.assertEqual(rectangle._line_width, 1)
+        self.assertEqual(rectangle._line_style, "-")
+        self.assertEqual(rectangle._line_color, "#000000")
+        self.assertEqual(rectangle._rotation, (0, 0, 0))
+        self.assertEqual(rectangle._data, {})
+
+
+    def test_rectangle_repr(self):
+        rectangle = Rectangle(10, 30, 400, 500)
         self.assertEqual(str(rectangle), "<Rectangle 400×500 at (10,30)>")
 
 
 
-class SvgTests(TestCase):
+'''class SvgTests(TestCase):
 
     def test_can_make_basic_svg(self):
         rectangle = Rectangle(10, 30, 400, 500)
@@ -52,4 +56,4 @@ class SvgTests(TestCase):
         self.assertIn(
          'a="b"',
          rectangle.to_svg()
-        )
+        )'''

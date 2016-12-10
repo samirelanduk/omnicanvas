@@ -429,7 +429,7 @@ class Rectangle(BoxGraphic):
 
     def __repr__(self):
         return "<Rectangle %i×%i at (%i,%i)>" % (
-         self.width, self.height, self.x, self.y
+         self.width(), self.height(), self.x(), self.y()
         )
 
 
