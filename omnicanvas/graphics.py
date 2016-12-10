@@ -2,6 +2,7 @@
 the canvas."""
 
 from .colors import process_color
+from .exceptions import GeometryError
 from . import svg
 
 ALLOWED_LINESTYLES = ("-", "--", "..")
@@ -619,7 +620,7 @@ class Polygon(ShapeGraphic):
         if len(coordinates) % 2 != 0:
             raise ValueError("There must be an even number of coordinates")
         if len(coordinates) < 6:
-            raise ValueError("There must be at least three vertices")
+            raise GeometryError("There must be at least three vertices")
         self._coordinates = list(coordinates)
 
 
@@ -638,6 +639,15 @@ class Polygon(ShapeGraphic):
             raise TypeError("y must be numeric, not '%s'" % y)
         self._coordinates.append(x)
         self._coordinates.append(y)
+
+
+    def remove_vertex(self, index):
+        if len(self._coordinates) <= 6:
+            raise GeometryError("There must be at least three vertices")
+        if not isinstance(index, int):
+            raise TypeError("Vertex index must be int")
+        self._coordinates.pop(index * 2)
+        self._coordinates.pop(index * 2)
 
 
     def coordinates_to_xy_pairs(self):

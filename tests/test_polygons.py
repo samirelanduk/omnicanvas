@@ -1,5 +1,6 @@
 from unittest import TestCase
 from omnicanvas.graphics import ShapeGraphic, Polygon
+from omnicanvas.exceptions import GeometryError
 
 class PolygonCreationTests(TestCase):
 
@@ -33,7 +34,7 @@ class PolygonCreationTests(TestCase):
 
 
     def test_must_be_at_least_three_vertices(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(GeometryError):
             Polygon(45, 45, 0, 40)
 
 
@@ -64,6 +65,26 @@ class PolygonPropertiesTests(TestCase):
         with self.assertRaises(TypeError):
             polygon.add_vertex(0, "40")
         polygon.add_vertex(0.3, 40.7)
+
+
+    def test_can_remove_vertex_from_polygon(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40, 34, 43)
+        polygon.remove_vertex(0)
+        self.assertEqual(polygon.coordinates(), [60, 100, 45, 45, 0, 40, 34, 43])
+        polygon.remove_vertex(2)
+        self.assertEqual(polygon.coordinates(), [60, 100, 45, 45, 34, 43])
+
+
+    def test_vertex_index_must_be_int(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
+        with self.assertRaises(TypeError):
+            polygon.remove_vertex(0.5)
+
+
+    def test_cannot_reduce_number_of_vertices_below_three(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45)
+        with self.assertRaises(GeometryError):
+            polygon.remove_vertex(1)
 
 
 '''class PointsTests(TestCase):
