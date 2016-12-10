@@ -46,3 +46,21 @@ class BoxGraphicPropertyTests(TestCase):
         self.assertIs(box.y(), box._y)
         self.assertIs(box.width(), box._width)
         self.assertIs(box.height(), box._height)
+
+
+    def test_can_set_location(self):
+        box = BoxGraphic(10, 20, 100, 200)
+        box.x(200)
+        self.assertEqual(box.x(), 200)
+        box.y(-10)
+        self.assertEqual(box.y(), -10)
+
+
+    def test_set_box_location_must_be_numeric(self):
+        box = BoxGraphic(10, 20, 100, 200)
+        with self.assertRaises(TypeError):
+            box.x("10")
+        with self.assertRaises(TypeError):
+            box.y("20")
+        box.x(10.5)
+        box.y(10.5)
