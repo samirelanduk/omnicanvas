@@ -828,8 +828,19 @@ class Text(ShapeGraphic):
             self._horizontal_align = horizontal_align
 
 
-    def vertical_align(self):
-        return self._vertical_align
+    def vertical_align(self, vertical_align=None):
+        if vertical_align is None:
+            return self._vertical_align
+        else:
+            if not isinstance(vertical_align, str):
+                raise TypeError(
+                 "vertical align must be str, not '%s'" % vertical_align
+                )
+            if vertical_align not in ("top", "middle", "bottom"):
+                raise ValueError(
+                 "'%s' is not a valid vertical alignment" % vertical_align
+                )
+            self._vertical_align = vertical_align
 
 
     to_svg = svg.generate_text_svg

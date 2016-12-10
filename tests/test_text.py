@@ -150,6 +150,24 @@ class TextPropertiesTests(TestCase):
             text.horizontal_align("middle")
 
 
+    def test_can_set_vertical_align(self):
+        text = Text(50, 50, "Test", vertical_align="top")
+        text.vertical_align("bottom")
+        self.assertEqual(text.vertical_align(), "bottom")
+
+
+    def test_set_vertical_align_must_be_str(self):
+        text = Text(50, 50, "Test", vertical_align="top")
+        with self.assertRaises(TypeError):
+            text.vertical_align(23)
+
+
+    def test_vertical_align_must_be_valid_text(self):
+        text = Text(50, 50, "Test", vertical_align="top")
+        with self.assertRaises(ValueError):
+            text.vertical_align("center")
+
+
 
 '''class SvgTests(TestCase):
 
