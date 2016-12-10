@@ -77,7 +77,7 @@ class LinePropertiesTests(TestCase):
 
 
 
-'''class LineSvgTests(TestCase):
+class LineSvgTests(TestCase):
 
     def test_can_make_basic_svg(self):
         line = Line(10, 30, 90, 70)
@@ -105,4 +105,4 @@ class LinePropertiesTests(TestCase):
         self.assertIn(
          'a="b"',
          line.to_svg()
-        )'''
+        )
