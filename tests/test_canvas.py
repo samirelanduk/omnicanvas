@@ -222,7 +222,7 @@ class GraphicAdditionTests(TestCase):
 
 
 
-'''class CanvasSvgTests(TestCase):
+class CanvasSvgTests(TestCase):
 
     def test_can_make_shell_svg(self):
         canvas = Canvas(300, 200)
@@ -279,4 +279,4 @@ class CanvasSavingTests(TestCase):
         canvas.save("test.svg")
         self.assertIn("test.svg", os.listdir())
         with open("test.svg") as f:
-            self.assertEqual(f.read(), canvas.to_svg())'''
+            self.assertEqual(f.read(), canvas.to_svg())

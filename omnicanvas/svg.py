@@ -103,12 +103,12 @@ SVG_BASE = """<?xml version="1.0" encoding="UTF-8"?>
 
 def generate_canvas_svg(canvas):
     return SVG_BASE % (
-     canvas.width,
-     canvas.height,
+     canvas.width(),
+     canvas.height(),
      ('<rect x="0" y="0" width="%i" height="%i" style="fill:%s;stroke-width:0;" />' % (
-      canvas.width, canvas.height, canvas.background_color
-     )) if canvas.background_color else "",
+      canvas.width(), canvas.height(), canvas.background_color()
+     )) if canvas.background_color() else "",
      "\n".join(
-      [graphic.to_svg() for graphic in canvas.graphics]
+      [graphic.to_svg() for graphic in canvas.graphics()]
      )
     )
