@@ -85,7 +85,7 @@ class Canvas:
 
 
     def graphics(self):
-        return self._graphics
+        return list(self._graphics)
 
 
     def add_rectangle(self, *args, **kwargs):

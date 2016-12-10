@@ -83,7 +83,14 @@ class CanvasPropertyTests(TestCase):
         self.assertIs(canvas.width(), canvas._width)
         self.assertIs(canvas.height(), canvas._height)
         self.assertIs(canvas.background_color(), canvas._background_color)
-        self.assertIs(canvas.graphics(), canvas._graphics)
+        self.assertEqual(canvas.graphics(), canvas._graphics)
+
+
+    def test_canvas_graphics_are_read_only(self):
+        canvas = Canvas(700, 500)
+        self.assertEqual(canvas.graphics(), [])
+        canvas.graphics().append("fluff")
+        self.assertEqual(canvas.graphics(), [])
 
 
     def test_can_set_dimensions(self):
