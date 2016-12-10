@@ -786,4 +786,24 @@ class Text(ShapeGraphic):
         )
 
 
+    def x(self):
+        return self._x
+
+
+    def y(self):
+        return self._y
+
+
+    def font_size(self):
+        return self._font_size
+
+
+    def horizontal_align(self):
+        return self._horizontal_align
+
+
+    def vertical_align(self):
+        return self._vertical_align
+
+
     to_svg = svg.generate_text_svg

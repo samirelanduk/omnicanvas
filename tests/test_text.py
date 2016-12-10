@@ -87,6 +87,21 @@ class TextCreationTests(TestCase):
 
 
 
+class TextPropertiesTests(TestCase):
+
+    def test_basic_properties(self):
+        text = Text(
+         50, 50, "Test", font_size=9,
+         vertical_align="top", horizontal_align="left"
+        )
+        self.assertIs(text.x(), text._x)
+        self.assertIs(text.y(), text._y)
+        self.assertIs(text.font_size(), text._font_size)
+        self.assertIs(text.vertical_align(), text._vertical_align)
+        self.assertIs(text.horizontal_align(), text._horizontal_align)
+
+
+
 '''class SvgTests(TestCase):
 
     def test_can_make_basic_svg(self):
