@@ -101,6 +101,24 @@ class TextPropertiesTests(TestCase):
         self.assertIs(text.horizontal_align(), text._horizontal_align)
 
 
+    def test_can_set_location(self):
+        text = Text(50, 50, "Test")
+        text.x(200)
+        self.assertEqual(text.x(), 200)
+        text.y(-10)
+        self.assertEqual(text.y(), -10)
+
+
+    def test_set_box_location_must_be_numeric(self):
+        text = Text(50, 50, "Test")
+        with self.assertRaises(TypeError):
+            text.x("10")
+        with self.assertRaises(TypeError):
+            text.y("20")
+        text.x(10.5)
+        text.y(10.5)
+
+
 
 '''class SvgTests(TestCase):
 

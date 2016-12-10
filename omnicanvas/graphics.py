@@ -786,12 +786,22 @@ class Text(ShapeGraphic):
         )
 
 
-    def x(self):
-        return self._x
+    def x(self, x=None):
+        if x is None:
+            return self._x
+        else:
+            if not isinstance(x, int) and not isinstance(x, float):
+                raise TypeError("x must be numeric, not '%s'" % x)
+            self._x = x
 
 
-    def y(self):
-        return self._y
+    def y(self, y=None):
+        if y is None:
+            return self._y
+        else:
+            if not isinstance(y, int) and not isinstance(y, float):
+                raise TypeError("y must be numeric, not '%s'" % y)
+            self._y = y
 
 
     def font_size(self):
