@@ -151,7 +151,7 @@ class CanvasPropertyTests(TestCase):
 
 
 
-'''class GraphicAdditionTests(TestCase):
+class GraphicAdditionTests(TestCase):
 
     def setUp(self):
         self.canvas = Canvas(400, 400)
@@ -178,13 +178,13 @@ class CanvasPropertyTests(TestCase):
          self.canvas._graphics[-1],
          graphics.Line
         )
-        self.assertEqual(self.canvas._graphics[-1].x1, 10)
-        self.assertEqual(self.canvas._graphics[-1].y2, 100)
+        self.assertEqual(self.canvas._graphics[-1]._x1, 10)
+        self.assertEqual(self.canvas._graphics[-1]._y2, 100)
         self.canvas.add_line(10, 10, 50, 100, line_color="#999999", line_style="..")
         self.assertEqual(len(self.canvas._graphics), 2)
-        self.assertEqual(self.canvas._graphics[-1].line_color, "#999999")
-        self.assertEqual(self.canvas._graphics[-1].line_style, "..")
-        self.assertEqual(self.canvas._graphics[-1].line_width, 1)
+        self.assertEqual(self.canvas._graphics[-1]._line_color, "#999999")
+        self.assertEqual(self.canvas._graphics[-1]._line_style, "..")
+        self.assertEqual(self.canvas._graphics[-1]._line_width, 1)
 
 
     def test_can_add_polygon(self):
@@ -193,11 +193,11 @@ class CanvasPropertyTests(TestCase):
          self.canvas._graphics[-1],
          graphics.Polygon
         )
-        self.assertEqual(self.canvas._graphics[-1].coordinates[-1], 40)
+        self.assertEqual(self.canvas._graphics[-1]._coordinates[-1], 40)
         self.canvas.add_polygon(10, 30, 100, 45, 45, 40, opacity=0.1)
         self.assertEqual(len(self.canvas._graphics), 2)
-        self.assertEqual(self.canvas._graphics[-1].opacity, 0.1)
-        self.assertEqual(self.canvas._graphics[-1].line_width, 1)
+        self.assertEqual(self.canvas._graphics[-1]._opacity, 0.1)
+        self.assertEqual(self.canvas._graphics[-1]._line_width, 1)
 
 
     def test_can_add_text(self):
@@ -206,7 +206,7 @@ class CanvasPropertyTests(TestCase):
          self.canvas._graphics[-1],
          graphics.Text
         )
-        self.assertEqual(self.canvas._graphics[-1].text, "TEXT")
+        self.assertEqual(self.canvas._graphics[-1]._text, "TEXT")
         self.canvas.add_text(10, 30, "TEXT", vertical_align="top")
         self.assertEqual(len(self.canvas._graphics), 2)
         self.assertEqual(self.canvas._graphics[-1]._vertical_align, "top")
@@ -215,7 +215,7 @@ class CanvasPropertyTests(TestCase):
 
 
 
-class CanvasSvgTests(TestCase):
+'''class CanvasSvgTests(TestCase):
 
     def test_can_make_shell_svg(self):
         canvas = Canvas(300, 200)

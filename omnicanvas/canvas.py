@@ -106,7 +106,7 @@ class Canvas:
         (x of rotation point, y of rotation point, angle).
         :param dict data: Any data to be associated with the Rectangle."""
 
-        self.graphics.append(graphics.Rectangle(*args, **kwargs))
+        self._graphics.append(graphics.Rectangle(*args, **kwargs))
 
 
     def add_line(self, *args, **kwargs):
@@ -124,7 +124,7 @@ class Canvas:
         (x of rotation point, y of rotation point, angle).
         :param dict data: Any data to be associated with the Line."""
 
-        self.graphics.append(graphics.Line(*args, **kwargs))
+        self._graphics.append(graphics.Line(*args, **kwargs))
 
 
     def add_polygon(self, *args, **kwargs):
@@ -143,7 +143,7 @@ class Canvas:
         (x of rotation point, y of rotation point, angle).
         :param dict data: Any data to be associated with the Polygon."""
 
-        self.graphics.append(graphics.Polygon(*args, **kwargs))
+        self._graphics.append(graphics.Polygon(*args, **kwargs))
 
 
     def add_text(self, *args, **kwargs):
@@ -160,7 +160,7 @@ class Canvas:
         (x of rotation point, y of rotation point, angle).
         :param dict data: Any data to be associated with the Text."""
 
-        self.graphics.append(graphics.Text(*args, **kwargs))
+        self._graphics.append(graphics.Text(*args, **kwargs))
 
 
     def save(self, path):
