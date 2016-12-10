@@ -627,6 +627,10 @@ class Polygon(ShapeGraphic):
         return("<Polygon (%i points)>" % (len(self.coordinates) / 2))
 
 
+    def coordinates(self):
+        return self._coordinates
+
+
     def coordinates_to_xy_pairs(self):
         """Returns the polygon's coordinates as a sequence of tuples, where
         each tuple is in the form (x value, y value)."""

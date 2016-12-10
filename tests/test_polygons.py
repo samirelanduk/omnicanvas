@@ -38,6 +38,14 @@ class PolygonCreationTests(TestCase):
 
 
 
+class PolygonPropertiesTests(TestCase):
+
+    def test_basic_properties(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
+        self.assertIs(polygon.coordinates(), polygon._coordinates)
+
+
+
 '''class PointsTests(TestCase):
 
     def test_can_turn_points_into_coordinate_tuple(self):
