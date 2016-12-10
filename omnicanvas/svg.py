@@ -70,34 +70,26 @@ def generate_polygon_svg(polygon):
 
 
 def generate_text_svg(text):
-    if text.horizontal_align not in ("left", "center", "right"):
-        raise ValueError(
-         "'%s' is not a valid horizontal_align value" % text.horizontal_align
-        )
     horizontal_align = {
      "left": "end",
      "center": "middle",
      "right": "start"
-    }[text.horizontal_align]
-    if text.vertical_align not in ("top", "center", "bottom"):
-        raise ValueError(
-         "'%s' is not a valid vertical_align value" % text.vertical_align
-        )
+    }[text.horizontal_align()]
     vertical_align = {
      "top": "baseline",
      "center": "middle",
      "bottom": "hanging"
-    }[text.vertical_align]
+    }[text.vertical_align()]
     return '<text x="%.1f" y="%.1f" text-anchor="%s" alignment-baseline="%s" style="font-size:%.1f;%s"%s%s>%s</text>' % (
-     text.x,
-     text.y,
+     text.x(),
+     text.y(),
      horizontal_align,
      vertical_align,
-     text.font_size,
+     text.font_size(),
      text.shape_svg(),
      text.rotation_svg(),
      text.data_svg(),
-     text.text
+     text.text()
     )
 
 

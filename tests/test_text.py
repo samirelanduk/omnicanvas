@@ -176,7 +176,7 @@ class TextPropertiesTests(TestCase):
 
 
 
-'''class SvgTests(TestCase):
+class SvgTests(TestCase):
 
     def test_can_make_basic_svg(self):
         text = Text(50, 50, "Test")
@@ -202,13 +202,6 @@ class TextPropertiesTests(TestCase):
         )
 
 
-    def test_text_will_check_horizontal_align_value_before_using(self):
-        text = Text(50, 50, "Test")
-        text.horizontal_align = "start"
-        with self.assertRaises(ValueError):
-            text.to_svg()
-
-
     def test_can_create_text_with_different_vertical_alignment(self):
         text = Text(50, 50, "Test", vertical_align="top")
         self.assertEqual(
@@ -222,13 +215,6 @@ class TextPropertiesTests(TestCase):
          '<text x="50.0" y="50.0" text-anchor="middle" alignment-baseline="hanging"'
          ' style="font-size:18.0;fill:#000000;stroke:#000000;stroke-width:0.0;">Test</text>'
         )
-
-
-    def test_text_will_check_horizontal_align_value_before_using(self):
-        text = Text(50, 50, "Test")
-        text.vertical_align = "start"
-        with self.assertRaises(ValueError):
-            text.to_svg()
 
 
     def test_font_size_in_text_svg(self):
@@ -259,4 +245,4 @@ class TextPropertiesTests(TestCase):
         self.assertIn(
          'a="b"',
          text.to_svg()
-        )'''
+        )
