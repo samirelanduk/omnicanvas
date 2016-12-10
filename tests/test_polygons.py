@@ -51,6 +51,21 @@ class PolygonPropertiesTests(TestCase):
         self.assertEqual(polygon.coordinates(), [10, 30, 60, 100, 45, 45, 0, 40])
 
 
+    def test_can_add_polygon_vertex(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45)
+        polygon.add_vertex(0, 40)
+        self.assertEqual(polygon.coordinates(), [10, 30, 60, 100, 45, 45, 0, 40])
+
+
+    def test_added_vertices_must_be_numeric(self):
+        polygon = Polygon(10, 30, 60, 100, 45, 45)
+        with self.assertRaises(TypeError):
+            polygon.add_vertex("0", 40)
+        with self.assertRaises(TypeError):
+            polygon.add_vertex(0, "40")
+        polygon.add_vertex(0.3, 40.7)
+
+
 '''class PointsTests(TestCase):
 
     def test_can_turn_points_into_coordinate_tuple(self):

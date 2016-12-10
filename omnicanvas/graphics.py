@@ -631,6 +631,15 @@ class Polygon(ShapeGraphic):
         return list(self._coordinates)
 
 
+    def add_vertex(self, x, y):
+        if not isinstance(x, int) and not isinstance(x, float):
+            raise TypeError("x must be numeric, not '%s'" % x)
+        if not isinstance(y, int) and not isinstance(y, float):
+            raise TypeError("y must be numeric, not '%s'" % y)
+        self._coordinates.append(x)
+        self._coordinates.append(y)
+
+
     def coordinates_to_xy_pairs(self):
         """Returns the polygon's coordinates as a sequence of tuples, where
         each tuple is in the form (x value, y value)."""
