@@ -871,3 +871,28 @@ class Polyline(Graphic):
 
     def __repr__(self):
         return("<Polyline (%i points)>" % (len(self._coordinates) / 2))
+
+
+    def coordinates(self, xy_pairs=False):
+        if xy_pairs:
+            return tuple(zip(self._coordinates[:-1:2], self._coordinates[1::2]))
+        else:
+            return list(self._coordinates)
+
+
+    def add_vertex(self, x, y):
+        if not isinstance(x, int) and not isinstance(x, float):
+            raise TypeError("x must be numeric, not '%s'" % x)
+        if not isinstance(y, int) and not isinstance(y, float):
+            raise TypeError("y must be numeric, not '%s'" % y)
+        self._coordinates.append(x)
+        self._coordinates.append(y)
+
+
+    def remove_vertex(self, index):
+        if len(self._coordinates) <= 4:
+            raise GeometryError("There must be at least two vertices")
+        if not isinstance(index, int):
+            raise TypeError("Vertex index must be int")
+        self._coordinates.pop(index * 2)
+        self._coordinates.pop(index * 2)
