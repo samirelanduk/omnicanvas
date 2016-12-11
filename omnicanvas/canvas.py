@@ -10,23 +10,7 @@ class Canvas:
     :param width: The canvas's width in pixels.
     :param height: The canvas's height in pixels.
     :param background_color: The canvas's background colour - the default is\
-    white
-
-    .. py:attribute:: width:
-
-        The canvas's width in pixels.
-
-    .. py:attribute:: height:
-
-        The canvas's height in pixels.
-
-    .. py:attribute:: background_color:
-
-        The canvas's background colour.
-
-    .. py:attribute:: graphics:
-
-        A ``list`` of :py:class:`.Graphic` objects on this canvas."""
+    white"""
 
     def __init__(self, width, height, background_color=None):
         if isinstance(width, float):
@@ -56,6 +40,12 @@ class Canvas:
 
 
     def width(self, width=None):
+        """The canvas's width in pixels. Passing a value will update the width
+        property.
+
+        :param width: If given, the canvas's width will be set to this.
+        :rtype: ``int``"""
+
         if width is None:
             return self._width
         else:
@@ -67,6 +57,12 @@ class Canvas:
 
 
     def height(self, height=None):
+        """The canvas's height in pixels. Passing a value will update the height
+        property.
+
+        :param height: If given, the canvas's height will be set to this.
+        :rtype: ``int``"""
+
         if height is None:
             return self._height
         else:
@@ -78,6 +74,13 @@ class Canvas:
 
 
     def background_color(self, background_color=None):
+        """The canvas's background colour, as a hex string. Passing a value will
+        update the background_color property (as a hex string).
+
+        :param str background_color: If given, the canvas's background_color \
+        will be set to this.
+        :rtype: ``str``"""
+
         if background_color is None:
             return self._background_color
         else:
@@ -85,6 +88,10 @@ class Canvas:
 
 
     def graphics(self):
+        """A list of all the :py:class:`.Graphic` objects on this canvas.
+
+        :rtype: ``list``"""
+
         return list(self._graphics)
 
 
@@ -164,6 +171,18 @@ class Canvas:
 
 
     def add_polyline(self, *args, **kwargs):
+        """Adds a :py:class:`.Polyline` to the canvas.
+
+        :param \*points: The alternating x and y values of the Polyline's\
+        corners.
+        :param line_width: The width of the edge of the Polyline in pixels.
+        :param str line_style: The pattern of the edges. Acceptable values are\
+        ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+        :param str line_color: The colour of the edge.
+        :param tuple rotation: Any rotation to be applied, in the format\
+        (x of rotation point, y of rotation point, angle).
+        :param dict data: Any data to be associated with the Polyline."""
+
         self._graphics.append(graphics.Polyline(*args, **kwargs))
 
 
