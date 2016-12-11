@@ -101,7 +101,7 @@ class SvgTests(TestCase):
         self.assertEqual(
          polyline.to_svg(),
          '<polyline points="10.0,30.0, 60.0,100.0, 45.0,45.0, 0.0,40.0"'
-         ' style="stroke:#000000;" />'
+         ' style="fill:none;stroke:#000000;" />'
         )
 
 
@@ -110,7 +110,7 @@ class SvgTests(TestCase):
         self.assertEqual(
          polyline.to_svg(),
          '<polyline points="10.0,30.0, 60.0,100.0, 45.0,45.0, 0.0,40.0"'
-         ' style="stroke:#000000;" transform="rotate(45.0 200.0 200.0)" />'
+         ' style="fill:none;stroke:#000000;" transform="rotate(45.0 200.0 200.0)" />'
         )
 
 

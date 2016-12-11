@@ -1,4 +1,4 @@
-def generate_graphic_svg(graphic):
+def generate_graphic_svg(graphic, include_fill=None):
     width = "stroke-width:%.1f;" % graphic.line_width()
     pattern = "stroke-dasharray:%s;" % {
      "-": "1,0",
@@ -6,7 +6,8 @@ def generate_graphic_svg(graphic):
      "..": "%.1f,%.1f" % (1 * graphic.line_width(), 2 * graphic.line_width())
     }[graphic.line_style()]
 
-    return "stroke:%s;%s%s" % (
+    return "%sstroke:%s;%s%s" % (
+     "fill:none;" if include_fill else "",
      graphic.line_color(),
      width if graphic.line_width() != 1 else "",
      pattern if graphic.line_style() != "-" else ""
@@ -98,7 +99,7 @@ def generate_polyline_svg(polyline):
      ", ".join(["%.1f,%.1f" % (
       point[0], point[1]
      ) for point in polyline.coordinates(xy_pairs=True)]),
-     polyline.graphic_svg(),
+     polyline.graphic_svg(include_fill=True),
      polyline.rotation_svg(),
      polyline.data_svg(),
     )
