@@ -37,6 +37,15 @@ def is_valid_color(color):
 
 
 def hsl_to_rgb(hue, saturation, lightness):
+    """Takes a colour in HSL format and produces an RGB string in the form
+    #RRGGBB.
+
+    :param hue: The Hue value (between 0 and 360).
+    :param saturation: The Saturation value (between 0 and 100).
+    :param lightness: The Lightness value (between 0 and 100).
+    :raises ValueError: if any of the three parameters are outside their \
+    bounds."""
+
     if not isinstance(hue, int) and not isinstance(hue, float):
         raise TypeError("hue must be numeric, not '%s'" % hue)
     if not isinstance(saturation, int) and not isinstance(saturation, float):
