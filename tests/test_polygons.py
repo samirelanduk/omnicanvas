@@ -17,7 +17,7 @@ class PolygonCreationTests(TestCase):
         self.assertEqual(polygon._data, {})
 
 
-    def tets_polygon_repr(self):
+    def test_polygon_repr(self):
         polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
         self.assertEqual(str(polygon), "<Polygon (4 points)>")
 

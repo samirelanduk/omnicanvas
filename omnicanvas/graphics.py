@@ -625,7 +625,7 @@ class Polygon(ShapeGraphic):
 
 
     def __repr__(self):
-        return("<Polygon (%i points)>" % (len(self.coordinates) / 2))
+        return("<Polygon (%i points)>" % (len(self._coordinates) / 2))
 
 
     def coordinates(self, xy_pairs=False):
@@ -851,3 +851,15 @@ class Text(ShapeGraphic):
 
 
     to_svg = svg.generate_text_svg
+
+
+
+class Polyline(Graphic):
+
+    def __init__(self, *coordinates, **kwargs):
+        Graphic.__init__(self, **kwargs)
+        self._coordinates = list(coordinates)
+
+
+    def __repr__(self):
+        return("<Polyline (%i points)>" % (len(self._coordinates) / 2))
