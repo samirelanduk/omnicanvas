@@ -18,3 +18,19 @@ class PolylineCreationTests(TestCase):
     def test_polygon_repr(self):
         polyline = Polyline(10, 30, 60, 100, 45, 45, 0, 40)
         self.assertEqual(str(polyline), "<Polyline (4 points)>")
+
+
+    def test_polyline_coordinates_must_be_numeric(self):
+        with self.assertRaises(TypeError):
+            Polyline(10, 30, 60, "100", 45, 45, 0, 40)
+        Polyline(10, 30, 60, 100.5, 45, 45, 0, 40)
+
+
+    def test_must_be_even_number_of_coordinate_values(self):
+        with self.assertRaises(ValueError):
+            Polyline(10, 30, 100, 45, 45, 0, 40)
+
+
+    def test_must_be_at_least_two_vertices(self):
+        with self.assertRaises(GeometryError):
+            Polyline(45, 45)
