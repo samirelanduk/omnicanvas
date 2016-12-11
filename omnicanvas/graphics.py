@@ -896,3 +896,6 @@ class Polyline(Graphic):
             raise TypeError("Vertex index must be int")
         self._coordinates.pop(index * 2)
         self._coordinates.pop(index * 2)
+
+
+    to_svg = svg.generate_polyline_svg

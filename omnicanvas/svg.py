@@ -93,6 +93,17 @@ def generate_text_svg(text):
     )
 
 
+def generate_polyline_svg(polyline):
+    return '<polyline points="%s" style="%s"%s%s />' % (
+     ", ".join(["%.1f,%.1f" % (
+      point[0], point[1]
+     ) for point in polyline.coordinates(xy_pairs=True)]),
+     polyline.graphic_svg(),
+     polyline.rotation_svg(),
+     polyline.data_svg(),
+    )
+
+
 SVG_BASE = """<?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with OmniCanvas (omnicanvas.readthedocs.io) -->
 <svg xmlns="http://www.w3.org/2000/svg" width="%i" height="%i">
