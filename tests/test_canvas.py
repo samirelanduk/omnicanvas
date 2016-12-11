@@ -221,6 +221,18 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(self.canvas._graphics[-1]._line_width, 0)
 
 
+    def test_can_add_polyline(self):
+        self.canvas.add_polyline(10, 30, 100, 45, 45, 40)
+        self.assertIsInstance(
+         self.canvas._graphics[-1],
+         graphics.Polyline
+        )
+        self.assertEqual(self.canvas._graphics[-1]._coordinates[-1], 40)
+        self.canvas.add_polyline(10, 30, 100, 45, 45, 40, line_width=0.1)
+        self.assertEqual(len(self.canvas._graphics), 2)
+        self.assertEqual(self.canvas._graphics[-1]._line_width, 0.1)
+
+
 
 class CanvasSvgTests(TestCase):
 

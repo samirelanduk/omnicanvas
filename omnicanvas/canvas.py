@@ -163,6 +163,10 @@ class Canvas:
         self._graphics.append(graphics.Text(*args, **kwargs))
 
 
+    def add_polyline(self, *args, **kwargs):
+        self._graphics.append(graphics.Polyline(*args, **kwargs))
+
+
     def save(self, path):
         """Saves the canvas to file as an SVG file.
 
