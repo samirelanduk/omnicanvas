@@ -91,7 +91,7 @@ of points. These are given as a sequence of coordinates:
 
     >>> canvas.add_polygon(60, 60, 90, 120, 30, 120) # Creates a triangle
     >>> canvas.graphics()[-1].coordinates()
-    [60, 60, 90, 120, 30, 120]
+    (60, 60, 90, 120, 30, 120)
     >>> canvas.graphics()[-1].coordinates(xy_pairs=True)
     ((60, 60), (90, 120), (30, 120))
 
@@ -136,7 +136,7 @@ They behave very similarly to Polygons:
 
     >>> canvas.add_polyline(60, 60, 90, 120, 30, 120)
     >>> canvas.graphics()[-1].coordinates()
-    [60, 60, 90, 120, 30, 120]
+    (60, 60, 90, 120, 30, 120)
     >>> canvas.graphics()[-1].coordinates(xy_pairs=True)
     ((60, 60), (90, 120), (30, 120))
 

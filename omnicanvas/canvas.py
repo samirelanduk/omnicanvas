@@ -156,15 +156,23 @@ class Canvas:
     def add_text(self, *args, **kwargs):
         """Adds a :py:class:`.Text` to the canvas.
 
-        :param x: The x-coordinate of the Text's location.
-        :param y: The y-coordinate of the Text's location.
-        :param line_width: The width of the Text's outer border.
-        :param str line_style: The pattern of the Text's outer border.\
-        Acceptable values are ``-`` (default), ``..`` (dotted) or ``--``\
-         (dashed).
-        :param str line_color: The colour of the Text's outer border.
+        :param x: The Text's x location.
+        :param y: The Text's y location.
+        :param str text: The text to display.
+        :param font_size: The font size of the Text when displayed.
+        :param horizontal_align: The horizontal alignment of the Text. Acceptable\
+        values are ``left``, ``center`` (default) and ``right``.
+        :param vertical_align: The vertical alignment of the Text. Acceptable\
+        values are ``top``, ``middle`` (default) and ``bottom``.
+        :param str fill_color: Defaults to '#FFFFFF'.
+        :param opacity: The degree of transparency, from 0 to 1 (0 being\
+        invisible).
+        :param line_width: Defaults to 0.
+        :param str line_style: The line pattern. Acceptable values are\
+        ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+        :param str line_color: Defaults to '#000000'.
         :param tuple rotation: Any rotation to be applied, in the format\
-        (x of rotation point, y of rotation point, angle).
+        (x of rotation point, y of rotation point, angle), in degrees.
         :param dict data: Any data to be associated with the Text."""
 
         self._graphics.append(graphics.Text(*args, **kwargs))
