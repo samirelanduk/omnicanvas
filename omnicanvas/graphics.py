@@ -339,7 +339,7 @@ class BoxGraphic(ShapeGraphic):
 class Rectangle(BoxGraphic):
     """Base class: :py:class:`BoxGraphic`
 
-    A rectangular graphic. Not sure what else to say about this to be honest.
+    A rectangular graphic, represented as a Rectangle on screen.
 
     :param x: The x-value of the top-left corner.
     :param y: The y-value of the top-left corner.
@@ -354,56 +354,7 @@ class Rectangle(BoxGraphic):
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
     (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Shape.
-
-    .. py:attribute:: x:
-
-        The x-value of the top-left corner.
-
-    .. py:attribute:: y:
-
-        The y-value of the top-left corner.
-
-    .. py:attribute:: width:
-
-        The Rectangle's width in pixels.
-
-    .. py:attribute:: height:
-
-        The Rectangle's height in pixels.
-
-    .. py:attribute:: fill_color:
-
-        The colour of the Rectangle's interior, as a hex string.
-
-    .. py:attribute:: opacity:
-
-        The degree of transparency of the Rectangle's interior, from 1.0 (fully\
-        visible) to 0.0 (completely invisible).
-
-    .. py:attribute:: line_width:
-
-        The width of the Rectangle's border in pixels.
-
-    .. py:attribute:: line_style:
-
-        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
-        (dotted) or ``--`` (dashed).
-
-    .. py:attribute:: line_color:
-
-        The colour of the Rectangle's border.
-
-    .. py:attribute:: rotation:
-
-        Any rotation to be applied, in the format (x of rotation point, y of\
-        rotation point, angle). For example, to rotate the Rectangle 45 degrees
-        anti-clockwise about the point (100, 200) you would supply
-        ``(100, 200, 315)``.
-
-    .. py:attribute:: data:
-
-        Any data to be associated with the Rectangle, as a ``dict``."""
+    :param dict data: Any data to be associated with the Shape."""
 
     def __init__(self, *args, **kwargs):
         BoxGraphic.__init__(self, *args, **kwargs)
