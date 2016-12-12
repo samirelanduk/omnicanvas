@@ -8,7 +8,7 @@ from . import svg
 ALLOWED_LINESTYLES = ("-", "--", "..")
 
 class Graphic:
-    """The base class of all Graphics - it would not generally need to be
+    """The base class of all Graphics - it would not orindarily need to be
     instantiated at this abstract level.
 
     Its properties generally relate to lines, as all Graphics have an edge of
@@ -19,32 +19,8 @@ class Graphic:
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
-    (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Graphic.
-
-    .. py:attribute:: line_width:
-
-        The width of the Graphic's line in pixels.
-
-    .. py:attribute:: line_style:
-
-        The line pattern. Acceptable values are ``-`` (default), ``..`` \
-        (dotted) or ``--`` (dashed).
-
-    .. py:attribute:: line_color:
-
-        The colour of the Graphic's line.
-
-    .. py:attribute:: rotation:
-
-        Any rotation to be applied, in the format (x of rotation point, y of\
-        rotation point, angle). For example, to rotate the Graphic 45 degrees
-        anti-clockwise about the point (100, 200) you would supply
-        ``(100, 200, 315)``.
-
-    .. py:attribute:: data:
-
-        Any data to be associated with the Graphic, as a ``dict``."""
+    (x of rotation point, y of rotation point, angle), in degrees.
+    :param dict data: Any data to be associated with the Graphic."""
 
     def __init__(self, line_width=1, line_style="-", line_color="#000000",
      rotation=(0, 0, 0), data=None):
@@ -81,6 +57,13 @@ class Graphic:
 
 
     def line_width(self, line_width=None):
+        """The width of the Graphic's edge in pixels. Passing a value will
+        update the line_width property.
+
+        :param line_width: If given, the Graphic's line_width will be set to \
+        this.
+        :rtype: ``int``"""
+
         if line_width is None:
             return self._line_width
         else:
@@ -93,6 +76,14 @@ class Graphic:
 
 
     def line_style(self, line_style=None):
+        """The line pattern of the Graphic's edge. Passing a value will update
+        the line_style property. Acceptable values are ``-`` (default), ``..`` \
+        (dotted) or ``--`` (dashed).
+
+        :param str line_style: If given, the Graphic's line_style will be set to \
+        this.
+        :rtype: ``str``"""
+
         if line_style is None:
             return self._line_style
         else:
@@ -104,6 +95,13 @@ class Graphic:
 
 
     def line_color(self, line_color=None):
+        """The colur of the Graphic's edge. Passing a value will update
+        the line_color property. All colours must be in the form #RRGGBB.
+
+        :param str line_color: If given, the Graphic's line_color will be set to \
+        this.
+        :rtype: ``str``"""
+
         if line_color is None:
             return self._line_color
         else:
@@ -111,10 +109,30 @@ class Graphic:
 
 
     def rotation(self):
+        """The rotation applied to the Graphic. It takes the form of a three
+        number tuple - ``(pivot_x_coordinate, pivot_y_coordinate, angle)``. The
+        angle is in degrees, and works clockwise.
+
+        :rtype: ``tuple``"""
+
         return self._rotation
 
 
     def rotate(self, x_pivot, y_pivot, angle):
+        """Rotates the Graphic about a point. The rotation will be clockwise,
+        and the angle given must be between 0 and 360.
+
+        Note: rotations do not sum. If you rotate a Graphic once by 30° and then
+        again by 100° about the same point, the end result will just be a
+        rotation of 100° around that point, *not* 130°. This is because the
+        method just sets the Graphic's ``rotation`` property to whatever is
+        given.
+
+        :param str x_pivot: The x value of the pivot point.
+        :param str y_pivot: The y value of the pivot point.
+        :param str angle: The (clockwise) angle of rotation, in degrees.
+        :raises ValueError: if the angle is not between 0 and 360."""
+
         rotation = (x_pivot, y_pivot, angle)
         for value in rotation:
             if not isinstance(value, int) and not isinstance(value, float):
@@ -127,6 +145,15 @@ class Graphic:
 
 
     def data(self):
+        """Returns any data associated with the Graphic as a ``dict``. This
+        ``dict`` is modifiable.
+
+        When rendered as SVG, the data will be turned into ``attribute="value"``
+        pairs in the SVG element, and is useful in, among other things,
+        assigning JavaScript events to individual elements.
+
+        :rtype: ``dict``"""
+
         return self._data
 
 

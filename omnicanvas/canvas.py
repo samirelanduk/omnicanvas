@@ -5,7 +5,7 @@ from . import graphics
 from . import svg
 
 class Canvas:
-    """A backdrop on which other Graphics objects are painted.
+    """A backdrop on which other :py:class:`.Graphic` objects are painted.
 
     :param width: The canvas's width in pixels.
     :param height: The canvas's height in pixels.
