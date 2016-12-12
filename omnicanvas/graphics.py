@@ -488,48 +488,10 @@ class Polygon(ShapeGraphic):
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
-    (x of rotation point, y of rotation point, angle).
+    (x of rotation point, y of rotation point, angle), in degrees.
     :param dict data: Any data to be associated with the Polygon.
-
-    .. py:attribute:: coordinates:
-
-        A sequence of values representing the coordinates of the Polygon's \
-        vertices, as alternating x and y values. For example, \
-        ``(50, 50, 70, 100, 30, 70)`` would be the coordinates of a small\
-        triangle.
-
-    .. py:attribute:: fill_color:
-
-        The colour of the Polygon's interior, as a hex string.
-
-    .. py:attribute:: opacity:
-
-        The degree of transparency of the Polygon's interior, from 1.0 (fully\
-        visible) to 0.0 (completely invisible).
-
-    .. py:attribute:: line_width:
-
-        The width of the Polygon's border in pixels.
-
-    .. py:attribute:: line_style:
-
-        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
-        (dotted) or ``--`` (dashed).
-
-    .. py:attribute:: line_color:
-
-        The colour of the Polygon's border.
-
-    .. py:attribute:: rotation:
-
-        Any rotation to be applied, in the format (x of rotation point, y of\
-        rotation point, angle). For example, to rotate the Polygon 45 degrees\
-        anti-clockwise about the point (100, 200) you would supply
-        ``(100, 200, 315)``.
-
-    .. py:attribute:: data:
-
-        Any data to be associated with the Polygon, as a ``dict``."""
+    :raises ValueError: if an odd number of coordinate values are given.
+    :raises GeometryError: if there are fewer than three vertices."""
 
     def __init__(self, *coordinates, **kwargs):
         ShapeGraphic.__init__(self, **kwargs)
@@ -549,6 +511,20 @@ class Polygon(ShapeGraphic):
 
 
     def coordinates(self, xy_pairs=False):
+        """Returns the coordinates of the Polygon. By default they will be
+        returned as a single ``tuple`` of alternating x and y values.
+
+        ``(x1, y1, x2, y2, x3, y3...)``
+
+        However, you can optionally have it return them as a tuple of xy
+        two-tuple pairs with the ``xy_pairs`` argument.
+
+        ``((x1, y1), (x2, y2), (x3, y3)...)``
+
+        :param bool xy_pairs: if True, the coordinates will be returned as xy\
+        pairs (see above).
+        :rtype: ``tuple``"""
+
         if xy_pairs:
             return tuple(zip(self._coordinates[:-1:2], self._coordinates[1::2]))
         else:
@@ -556,6 +532,12 @@ class Polygon(ShapeGraphic):
 
 
     def add_vertex(self, x, y):
+        """Adds a vertex to the Polygon. The vertex will be added at the end of
+        the list of vertices.
+
+        :param x: The x-value of the new vertex's coordinate.
+        :param y: The y-value of the new vertex's coordinate."""
+
         if not isinstance(x, int) and not isinstance(x, float):
             raise TypeError("x must be numeric, not '%s'" % x)
         if not isinstance(y, int) and not isinstance(y, float):
@@ -565,6 +547,12 @@ class Polygon(ShapeGraphic):
 
 
     def remove_vertex(self, index):
+        """Removes a the vertex at the specified index from the Polygon.
+
+        :param int index: The index of the vertex to be removed.
+        :raises GeometryError: if removing a vertex would leave the Polygon\
+        with fewer than three vertices."""
+
         if len(self._coordinates) <= 6:
             raise GeometryError("There must be at least three vertices")
         if not isinstance(index, int):
