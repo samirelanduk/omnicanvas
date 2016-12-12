@@ -43,19 +43,13 @@ class PolygonPropertiesTests(TestCase):
 
     def test_basic_properties(self):
         polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
-        self.assertEqual(polygon.coordinates(), polygon._coordinates)
-
-
-    def test_coordinates_are_read_only(self):
-        polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40)
-        polygon.coordinates().append(70)
-        self.assertEqual(polygon.coordinates(), [10, 30, 60, 100, 45, 45, 0, 40])
+        self.assertEqual(polygon.coordinates(), tuple(polygon._coordinates))
 
 
     def test_can_add_polygon_vertex(self):
         polygon = Polygon(10, 30, 60, 100, 45, 45)
         polygon.add_vertex(0, 40)
-        self.assertEqual(polygon.coordinates(), [10, 30, 60, 100, 45, 45, 0, 40])
+        self.assertEqual(polygon.coordinates(), (10, 30, 60, 100, 45, 45, 0, 40))
 
 
     def test_added_vertices_must_be_numeric(self):
@@ -70,9 +64,9 @@ class PolygonPropertiesTests(TestCase):
     def test_can_remove_vertex_from_polygon(self):
         polygon = Polygon(10, 30, 60, 100, 45, 45, 0, 40, 34, 43)
         polygon.remove_vertex(0)
-        self.assertEqual(polygon.coordinates(), [60, 100, 45, 45, 0, 40, 34, 43])
+        self.assertEqual(polygon.coordinates(), (60, 100, 45, 45, 0, 40, 34, 43))
         polygon.remove_vertex(2)
-        self.assertEqual(polygon.coordinates(), [60, 100, 45, 45, 34, 43])
+        self.assertEqual(polygon.coordinates(), (60, 100, 45, 45, 34, 43))
 
 
     def test_vertex_index_must_be_int(self):

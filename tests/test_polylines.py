@@ -41,19 +41,13 @@ class PolylinePropertiesTests(TestCase):
 
     def test_basic_properties(self):
         polyline = Polyline(10, 30, 60, 100, 45, 45, 0, 40)
-        self.assertEqual(polyline.coordinates(), polyline._coordinates)
-
-
-    def test_coordinates_are_read_only(self):
-        polyline = Polyline(10, 30, 60, 100, 45, 45, 0, 40)
-        polyline.coordinates().append(70)
-        self.assertEqual(polyline.coordinates(), [10, 30, 60, 100, 45, 45, 0, 40])
+        self.assertEqual(polyline.coordinates(), tuple(polyline._coordinates))
 
 
     def test_can_add_polyline_vertex(self):
         polyline = Polyline(10, 30, 60, 100, 45, 45)
         polyline.add_vertex(0, 40)
-        self.assertEqual(polyline.coordinates(), [10, 30, 60, 100, 45, 45, 0, 40])
+        self.assertEqual(polyline.coordinates(), (10, 30, 60, 100, 45, 45, 0, 40))
 
 
     def test_added_vertices_must_be_numeric(self):
@@ -68,9 +62,9 @@ class PolylinePropertiesTests(TestCase):
     def test_can_remove_vertex_from_polyline(self):
         polyline = Polyline(10, 30, 60, 100, 45, 45, 0, 40, 34, 43)
         polyline.remove_vertex(0)
-        self.assertEqual(polyline.coordinates(), [60, 100, 45, 45, 0, 40, 34, 43])
+        self.assertEqual(polyline.coordinates(), (60, 100, 45, 45, 0, 40, 34, 43))
         polyline.remove_vertex(2)
-        self.assertEqual(polyline.coordinates(), [60, 100, 45, 45, 34, 43])
+        self.assertEqual(polyline.coordinates(), (60, 100, 45, 45, 34, 43))
 
 
     def test_vertex_index_must_be_int(self):

@@ -528,7 +528,7 @@ class Polygon(ShapeGraphic):
         if xy_pairs:
             return tuple(zip(self._coordinates[:-1:2], self._coordinates[1::2]))
         else:
-            return list(self._coordinates)
+            return tuple(self._coordinates)
 
 
     def add_vertex(self, x, y):
@@ -804,7 +804,7 @@ class Polyline(Graphic):
         if xy_pairs:
             return tuple(zip(self._coordinates[:-1:2], self._coordinates[1::2]))
         else:
-            return list(self._coordinates)
+            return tuple(self._coordinates)
 
 
     def add_vertex(self, x, y):
