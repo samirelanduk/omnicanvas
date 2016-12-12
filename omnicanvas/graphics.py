@@ -577,7 +577,7 @@ class Text(ShapeGraphic):
     :param horizontal_align: The horizontal alignment of the Text. Acceptable\
     values are ``left``, ``center`` (default) and ``right``.
     :param vertical_align: The vertical alignment of the Text. Acceptable\
-    values are ``top``, ``center`` (default) and ``bottom``.
+    values are ``top``, ``middle`` (default) and ``bottom``.
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
@@ -586,67 +586,8 @@ class Text(ShapeGraphic):
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
-    (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Text.
-
-    .. py:attribute:: x:
-
-        The x-value of the Text.
-
-    .. py:attribute:: y:
-
-        The y-value of the Text.
-
-    .. py:attribute:: font_size:
-
-        The font size of the Text.
-
-    .. py:attribute:: horizontal_align:
-
-        Determines what the coordinate of the Text represents. If ``center``
-        the coordinate will represent the middle of the Text. If ``left`` the
-        Text will be to the left of the coordinate and if ``right`` the Text
-        will be to the right.
-
-    .. py:attribute:: vertical_align:
-
-        Determines what the coordinate of the Text represents. If ``center``
-        the coordinate will represent the middle of the Text. If ``top`` the
-        Text will be above the coordinate and if ``bottom`` the Text
-        will be below it.
-
-    .. py:attribute:: fill_color:
-
-        The colour of the Text as a hex string.
-
-    .. py:attribute:: opacity:
-
-        The degree of transparency of the Text, from 1.0 (fully\
-        visible) to 0.0 (completely invisible).
-
-    .. py:attribute:: line_width:
-
-        The width of the Text's border in pixels.
-
-    .. py:attribute:: line_style:
-
-        The Text border line pattern. Acceptable values are ``-`` (default), \
-        ``..`` (dotted) or ``--`` (dashed).
-
-    .. py:attribute:: line_color:
-
-        The colour of the Text's border.
-
-    .. py:attribute:: rotation:
-
-        Any rotation to be applied, in the format (x of rotation point, y of\
-        rotation point, angle). For example, to rotate the Text 45 degrees
-        anti-clockwise about the point (100, 200) you would supply
-        ``(100, 200, 315)``.
-
-    .. py:attribute:: data:
-
-        Any data to be associated with the Text, as a ``dict``."""
+    (x of rotation point, y of rotation point, angle), in degrees.
+    :param dict data: Any data to be associated with the Text."""
 
     def __init__(self, x, y, text, *args, font_size=18, fill_color="#000000",
      line_width=0, horizontal_align="center", vertical_align="center", **kwargs):
@@ -695,6 +636,13 @@ class Text(ShapeGraphic):
 
 
     def x(self, x=None):
+        """The x-value of the Text's location. How this point relates to the
+        Text's location is determined by ``horizontal_align`` and
+        ``vertical_align``. Passing a value will update the x property.
+
+        :param x: If given, the Text's x value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if x is None:
             return self._x
         else:
@@ -704,6 +652,13 @@ class Text(ShapeGraphic):
 
 
     def y(self, y=None):
+        """The y-value of the Text's location. How this point relates to the
+        Text's location is determined by ``horizontal_align`` and
+        ``vertical_align``. Passing a value will update the y property.
+
+        :param y: If given, the Text's y value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if y is None:
             return self._y
         else:
@@ -713,6 +668,12 @@ class Text(ShapeGraphic):
 
 
     def text(self, text=None):
+        """The text that the the Graphic displays. If something other than a
+        string is passed, the ``__str__`` representation of that object will
+        be used. Passing a value will update the text property.
+
+        :param text: If given, the Text's text value will be set to this.
+        :rtype: ``str``"""
         if text is None:
             return self._text
         else:
@@ -720,6 +681,12 @@ class Text(ShapeGraphic):
 
 
     def font_size(self, font_size=None):
+        """The text's font size, in pt. Passing a value will update the
+        font_size.
+
+        :param font_size: If given, the font_size value will be set to this.
+        :rtype: ``int`` or ``float``"""
+
         if font_size is None:
             return self._font_size
         else:
@@ -729,6 +696,17 @@ class Text(ShapeGraphic):
 
 
     def horizontal_align(self, horizontal_align=None):
+        """The horizontal alignment of the text. If ``center`` the coordinate
+        will represent the middle of the Text. If ``left`` the Text will be to
+        the left of the coordinate and if ``right`` the Text will be to the
+        right. Passing a value will update the horizontal_align.
+
+        :param str horizontal_align: If given, the horizontal_align value will \
+        be set to this.
+        :raises ValueError: if you try to set horizontal_align to something \
+        other than the three allowed values.
+        :rtype: str"""
+
         if horizontal_align is None:
             return self._horizontal_align
         else:
@@ -744,6 +722,16 @@ class Text(ShapeGraphic):
 
 
     def vertical_align(self, vertical_align=None):
+        """The vertical alignment of the text. If ``middle`` the coordinate
+        will represent the middle of the Text. If ``top`` the Text will be to
+        the abovef the coordinate and if ``bottom`` the Text will be below.
+        Passing a value will update the vertical_align.
+
+        :param str vertical_align: If given, the vertical_align value will be \
+        set to this.
+        :raises ValueError: if you try to set vertical_align to something other\
+        than the three allowed values.
+        :rtype: str"""
         if vertical_align is None:
             return self._vertical_align
         else:
