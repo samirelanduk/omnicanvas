@@ -125,6 +125,22 @@ changed by specifying the desired horizontal and vertical alignment:
     >>> canvas.add_text(50, 50, "X", vertical_align="top", horizontal_align="left")
 
 
+Polylines
+#########
+
+These are very similar to :py:class:`.Polygon`, except the last vertex is not
+joined to the first one, and so they have no interior space. They are just lines
+with an arbitrary number of vertices.
+
+They behave very similarly to Polygons:
+
+    >>> canvas.add_polyline(60, 60, 90, 120, 30, 120)
+    >>> canvas.graphics()[-1].coordinates()
+    [60, 60, 90, 120, 30, 120]
+    >>> canvas.graphics()[-1].coordinates(xy_pairs=True)
+    ((60, 60), (90, 120), (30, 120))
+
+
 Outputs
 ~~~~~~~
 
