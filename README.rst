@@ -10,12 +10,45 @@ Example
   >>> import omnicanvas
   >>> canvas = omnicanvas.Canvas(700, 400)
   >>> canvas.add_rectangle(10, 20, 300, 200, fill_color="#CC0000")
-  >>> canvas.graphics[0]
+  >>> canvas.graphics()[0]
   <Rectangle 300×200 at (10,20)>
   >>> canvas.save("example.svg")
 
-See the the :doc:`examples page <examples>` for more examples, or the full API
+See the the examples for more examples, or the full API
 for a full listing of features.
+
+Installing
+----------
+
+pip
+~~~
+
+OmniCanvas can be installed using pip:
+
+``$ pip3 install omnicanvas``
+
+OmniCanvas is written for Python 3, and does not support Python 2.
+
+If you get permission errors, try using ``sudo``:
+
+``$ sudo pip3 install omnicanvas``
+
+
+Development
+~~~~~~~~~~~
+
+The repository for OmniCanvas, containing the most recent iteration, can be
+found `here <http://github.com/samirelanduk/omnicanvas/>`_. To clone the
+OmniCanvas repository directly from there, use:
+
+``git clone git://github.com/samirelanduk/omnicanvas.git``
+
+
+Requirements
+~~~~~~~~~~~~
+
+OmniCanvas currently has no external dependencies, and is pure Python.
+
 
 Overview
 --------
@@ -29,16 +62,16 @@ canvases, they work in much the same way.
 
     >>> import omnicanvas
     >>> canvas = omnicanvas.Canvas(600, 400)
-    >>> canvas.width
+    >>> canvas.width()
     600
-    >>> canvas.height
+    >>> canvas.height()
     400
 
 Canvases need width and height information, in pixels. You can also specify the
 background color:
 
     >>> canvas = omnicanvas.Canvas(600, 400, background_color="#0000DD")
-    >>> canvas.background_color
+    >>> canvas.background_color()
     '#0000DD'
 
 
@@ -57,30 +90,30 @@ Rectangles
 coordinates of their top-left corner, and width and height:
 
     >>> canvas.add_rectangle(10, 10, 300, 200)
-    >>> canvas.graphics[0]
+    >>> canvas.graphics()[0]
     <Rectangle 300×200 at (10,10)>
-    >>> canvas.graphics[0].width
+    >>> canvas.graphics()[0].width()
     300
 
 Rectangles inherit from ``ShapeGraphic`` which means they have a fill
 color and opacity:
 
     >>> canvas.add_rectangle(10, 10, 300, 200, fill_color="#3344EE", opacity=0.5)
-    >>> canvas.graphics[-1].fill_color
+    >>> canvas.graphics()[-1].fill_color()
     '#3344EE'
-    >>> canvas.graphics[-1].opacity
+    >>> canvas.graphics()[-1].opacity()
     0.5
 
 They *also*, like all classes which inherit from class ``Graphic``,
 have properties relating to their lines:
 
     >>> canvas.add_rectangle(10, 10, 300, 200, line_width=2, line_style="--")
-    >>> canvas.graphics[-1].line_width
+    >>> canvas.graphics()[-1].line_width()
     2
-    >>> canvas.graphics[-1].line_style
+    >>> canvas.graphics()[-1].line_style()
     '--'
-    >>> canvas.graphics[-1].line_color = "#FFFF00"
-    >>> canvas.graphics[-1].line_color
+    >>> canvas.graphics()[-1].line_color("#FFFF00")
+    >>> canvas.graphics()[-1].line_color()
     '#FFFF00'
 
 Lines
@@ -90,13 +123,13 @@ Lines
 by a start coordinate and an end coordinate:
 
     >>> canvas.add_line(10, 10, 90, 90)
-    >>> canvas.x1
+    >>> canvas.x1()
     10
-    >>> canvas.y1
+    >>> canvas.y1()
     10
-    >>> canvas.x2
+    >>> canvas.x2()
     90
-    >>> canvas.y2
+    >>> canvas.y2()
     90
 
 Lines inherit directly from ``Graphic`` and have the same properties
@@ -109,12 +142,13 @@ Polygons
 of points. These are given as a sequence of coordinates:
 
     >>> canvas.add_polygon(60, 60, 90, 120, 30, 120) # Creates a triangle
-    >>> canvas.graphics[-1].coordinates
-    [60, 60, 90, 120, 30, 120]
-    >>> canvas.graphics[-1].coordinates_to_xy_pairs()
+    >>> canvas.graphics()[-1].coordinates()
+    (60, 60, 90, 120, 30, 120)
+    >>> canvas.graphics()[-1].coordinates(xy_pairs=True)
     ((60, 60), (90, 120), (30, 120))
 
-You must supply an even number of points.
+You must supply an even number of points, and there must be at least three
+vertices.
 
 Otherwise they behave much like Rectangles - they inherit from
 ``ShapeGraphic` and :py:class:`.Graphic`` and so have the above
@@ -128,19 +162,35 @@ default ``fill_color`` is black, not white, and their default ``line_width`` is
 0, not 1.
 
     >>> canvas.add_text(50, 50, "OmniCanvas is sexy", font_size=32)
-    >>> canvas.graphics[-1].text
+    >>> canvas.graphics()[-1].text()
     'OmniCanvas is sexy'
-    >>> canvas.graphics[-1].font_size
+    >>> canvas.graphics()[-1].font_size()
     32
-    >>> canvas.graphics[-1].fill_color
+    >>> canvas.graphics()[-1].fill_color()
     '#000000'
-    >>> canvas.graphics[-1].line_width
+    >>> canvas.graphics()[-1].line_width()
     0
 
 The coordinate given by default will be the centre of the text. This can be
 changed by specifying the desired horizontal and vertical alignment:
 
     >>> canvas.add_text(50, 50, "X", vertical_align="top", horizontal_align="left")
+
+
+Polylines
+#########
+
+These are very similar to ``Polygon``, except the last vertex is not
+joined to the first one, and so they have no interior space. They are just lines
+with an arbitrary number of vertices.
+
+They behave very similarly to Polygons:
+
+    >>> canvas.add_polyline(60, 60, 90, 120, 30, 120)
+    >>> canvas.graphics()[-1].coordinates()
+    (60, 60, 90, 120, 30, 120)
+    >>> canvas.graphics()[-1].coordinates(xy_pairs=True)
+    ((60, 60), (90, 120), (30, 120))
 
 
 Outputs
@@ -159,6 +209,15 @@ method of canvases, which will return this raw text.
 
 Changelog
 ---------
+
+Release 0.2.0
+~~~~~~~~~~~~~
+
+`12 December 2016`
+
+* All attributes are now method properties.
+* Added function for converting HSL colours to RGB strings.
+* Added Polyline Graphic.
 
 
 Release 0.1.0
