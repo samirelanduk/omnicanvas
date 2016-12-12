@@ -581,7 +581,7 @@ class Text(ShapeGraphic):
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
-    :param line_width: Defaults to 1.
+    :param line_width: Defaults to 0.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
@@ -751,6 +751,23 @@ class Text(ShapeGraphic):
 
 
 class Polyline(Graphic):
+    """Base class: :py:class:`Graphic`
+
+    Polylines are lines with an arbitrary number of vertices. Unlike Polygons,
+    the last vertex is not joined to the first one, and so they have no
+    interior space.
+
+    :param \*coordinates: The coordinates as a sequence of alternating x and y \
+    values.
+    :param line_width: Defaults to 1.
+    :param str line_style: The line pattern. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: Defaults to '#000000'.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle), in degrees.
+    :param dict data: Any data to be associated with the Polygon.
+    :raises ValueError: if an odd number of coordinate values are given.
+    :raises GeometryError: if there are fewer than two vertices."""
 
     def __init__(self, *coordinates, **kwargs):
         Graphic.__init__(self, **kwargs)
@@ -770,6 +787,20 @@ class Polyline(Graphic):
 
 
     def coordinates(self, xy_pairs=False):
+        """Returns the coordinates of the Polyline. By default they will be
+        returned as a single ``tuple`` of alternating x and y values.
+
+        ``(x1, y1, x2, y2, x3, y3...)``
+
+        However, you can optionally have it return them as a tuple of xy
+        two-tuple pairs with the ``xy_pairs`` argument.
+
+        ``((x1, y1), (x2, y2), (x3, y3)...)``
+
+        :param bool xy_pairs: if True, the coordinates will be returned as xy\
+        pairs (see above).
+        :rtype: ``tuple``"""
+
         if xy_pairs:
             return tuple(zip(self._coordinates[:-1:2], self._coordinates[1::2]))
         else:
@@ -777,6 +808,12 @@ class Polyline(Graphic):
 
 
     def add_vertex(self, x, y):
+        """Adds a vertex to the Polyline. The vertex will be added at the end of
+        the list of vertices.
+
+        :param x: The x-value of the new vertex's coordinate.
+        :param y: The y-value of the new vertex's coordinate."""
+
         if not isinstance(x, int) and not isinstance(x, float):
             raise TypeError("x must be numeric, not '%s'" % x)
         if not isinstance(y, int) and not isinstance(y, float):
@@ -786,6 +823,12 @@ class Polyline(Graphic):
 
 
     def remove_vertex(self, index):
+        """Removes a the vertex at the specified index from the Polyline.
+
+        :param int index: The index of the vertex to be removed.
+        :raises GeometryError: if removing a vertex would leave the Polyline\
+        with fewer than two vertices."""
+
         if len(self._coordinates) <= 4:
             raise GeometryError("There must be at least two vertices")
         if not isinstance(index, int):
