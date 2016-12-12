@@ -375,53 +375,17 @@ class Line(Graphic):
 
     A straight line between two points.
 
+    :param x1: The x-value of the start point.
+    :param y1: The y-value of the start point.
+    :param x2: The x-value of the end point.
+    :param y2: The y-value of the end point.
     :param line_width: Defaults to 1.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
-    (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Graphic.
-
-    .. py:attribute:: x1:
-
-        The x-value of the start point.
-
-    .. py:attribute:: y1:
-
-        The y-value of the start point.
-
-    .. py:attribute:: x2:
-
-        The x-value of the end point.
-
-    .. py:attribute:: y2:
-
-        The y-value of the end point.
-
-    .. py:attribute:: line_width:
-
-        The width of the Line in pixels.
-
-    .. py:attribute:: line_style:
-
-        The Line pattern. Acceptable values are ``-`` (default), ``..`` \
-        (dotted) or ``--`` (dashed).
-
-    .. py:attribute:: line_color:
-
-        The colour of the Line.
-
-    .. py:attribute:: rotation:
-
-        Any rotation to be applied, in the format (x of rotation point, y of\
-        rotation point, angle). For example, to rotate the Line 45 degrees
-        anti-clockwise about the point (100, 200) you would supply
-        ``(100, 200, 315)``.
-
-    .. py:attribute:: data:
-
-        Any data to be associated with the Line, as a ``dict``."""
+    (x of rotation point, y of rotation point, angle), in degrees.
+    :param dict data: Any data to be associated with the Graphic."""
 
     def __init__(self, x1, y1, x2, y2, *args, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
@@ -446,6 +410,12 @@ class Line(Graphic):
 
 
     def x1(self, x1=None):
+        """The x value of the Line's start point coordinate. Passing a
+        value will update the x1 property.
+
+        :param x1: If given, the Line's x1 value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if x1 is None:
             return self._x1
         else:
@@ -455,6 +425,12 @@ class Line(Graphic):
 
 
     def y1(self, y1=None):
+        """The y value of the Line's start point coordinate. Passing a
+        value will update the y1 property.
+
+        :param y1: If given, the Line's y1 value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if y1 is None:
             return self._y1
         else:
@@ -464,6 +440,12 @@ class Line(Graphic):
 
 
     def x2(self, x2=None):
+        """The x value of the Line's end point coordinate. Passing a
+        value will update the x2 property.
+
+        :param x2: If given, the Line's x2 value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if x2 is None:
             return self._x2
         else:
@@ -473,6 +455,12 @@ class Line(Graphic):
 
 
     def y2(self, y2=None):
+        """The y value of the Line's end point coordinate. Passing a
+        value will update the y2 property.
+
+        :param y2: If given, the Line's y2 value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if y2 is None:
             return self._y2
         else:
