@@ -3,3 +3,4 @@
 
 .. automodule:: omnicanvas.graphics
     :members:
+    :inherited-members:

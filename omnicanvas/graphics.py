@@ -180,41 +180,8 @@ class ShapeGraphic(Graphic):
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
-    (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Shape.
-
-    .. py:attribute:: fill_color:
-
-        The colour of the Shape's interior, as a hex string.
-
-    .. py:attribute:: opacity:
-
-        The degree of transparency of the Shape's interior, from 1.0 (fully\
-        visible) to 0.0 (completely invisible).
-
-    .. py:attribute:: line_width:
-
-        The width of the Shape's border in pixels.
-
-    .. py:attribute:: line_style:
-
-        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
-        (dotted) or ``--`` (dashed).
-
-    .. py:attribute:: line_color:
-
-        The colour of the Shape's border.
-
-    .. py:attribute:: rotation:
-
-        Any rotation to be applied, in the format (x of rotation point, y of\
-        rotation point, angle). For example, to rotate the Shape 45 degrees
-        anti-clockwise about the point (100, 200) you would supply
-        ``(100, 200, 315)``.
-
-    .. py:attribute:: data:
-
-        Any data to be associated with the Shape, as a ``dict``."""
+    (x of rotation point, y of rotation point, angle), in degrees.
+    :param dict data: Any data to be associated with the Graphic."""
 
     def __init__(self, *args, fill_color="#FFFFFF", opacity=1, **kwargs):
         Graphic.__init__(self, *args, **kwargs)
@@ -231,6 +198,13 @@ class ShapeGraphic(Graphic):
 
 
     def fill_color(self, fill_color=None):
+        """The colour of the shape's interior space. Passing a value will update
+        the fill_color property. All colours must be in the form #RRGGBB.
+
+        :param str fill_color: If given, the Graphic's fill_color will be set to \
+        this.
+        :rtype: ``str``"""
+
         if fill_color is None:
             return self._fill_color
         else:
@@ -238,6 +212,13 @@ class ShapeGraphic(Graphic):
 
 
     def opacity(self, opacity=None):
+        """The degree of transparency of the interior space, from 0 to 1 (0
+        being invisible). Passing a value will update the opacity property.
+
+        :param floar opacity: If given, the Graphic's opacity will be set to \
+        this.
+        :rtype: ``float``"""
+
         if opacity is None:
             return self._opacity
         else:
