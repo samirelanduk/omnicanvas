@@ -10,7 +10,7 @@ Example
   >>> import omnicanvas
   >>> canvas = omnicanvas.Canvas(700, 400)
   >>> canvas.add_rectangle(10, 20, 300, 200, fill_color="#CC0000")
-  >>> canvas.graphics[0]
+  >>> canvas.graphics()[0]
   <Rectangle 300×200 at (10,20)>
   >>> canvas.save("example.svg")
 
