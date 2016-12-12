@@ -201,7 +201,7 @@ class ShapeGraphic(Graphic):
         """The colour of the shape's interior space. Passing a value will update
         the fill_color property. All colours must be in the form #RRGGBB.
 
-        :param str fill_color: If given, the Graphic's fill_color will be set to \
+        :param str fill_color: If given, the Shape's fill_color will be set to \
         this.
         :rtype: ``str``"""
 
@@ -215,7 +215,7 @@ class ShapeGraphic(Graphic):
         """The degree of transparency of the interior space, from 0 to 1 (0
         being invisible). Passing a value will update the opacity property.
 
-        :param floar opacity: If given, the Graphic's opacity will be set to \
+        :param floar opacity: If given, the Shape's opacity will be set to \
         this.
         :rtype: ``float``"""
 
@@ -254,57 +254,8 @@ class BoxGraphic(ShapeGraphic):
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
     :param tuple rotation: Any rotation to be applied, in the format\
-    (x of rotation point, y of rotation point, angle).
-    :param dict data: Any data to be associated with the Box.
-
-    .. py:attribute:: x:
-
-        The x-value of the top-left corner.
-
-    .. py:attribute:: y:
-
-        The y-value of the top-left corner.
-
-    .. py:attribute:: width:
-
-        The Box's width in pixels.
-
-    .. py:attribute:: height:
-
-        The Box's height in pixels.
-
-    .. py:attribute:: fill_color:
-
-        The colour of the Box's interior, as a hex string.
-
-    .. py:attribute:: opacity:
-
-        The degree of transparency of the Box's interior, from 1.0 (fully\
-        visible) to 0.0 (completely invisible).
-
-    .. py:attribute:: line_width:
-
-        The width of the Box's border in pixels.
-
-    .. py:attribute:: line_style:
-
-        The border line pattern. Acceptable values are ``-`` (default), ``..`` \
-        (dotted) or ``--`` (dashed).
-
-    .. py:attribute:: line_color:
-
-        The colour of the Box's border.
-
-    .. py:attribute:: rotation:
-
-        Any rotation to be applied, in the format (x of rotation point, y of\
-        rotation point, angle). For example, to rotate the Box 45 degrees
-        anti-clockwise about the point (100, 200) you would supply
-        ``(100, 200, 315)``.
-
-    .. py:attribute:: data:
-
-        Any data to be associated with the Box, as a ``dict``."""
+    (x of rotation point, y of rotation point, angle), in degrees.
+    :param dict data: Any data to be associated with the Box."""
 
     def __init__(self, x, y, width, height, *args, **kwargs):
         ShapeGraphic.__init__(self, *args, **kwargs)
@@ -327,6 +278,12 @@ class BoxGraphic(ShapeGraphic):
 
 
     def x(self, x=None):
+        """The x value of the Box's upper-left corner coordinate. Passing a
+        value will update the x property.
+
+        :param x: If given, the Box's x value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if x is None:
             return self._x
         else:
@@ -336,6 +293,12 @@ class BoxGraphic(ShapeGraphic):
 
 
     def y(self, y=None):
+        """The y value of the Box's upper-left corner coordinate. Passing a
+        value will update the y property.
+
+        :param y: If given, the Box's y value will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if y is None:
             return self._y
         else:
@@ -345,6 +308,11 @@ class BoxGraphic(ShapeGraphic):
 
 
     def width(self, width=None):
+        """The width of the Box. Passing a value will update the width.
+
+        :param width: If given, the Box's width will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if width is None:
             return self._width
         else:
@@ -354,6 +322,11 @@ class BoxGraphic(ShapeGraphic):
 
 
     def height(self, height=None):
+        """The height of the Box. Passing a value will update the height.
+
+        :param height: If given, the Box's height will be set to this.
+        :rtype: ``float`` or ``int``"""
+
         if height is None:
             return self._height
         else:
