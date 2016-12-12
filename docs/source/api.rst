@@ -5,3 +5,4 @@ Full API
     api/canvas
     api/graphics
     api/colors
+    api/exceptions
