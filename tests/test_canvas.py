@@ -269,7 +269,7 @@ class GraphicRetrievalTests(TestCase):
         ]
         self.canvas._graphics[0].name.return_value = "Graphic1"
         self.canvas._graphics[1].name.return_value = "Graphic2"
-        self.canvas._graphics[2].name.return_value = "Graphic3"
+        self.canvas._graphics[2].name.return_value = "Graphic2"
 
 
     def test_can_get_graphic_by_name(self):
@@ -283,10 +283,6 @@ class GraphicRetrievalTests(TestCase):
         )
         self.assertIs(
          self.canvas.get_graphic_by_name("Graphic3"),
-         self.canvas._graphics[2]
-        )
-        self.assertIs(
-         self.canvas.get_graphic_by_name("Graphic4"),
          None
         )
 
@@ -294,6 +290,26 @@ class GraphicRetrievalTests(TestCase):
     def test_can_only_search_for_graphic_by_string_name(self):
         with self.assertRaises(TypeError):
             self.canvas.get_graphic_by_name(100)
+
+
+    def test_can_get_graphics_by_name(self):
+        self.assertEqual(
+         self.canvas.get_graphics_by_name("Graphic1"),
+         [self.canvas._graphics[0]]
+        )
+        self.assertEqual(
+         self.canvas.get_graphics_by_name("Graphic2"),
+         [self.canvas._graphics[1], self.canvas._graphics[2]]
+        )
+        self.assertEqual(
+         self.canvas.get_graphics_by_name("Graphic3"),
+         []
+        )
+
+
+    def test_can_only_search_for_graphics_by_string_name(self):
+        with self.assertRaises(TypeError):
+            self.canvas.get_graphics_by_name(100)
 
 
 
