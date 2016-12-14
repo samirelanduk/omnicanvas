@@ -5,11 +5,22 @@ class GraphicCreationTests(TestCase):
 
     def test_can_create_graphic(self):
         graphic = Graphic()
+        self.assertEqual(graphic._name, None)
         self.assertEqual(graphic._line_width, 1)
         self.assertEqual(graphic._line_style, "-")
         self.assertEqual(graphic._line_color, "#000000")
         self.assertEqual(graphic._rotation, (0, 0, 0))
         self.assertEqual(graphic._data, {})
+
+
+    def test_can_create_graphic_with_name(self):
+        graphic = Graphic(name="jonas")
+        self.assertEqual(graphic._name, "jonas")
+
+
+    def test_name_must_be_str(self):
+        with self.assertRaises(TypeError):
+            Graphic(name=1)
 
 
     def test_can_create_graphic_with_line_width(self):
@@ -127,11 +138,24 @@ class GraphicPropertyTests(TestCase):
          line_width=1, line_style="--", line_color="#FFFFFF",
          rotation=(10, 10, 45), data={"key": "Value"}
         )
+        self.assertIs(graphic.name(), graphic._name)
         self.assertIs(graphic.line_width(), graphic._line_width)
         self.assertIs(graphic.line_style(), graphic._line_style)
         self.assertIs(graphic.line_color(), graphic._line_color)
         self.assertIs(graphic.rotation(), graphic._rotation)
         self.assertIs(graphic.data(), graphic._data)
+
+
+    def test_can_set_name(self):
+        graphic = Graphic(name="jonas")
+        graphic.name("eustace")
+        self.assertEqual(graphic.name(), "eustace")
+
+
+    def test_set_name_must_be_str(self):
+        graphic = Graphic(name="jonas")
+        with self.assertRaises(TypeError):
+            graphic.name(1)
 
 
     def test_can_set_line_width(self):
@@ -155,7 +179,6 @@ class GraphicPropertyTests(TestCase):
 
 
     def test_set_line_style_must_be_str(self):
-        graphic = Graphic(line_style="--")
         graphic = Graphic(line_style="--")
         with self.assertRaises(TypeError):
             graphic.line_style((1,1))

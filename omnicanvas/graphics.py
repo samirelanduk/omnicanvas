@@ -14,6 +14,7 @@ class Graphic:
     Its properties generally relate to lines, as all Graphics have an edge of
     some kind.
 
+    :param str name: An identifable name for the Graphic.
     :param line_width: Defaults to 1.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
@@ -22,8 +23,12 @@ class Graphic:
     (x of rotation point, y of rotation point, angle), in degrees.
     :param dict data: Any data to be associated with the Graphic."""
 
-    def __init__(self, line_width=1, line_style="-", line_color="#000000",
-     rotation=(0, 0, 0), data=None):
+    def __init__(self, name=None, line_width=1, line_style="-",
+    line_color="#000000", rotation=(0, 0, 0), data=None):
+        if not isinstance(name, str) and name is not None:
+            raise TypeError("name must be str, not '%s'" % name)
+        self._name = name
+
         if not isinstance(line_width, int) and not isinstance(line_width, float):
             raise TypeError("line_width must be numeric, not '%s'" % line_width)
         self._line_width = line_width
@@ -54,6 +59,20 @@ class Graphic:
         if data is not None and not isinstance(data, dict):
             raise TypeError("Data must be dict, not '%s'" % data)
         self._data = data if data is not None else {}
+
+
+    def name(self, name=None):
+        """An identifable name for the Graphic. Passing a value will update the
+        name property.
+
+        :param name: If given, the Graphic's name will be set to this.
+        :rtype: ``str``"""
+        if name is None:
+            return self._name
+        else:
+            if not isinstance(name, str):
+                raise TypeError("name must be str, not '%s'" % name)
+            self._name = name
 
 
     def line_width(self, line_width=None):
@@ -175,6 +194,7 @@ class ShapeGraphic(Graphic):
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
+    :param str name: An identifable name for the Graphic.
     :param line_width: Defaults to 1.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
@@ -249,6 +269,7 @@ class BoxGraphic(ShapeGraphic):
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
+    :param str name: An identifable name for the Graphic.
     :param line_width: Defaults to 1.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
@@ -348,6 +369,7 @@ class Rectangle(BoxGraphic):
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
+    :param str name: An identifable name for the Graphic.
     :param line_width: Defaults to 1.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
@@ -379,6 +401,7 @@ class Line(Graphic):
     :param y1: The y-value of the start point.
     :param x2: The x-value of the end point.
     :param y2: The y-value of the end point.
+    :param str name: An identifable name for the Graphic.
     :param line_width: Defaults to 1.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
@@ -483,6 +506,7 @@ class Polygon(ShapeGraphic):
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
+    :param str name: An identifable name for the Graphic.
     :param line_width: Defaults to 1.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
@@ -581,6 +605,7 @@ class Text(ShapeGraphic):
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
+    :param str name: An identifable name for the Graphic.
     :param line_width: Defaults to 0.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
@@ -760,6 +785,7 @@ class Polyline(Graphic):
     :param \*coordinates: The coordinates as a sequence of alternating x and y \
     values.
     :param line_width: Defaults to 1.
+    :param str name: An identifable name for the Graphic.
     :param str line_style: The line pattern. Acceptable values are\
     ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
     :param str line_color: Defaults to '#000000'.
