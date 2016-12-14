@@ -95,6 +95,23 @@ class Canvas:
         return list(self._graphics)
 
 
+    def get_graphic_by_name(self, name):
+        """Searches the canvas's :py:class:`.Graphic` objects and returns the
+        first one with a matching name. Returns ``None`` if there are no
+        matches.
+
+        :param str name: The name to search by.
+        :rtype: str"""
+
+        if not isinstance(name, str):
+            raise TypeError(
+             "Can only search for str name, not '%s'" % str(name)
+            )
+        for graphic in self.graphics():
+            if graphic.name() == name:
+                return graphic
+
+
     def add_rectangle(self, *args, **kwargs):
         """Adds a :py:class:`.Rectangle` to the canvas.
 

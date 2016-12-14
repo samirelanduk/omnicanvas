@@ -1,5 +1,6 @@
 import os
 from unittest import TestCase
+from unittest.mock import Mock
 from omnicanvas.canvas import Canvas
 import omnicanvas.graphics as graphics
 
@@ -256,6 +257,43 @@ class GraphicAdditionTests(TestCase):
     def test_add_polyline_returns_polyline(self):
         polyline = self.canvas.add_polyline(10, 30, 100, 45, 45, 40)
         self.assertIs(polyline, self.canvas.graphics()[-1])
+
+
+
+class GraphicRetrievalTests(TestCase):
+
+    def setUp(self):
+        self.canvas = Canvas(700, 500)
+        self.canvas._graphics = [
+         Mock(graphics.Graphic), Mock(graphics.Graphic), Mock(graphics.Graphic)
+        ]
+        self.canvas._graphics[0].name.return_value = "Graphic1"
+        self.canvas._graphics[1].name.return_value = "Graphic2"
+        self.canvas._graphics[2].name.return_value = "Graphic3"
+
+
+    def test_can_get_graphic_by_name(self):
+        self.assertIs(
+         self.canvas.get_graphic_by_name("Graphic1"),
+         self.canvas._graphics[0]
+        )
+        self.assertIs(
+         self.canvas.get_graphic_by_name("Graphic2"),
+         self.canvas._graphics[1]
+        )
+        self.assertIs(
+         self.canvas.get_graphic_by_name("Graphic3"),
+         self.canvas._graphics[2]
+        )
+        self.assertIs(
+         self.canvas.get_graphic_by_name("Graphic4"),
+         None
+        )
+
+
+    def test_can_only_search_for_graphic_by_string_name(self):
+        with self.assertRaises(TypeError):
+            self.canvas.get_graphic_by_name(100)
 
 
 
