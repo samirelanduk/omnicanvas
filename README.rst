@@ -151,7 +151,7 @@ You must supply an even number of points, and there must be at least three
 vertices.
 
 Otherwise they behave much like Rectangles - they inherit from
-``ShapeGraphic` and :py:class:`.Graphic`` and so have the above
+``Graphic`` and so have the above
 properties relating to fill and border.
 
 Text
@@ -193,6 +193,36 @@ They behave very similarly to Polygons:
     ((60, 60), (90, 120), (30, 120))
 
 
+Graphic Retrieval
+~~~~~~~~~~~~~~~~~
+
+All of the above graphic adding methods will return the graphic they have just
+added, if you need a reference to it later.
+
+>>> rectangle = canvas.add_rectangle(10, 10, 300, 200)
+>>> rectangle
+<Rectangle 300×200 at (10,10)>
+
+Additionally, all graphics can be given names, which can then be used to
+retrieve them from the Canvas using two methods -
+``~.canvas.Canvas.get_graphic_by_name`` and
+``~.canvas.Canvas.get_graphics_by_name``:
+
+>>> canvas.add_line(10, 10, 90, 90, name="Line 1")
+>>> canvas.add_line(20, 10, 90, 90, name="Line 2")
+>>> canvas.add_line(10, 20, 90, 90, name="A Line")
+>>> canvas.add_line(20, 20, 90, 90, name="A Line")
+>>> canvas.get_graphic_by_name("Line 1")
+<Line (10,10) to (90,70)>
+>>> canvas.get_graphic_by_name("Line 2")
+<Line (20,10) to (90,70)>
+>>> canvas.get_graphic_by_name("A Line")
+<Line (10,20) to (90,70)>
+>>> canvas.get_graphics_by_name("A Line")
+[<Line (10,20) to (90,70)>, <Line (20,20) to (90,70)>]
+
+
+
 Outputs
 ~~~~~~~
 
@@ -207,8 +237,18 @@ If you want to get the text of the SVG directly, you can use the ``to_svg()``
 method of canvases, which will return this raw text.
 
 
+
 Changelog
 ---------
+
+Release 0.2.1
+~~~~~~~~~~~~~
+
+`14 December 2016`
+
+* Graphics adding methods now return a reference to the graphic just added.
+* Added names to graphics, and methods for retrieving them from the canvas by name.
+
 
 Release 0.2.0
 ~~~~~~~~~~~~~
