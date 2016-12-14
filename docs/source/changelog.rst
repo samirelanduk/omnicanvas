@@ -1,6 +1,15 @@
 Changelog
 ---------
 
+Release 0.2.1
+~~~~~~~~~~~~~
+
+`14 December 2016`
+
+* Graphics adding methods now return a reference to the graphic just added.
+* Added names to graphics, and methods for retrieving them from the canvas by name.
+
+
 Release 0.2.0
 ~~~~~~~~~~~~~
 
