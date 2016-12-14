@@ -141,6 +141,36 @@ They behave very similarly to Polygons:
     ((60, 60), (90, 120), (30, 120))
 
 
+Graphic Retrieval
+~~~~~~~~~~~~~~~~~
+
+All of the above graphic adding methods will return the graphic they have just
+added, if you need a reference to it later.
+
+>>> rectangle = canvas.add_rectangle(10, 10, 300, 200)
+>>> rectangle
+<Rectangle 300×200 at (10,10)>
+
+Additionally, all graphics can be given names, which can then be used to
+retrieve them from the Canvas using two methods -
+:py:meth:`~.canvas.Canvas.get_graphic_by_name` and
+:py:meth:`~.canvas.Canvas.get_graphics_by_name`:
+
+>>> canvas.add_line(10, 10, 90, 90, name="Line 1")
+>>> canvas.add_line(20, 10, 90, 90, name="Line 2")
+>>> canvas.add_line(10, 20, 90, 90, name="A Line")
+>>> canvas.add_line(20, 20, 90, 90, name="A Line")
+>>> canvas.get_graphic_by_name("Line 1")
+<Line (10,10) to (90,70)>
+>>> canvas.get_graphic_by_name("Line 2")
+<Line (20,10) to (90,70)>
+>>> canvas.get_graphic_by_name("A Line")
+<Line (10,20) to (90,70)>
+>>> canvas.get_graphics_by_name("A Line")
+[<Line (10,20) to (90,70)>, <Line (20,20) to (90,70)>]
+
+
+
 Outputs
 ~~~~~~~
 
