@@ -179,6 +179,11 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(self.canvas._graphics[-1]._line_width, 1)
 
 
+    def test_add_rectangle_returns_rectangle(self):
+        rectangle = self.canvas.add_rectangle(10, 10, 50, 100)
+        self.assertIs(rectangle, self.canvas.graphics()[-1])
+
+
     def test_can_add_line(self):
         self.canvas.add_line(10, 10, 50, 100)
         self.assertIsInstance(
@@ -194,6 +199,11 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(self.canvas._graphics[-1]._line_width, 1)
 
 
+    def test_add_line_returns_line(self):
+        line = self.canvas.add_line(10, 10, 50, 100)
+        self.assertIs(line, self.canvas.graphics()[-1])
+
+
     def test_can_add_polygon(self):
         self.canvas.add_polygon(10, 30, 100, 45, 45, 40)
         self.assertIsInstance(
@@ -205,6 +215,11 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(len(self.canvas._graphics), 2)
         self.assertEqual(self.canvas._graphics[-1]._opacity, 0.1)
         self.assertEqual(self.canvas._graphics[-1]._line_width, 1)
+
+
+    def test_add_polygon_returns_polygon(self):
+        polygon = self.canvas.add_polygon(10, 30, 100, 45, 45, 40)
+        self.assertIs(polygon, self.canvas.graphics()[-1])
 
 
     def test_can_add_text(self):
@@ -221,6 +236,11 @@ class GraphicAdditionTests(TestCase):
         self.assertEqual(self.canvas._graphics[-1]._line_width, 0)
 
 
+    def test_add_text_returns_text(self):
+        text = self.canvas.add_text(10, 30, "TEXT")
+        self.assertIs(text, self.canvas.graphics()[-1])
+
+
     def test_can_add_polyline(self):
         self.canvas.add_polyline(10, 30, 100, 45, 45, 40)
         self.assertIsInstance(
@@ -231,6 +251,11 @@ class GraphicAdditionTests(TestCase):
         self.canvas.add_polyline(10, 30, 100, 45, 45, 40, line_width=0.1)
         self.assertEqual(len(self.canvas._graphics), 2)
         self.assertEqual(self.canvas._graphics[-1]._line_width, 0.1)
+
+
+    def test_add_polyline_returns_polyline(self):
+        polyline = self.canvas.add_polyline(10, 30, 100, 45, 45, 40)
+        self.assertIs(polyline, self.canvas.graphics()[-1])
 
 
 

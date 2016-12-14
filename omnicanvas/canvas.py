@@ -111,9 +111,11 @@ class Canvas:
         :param str line_color: The colour of the edge.
         :param tuple rotation: Any rotation to be applied, in the format\
         (x of rotation point, y of rotation point, angle).
-        :param dict data: Any data to be associated with the Rectangle."""
+        :param dict data: Any data to be associated with the Rectangle.
+        :rtype: :py:class:`.Rectangle`"""
 
         self._graphics.append(graphics.Rectangle(*args, **kwargs))
+        return self._graphics[-1]
 
 
     def add_line(self, *args, **kwargs):
@@ -129,9 +131,11 @@ class Canvas:
         :param str line_color: The colour of the Line.
         :param tuple rotation: Any rotation to be applied, in the format\
         (x of rotation point, y of rotation point, angle).
-        :param dict data: Any data to be associated with the Line."""
+        :param dict data: Any data to be associated with the Line.
+        :rtype: :py:class:`.Line`"""
 
         self._graphics.append(graphics.Line(*args, **kwargs))
+        return self._graphics[-1]
 
 
     def add_polygon(self, *args, **kwargs):
@@ -148,9 +152,11 @@ class Canvas:
         :param str line_color: The colour of the edge.
         :param tuple rotation: Any rotation to be applied, in the format\
         (x of rotation point, y of rotation point, angle).
-        :param dict data: Any data to be associated with the Polygon."""
+        :param dict data: Any data to be associated with the Polygon.
+        :rtype: :py:class:`.Polygon`"""
 
         self._graphics.append(graphics.Polygon(*args, **kwargs))
+        return self._graphics[-1]
 
 
     def add_text(self, *args, **kwargs):
@@ -173,9 +179,11 @@ class Canvas:
         :param str line_color: Defaults to '#000000'.
         :param tuple rotation: Any rotation to be applied, in the format\
         (x of rotation point, y of rotation point, angle), in degrees.
-        :param dict data: Any data to be associated with the Text."""
+        :param dict data: Any data to be associated with the Text.
+        :rtype: :py:class:`.Text`"""
 
         self._graphics.append(graphics.Text(*args, **kwargs))
+        return self._graphics[-1]
 
 
     def add_polyline(self, *args, **kwargs):
@@ -189,9 +197,11 @@ class Canvas:
         :param str line_color: The colour of the edge.
         :param tuple rotation: Any rotation to be applied, in the format\
         (x of rotation point, y of rotation point, angle).
-        :param dict data: Any data to be associated with the Polyline."""
+        :param dict data: Any data to be associated with the Polyline.
+        :rtype: :py:class:`.Polyline`"""
 
         self._graphics.append(graphics.Polyline(*args, **kwargs))
+        return self._graphics[-1]
 
 
     def save(self, path):
