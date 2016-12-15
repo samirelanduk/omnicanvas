@@ -83,7 +83,7 @@ class TextCreationTests(TestCase):
 
     def test_vertical_align_must_be_valid_text(self):
         with self.assertRaises(ValueError):
-            Text(50, 50, "Test", vertical_align="left")
+            Text(50, 50, "Test", vertical_align="middle")
 
 
 
@@ -172,7 +172,7 @@ class TextPropertiesTests(TestCase):
     def test_vertical_align_must_be_valid_text(self):
         text = Text(50, 50, "Test", vertical_align="top")
         with self.assertRaises(ValueError):
-            text.vertical_align("center")
+            text.vertical_align("middle")
 
 
 

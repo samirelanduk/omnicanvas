@@ -601,7 +601,7 @@ class Text(ShapeGraphic):
     :param horizontal_align: The horizontal alignment of the Text. Acceptable\
     values are ``left``, ``center`` (default) and ``right``.
     :param vertical_align: The vertical alignment of the Text. Acceptable\
-    values are ``top``, ``middle`` (default) and ``bottom``.
+    values are ``top``, ``center`` (default) and ``bottom``.
     :param str fill_color: Defaults to '#FFFFFF'.
     :param opacity: The degree of transparency, from 0 to 1 (0 being\
     invisible).
@@ -722,7 +722,7 @@ class Text(ShapeGraphic):
 
     def horizontal_align(self, horizontal_align=None):
         """The horizontal alignment of the text. If ``center`` the coordinate
-        will represent the middle of the Text. If ``left`` the Text will be to
+        will represent the center of the Text. If ``left`` the Text will be to
         the left of the coordinate and if ``right`` the Text will be to the
         right. Passing a value will update the horizontal_align.
 
@@ -747,8 +747,8 @@ class Text(ShapeGraphic):
 
 
     def vertical_align(self, vertical_align=None):
-        """The vertical alignment of the text. If ``middle`` the coordinate
-        will represent the middle of the Text. If ``top`` the Text will be to
+        """The vertical alignment of the text. If ``center`` the coordinate
+        will represent the center of the Text. If ``top`` the Text will be to
         the abovef the coordinate and if ``bottom`` the Text will be below.
         Passing a value will update the vertical_align.
 
@@ -764,7 +764,7 @@ class Text(ShapeGraphic):
                 raise TypeError(
                  "vertical align must be str, not '%s'" % vertical_align
                 )
-            if vertical_align not in ("top", "middle", "bottom"):
+            if vertical_align not in ("top", "center", "bottom"):
                 raise ValueError(
                  "'%s' is not a valid vertical alignment" % vertical_align
                 )
