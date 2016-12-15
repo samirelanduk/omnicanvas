@@ -241,6 +241,14 @@ method of canvases, which will return this raw text.
 Changelog
 ---------
 
+Release 0.2.2
+~~~~~~~~~~~~~
+
+`15 December 2016`
+
+* Fixed inconsistency in whether the central vertical alignment is 'middle' or 'center'
+
+
 Release 0.2.1
 ~~~~~~~~~~~~~
 
