@@ -81,7 +81,7 @@ Graphics
 Canvases contain a list of graphics (which all inherit from class
 ``Graphic``), and it is these objects which make up the image.
 
-Currently, there are four types.
+Currently, there are the following types.
 
 Rectangles
 ##########
