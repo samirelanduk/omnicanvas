@@ -1,5 +1,5 @@
 from unittest import TestCase
-from omnicanvas.colors import hsl_to_rgb
+from omnicanvas.colors import hsl_to_rgb, pallete
 
 class HslConversionTests(TestCase):
 
@@ -47,3 +47,15 @@ class HslConversionTests(TestCase):
             hsl_to_rgb(0, 50, -1)
         with self.assertRaises(ValueError):
             hsl_to_rgb(360, 50, 101)
+
+
+
+class PaletteTests(TestCase):
+
+    def test_can_produce_color(self):
+        color = pallete()
+        self.assertIsInstance(color, str)
+        self.assertEqual(len(color), 7)
+        self.assertEqual(color[0], "#")
+        for char in color[1:]:
+            self.assertIn(char, "0123456789ABCDEF")

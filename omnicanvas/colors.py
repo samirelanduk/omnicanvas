@@ -65,3 +65,8 @@ def hsl_to_rgb(hue, saturation, lightness):
 
     r, g, b = colorsys.hls_to_rgb(hue / 360, lightness / 100, saturation / 100)
     return ("#%02x%02x%02x" % (int(r * 255), int(g * 255), int(b * 255))).upper()
+
+
+def pallete():
+    nice_colors = ["#1B85B8"]
+    return nice_colors[0]
