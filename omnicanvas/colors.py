@@ -67,6 +67,14 @@ def hsl_to_rgb(hue, saturation, lightness):
     return ("#%02x%02x%02x" % (int(r * 255), int(g * 255), int(b * 255))).upper()
 
 
-def pallete():
-    nice_colors = ["#1B85B8"]
-    return nice_colors[0]
+colors = [
+ "#FF7373", # Red
+ "#AADDFF", # Pale blue
+ "#8AB33F", # Green
+ "#FFF68F", # Yellow
+ "#F9A12D", # Orange
+ "#9966CC", # Purple
+ "#1F99B3", # Turquoise
+ "#B3E784", # Pale green
+ "#3D332B", # Black
+]
