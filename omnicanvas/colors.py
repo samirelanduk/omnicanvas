@@ -67,6 +67,10 @@ def hsl_to_rgb(hue, saturation, lightness):
     return ("#%02x%02x%02x" % (int(r * 255), int(g * 255), int(b * 255))).upper()
 
 
+RED = "#FF7373"
+BLUE = "#AADDFF"
+GREEN = "#8AB33F"
+
 colors = [
  "#FF7373", # Red
  "#AADDFF", # Pale blue
