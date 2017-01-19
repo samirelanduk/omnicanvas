@@ -353,6 +353,33 @@ class GraphicReorderingTests(TestCase):
         )
 
 
+    def test_can_move_graphic_backward(self):
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic1, self.graphic2, self.graphic3, self.graphic4]
+        )
+        self.canvas.move_graphic_backward(self.graphic4)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic1, self.graphic2, self.graphic4, self.graphic3]
+        )
+        self.canvas.move_graphic_backward(self.graphic4)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic1, self.graphic4, self.graphic2, self.graphic3]
+        )
+        self.canvas.move_graphic_backward(self.graphic4)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic4, self.graphic1, self.graphic2, self.graphic3]
+        )
+        self.canvas.move_graphic_backward(self.graphic2)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic4, self.graphic2, self.graphic1, self.graphic3]
+        )
+
+
 class CanvasSvgTests(TestCase):
 
     def test_can_make_shell_svg(self):
