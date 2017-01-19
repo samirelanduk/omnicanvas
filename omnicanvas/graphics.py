@@ -604,6 +604,9 @@ class Oval(BoxGraphic):
         )
 
 
+    to_svg = svg.generate_oval_svg
+
+
 
 class Text(ShapeGraphic):
     """Base class: :py:class:`ShapeGraphic`

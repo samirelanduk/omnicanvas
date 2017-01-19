@@ -70,6 +70,17 @@ def generate_polygon_svg(polygon):
     )
 
 
+def generate_oval_svg(oval):
+    return '<ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f" style="%s"%s%s />' % (
+     *oval.center(),
+     oval.width() / 2,
+     oval.height() / 2,
+     oval.shape_svg(),
+     oval.rotation_svg(),
+     oval.data_svg()
+    )
+
+
 def generate_text_svg(text):
     horizontal_align = {
      "left": "end",
