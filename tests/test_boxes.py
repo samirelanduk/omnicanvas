@@ -82,3 +82,8 @@ class BoxGraphicPropertyTests(TestCase):
             box.height("20")
         box.width(10.5)
         box.height(10.5)
+
+
+    def test_box_center(self):
+        box = BoxGraphic(10, 20, 100, 200)
+        self.assertEqual(box.center(), (60, 120))
