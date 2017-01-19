@@ -223,6 +223,24 @@ class GraphicAdditionTests(TestCase):
         self.assertIs(polygon, self.canvas.graphics()[-1])
 
 
+    def test_can_add_oval(self):
+        self.canvas.add_oval(10, 30, 100, 45)
+        self.assertIsInstance(
+         self.canvas._graphics[-1],
+         graphics.Oval
+        )
+        self.assertEqual(self.canvas._graphics[-1]._x, 10)
+        self.canvas.add_oval(10, 30, 100, 45, opacity=0.1)
+        self.assertEqual(len(self.canvas._graphics), 2)
+        self.assertEqual(self.canvas._graphics[-1]._opacity, 0.1)
+        self.assertEqual(self.canvas._graphics[-1]._line_width, 1)
+
+
+    def test_add_oval_returns_oval(self):
+        oval = self.canvas.add_oval(10, 30, 100, 45)
+        self.assertIs(oval, self.canvas.graphics()[-1])
+
+
     def test_can_add_text(self):
         self.canvas.add_text(10, 30, "TEXT")
         self.assertIsInstance(

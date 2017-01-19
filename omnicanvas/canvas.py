@@ -194,6 +194,11 @@ class Canvas:
         return self._graphics[-1]
 
 
+    def add_oval(self, *args, **kwargs):
+        self._graphics.append(graphics.Oval(*args, **kwargs))
+        return self._graphics[-1]
+
+
     def add_polygon(self, *args, **kwargs):
         """Adds a :py:class:`.Polygon` to the canvas.
 
