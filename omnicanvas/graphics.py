@@ -590,7 +590,11 @@ class Polygon(ShapeGraphic):
 
 
 class Oval(BoxGraphic):
-    pass
+
+    def __repr__(self):
+        return "<Oval %i×%i at (%i,%i)>" % (
+         self._width, self._height, self._x, self._y
+        )
 
 
 

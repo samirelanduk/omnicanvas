@@ -17,3 +17,8 @@ class OvalCreationTests(TestCase):
         self.assertEqual(oval._line_color, "#000000")
         self.assertEqual(oval._rotation, (0, 0, 0))
         self.assertEqual(oval._data, {})
+
+
+    def test_oval_repr(self):
+        oval = Oval(10, 30, 400, 500)
+        self.assertEqual(str(oval), "<Oval 400×500 at (10,30)>")
