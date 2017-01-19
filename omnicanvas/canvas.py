@@ -128,6 +128,8 @@ class Canvas:
 
 
     def move_graphic_forward(self, graphic):
+        if not isinstance(graphic, graphics.Graphic):
+            raise TypeError("%s is not a Graphic" % str(graphic))
         if not graphic is self.graphics()[-1]:
             index = self.graphics().index(graphic)
             self._graphics[index], self._graphics[index + 1] = (
@@ -136,8 +138,14 @@ class Canvas:
 
 
     def move_graphic_backward(self, graphic):
+        if not isinstance(graphic, graphics.Graphic):
+            raise TypeError("%s is not a Graphic" % str(graphic))
         if not graphic is self.graphics()[0]:
             index = self.graphics().index(graphic)
+            if index == -1:
+                raise ValueError("%s is not a Graphic in %s" % (
+                 graphic, self
+                ))
             self._graphics[index], self._graphics[index - 1] = (
              self._graphics[index - 1], self._graphics[index]
             )

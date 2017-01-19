@@ -395,7 +395,21 @@ class GraphicReorderingTests(TestCase):
          self.canvas.graphics(),
          [self.graphic1, self.graphic2, self.graphic3, self.graphic4]
         )
-        
+
+
+    def test_can_only_reorder_graphics(self):
+        with self.assertRaises(TypeError):
+            self.canvas.move_graphic_forward("...")
+        with self.assertRaises(TypeError):
+            self.canvas.move_graphic_backward("...")
+
+
+    def test_graphic_must_be_present_to_be_reordered(self):
+        with self.assertRaises(ValueError):
+            self.canvas.move_graphic_forward(Mock(graphics.Graphic))
+        with self.assertRaises(ValueError):
+            self.canvas.move_graphic_backward(Mock(graphics.Graphic))
+
 
 
 class CanvasSvgTests(TestCase):
