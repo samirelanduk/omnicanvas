@@ -589,6 +589,11 @@ class Polygon(ShapeGraphic):
 
 
 
+class Oval(BoxGraphic):
+    pass
+
+
+
 class Text(ShapeGraphic):
     """Base class: :py:class:`ShapeGraphic`
 
