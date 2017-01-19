@@ -380,6 +380,24 @@ class GraphicReorderingTests(TestCase):
         )
 
 
+    def test_can_handle_edges_of_graphic_list(self):
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic1, self.graphic2, self.graphic3, self.graphic4]
+        )
+        self.canvas.move_graphic_forward(self.graphic4)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic1, self.graphic2, self.graphic3, self.graphic4]
+        )
+        self.canvas.move_graphic_backward(self.graphic1)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic1, self.graphic2, self.graphic3, self.graphic4]
+        )
+        
+
+
 class CanvasSvgTests(TestCase):
 
     def test_can_make_shell_svg(self):
