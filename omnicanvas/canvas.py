@@ -127,6 +127,13 @@ class Canvas:
         return [g for g in self.graphics() if g.name() == name]
 
 
+    def move_graphic_forward(self, graphic):
+        index = self.graphics().index(graphic)
+        self._graphics[index], self._graphics[index + 1] = (
+         self._graphics[index + 1], self._graphics[index]
+        )
+
+
     def add_rectangle(self, *args, **kwargs):
         """Adds a :py:class:`.Rectangle` to the canvas.
 

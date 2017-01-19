@@ -313,6 +313,46 @@ class GraphicRetrievalTests(TestCase):
 
 
 
+class GraphicReorderingTests(TestCase):
+
+    def setUp(self):
+        self.canvas = Canvas(700, 400)
+        self.graphic1 = Mock(graphics.Graphic)
+        self.graphic2 = Mock(graphics.Graphic)
+        self.graphic3 = Mock(graphics.Graphic)
+        self.graphic4 = Mock(graphics.Graphic)
+        self.canvas._graphics = [
+         self.graphic1, self.graphic2, self.graphic3, self.graphic4
+        ]
+
+
+    def test_can_move_graphic_forward(self):
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic1, self.graphic2, self.graphic3, self.graphic4]
+        )
+        self.canvas.move_graphic_forward(self.graphic1)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic2, self.graphic1, self.graphic3, self.graphic4]
+        )
+        self.canvas.move_graphic_forward(self.graphic1)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic2, self.graphic3, self.graphic1, self.graphic4]
+        )
+        self.canvas.move_graphic_forward(self.graphic1)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic2, self.graphic3, self.graphic4, self.graphic1]
+        )
+        self.canvas.move_graphic_forward(self.graphic3)
+        self.assertEqual(
+         self.canvas.graphics(),
+         [self.graphic2, self.graphic4, self.graphic3, self.graphic1]
+        )
+
+
 class CanvasSvgTests(TestCase):
 
     def test_can_make_shell_svg(self):
