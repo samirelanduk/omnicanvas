@@ -1,7 +1,7 @@
 """This module contains the various Graphics objects which can be painted to
 the canvas."""
 
-from .colors import process_color
+from .color import process_color
 from .exceptions import GeometryError
 from . import svg
 

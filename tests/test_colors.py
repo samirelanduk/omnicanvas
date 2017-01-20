@@ -1,5 +1,7 @@
 from unittest import TestCase
-from omnicanvas.colors import hsl_to_rgb
+import omnicanvas
+import omnicanvas.color
+from omnicanvas.color import hsl_to_rgb, colors
 
 class HslConversionTests(TestCase):
 
@@ -47,3 +49,26 @@ class HslConversionTests(TestCase):
             hsl_to_rgb(0, 50, -1)
         with self.assertRaises(ValueError):
             hsl_to_rgb(360, 50, 101)
+
+
+    def test_hsl_converter_imported_to_root(self):
+        self.assertIs(omnicanvas.hsl_to_rgb, hsl_to_rgb)
+
+
+
+class ColorConstantTests(TestCase):
+
+    def test_all_named_colors_in_list(self):
+        color_constants = [var for var in dir(omnicanvas.color) if var.isupper()]
+        for color in color_constants:
+            self.assertIn(getattr(omnicanvas.color, color), colors)
+
+
+    def test_all_named_colors_imported_to_root(self):
+        color_constants = [var for var in dir(omnicanvas.color) if var.isupper()]
+        for color in color_constants:
+            getattr(omnicanvas, color)
+
+
+    def test_colors_imported_to_root(self):
+        self.assertIs(omnicanvas.colors, colors)

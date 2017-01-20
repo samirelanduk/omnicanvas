@@ -1,6 +1,6 @@
 """This module contains the main Canvas class."""
 
-from .colors import process_color
+from .color import process_color
 from . import graphics
 from . import svg
 
