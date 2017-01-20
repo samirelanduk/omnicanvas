@@ -1,6 +1,7 @@
 import os
 from unittest import TestCase
 from unittest.mock import Mock
+import omnicanvas
 from omnicanvas.canvas import Canvas
 import omnicanvas.graphics as graphics
 
@@ -74,6 +75,10 @@ class CanvasCreationTests(TestCase):
             canvas = Canvas(700, 500, background_color="#FF0")
         with self.assertRaises(ValueError):
             canvas = Canvas(700, 500, background_color="#FFFG00")
+
+
+    def test_canvas_imported_to_root(self):
+        self.assertIs(omnicanvas.Canvas, Canvas)
 
 
 
