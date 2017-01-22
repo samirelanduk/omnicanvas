@@ -46,22 +46,22 @@ coordinates of their top-left corner, and width and height:
 Rectangles inherit from :py:class:`.ShapeGraphic` which means they have a fill
 color and opacity:
 
-    >>> canvas.add_rectangle(10, 10, 300, 200, fill_color="#3344EE", opacity=0.5)
-    >>> canvas.graphics()[-1].fill_color()
+    >>> rect = canvas.add_rectangle(10, 10, 300, 200, fill_color="#3344EE", opacity=0.5)
+    >>> rect.fill_color()
     '#3344EE'
-    >>> canvas.graphics()[-1].opacity()
+    >>> rect.opacity()
     0.5
 
 They *also*, like all classes which inherit from class :py:class:`.Graphic`,
 have properties relating to their lines:
 
-    >>> canvas.add_rectangle(10, 10, 300, 200, line_width=2, line_style="--")
-    >>> canvas.graphics()[-1].line_width()
+    >>> rect = canvas.add_rectangle(10, 10, 300, 200, line_width=2, line_style="--")
+    >>> rect.line_width()
     2
-    >>> canvas.graphics()[-1].line_style()
+    >>> rect.line_style()
     '--'
-    >>> canvas.graphics()[-1].line_color("#FFFF00")
-    >>> canvas.graphics()[-1].line_color()
+    >>> rect.line_color("#FFFF00")
+    >>> rect.line_color()
     '#FFFF00'
 
 Ovals
@@ -70,10 +70,10 @@ Ovals
 :py:class:`.Oval` objects represent circles and ovals generally. They are
 defined by the bounding rectangle around them.
 
->>> canvas.add_oval(10, 10, 300, 200)
->>> canvas.graphics()[0]
+>>> oval = canvas.add_oval(10, 10, 300, 200)
+>>> oval
 <Oval 300×200 at (10,10)>
->>> canvas.graphics()[0].width()
+>>> oval.width()
 300
 
 Like Rectangles they also have properties relating to their interior space and
@@ -85,14 +85,16 @@ Lines
 :py:class:`.Line` objects are even more straightforward. They are lines defined
 by a start coordinate and an end coordinate:
 
-    >>> canvas.add_line(10, 10, 90, 90)
-    >>> canvas.x1()
+    >>> line = canvas.add_line(10, 10, 90, 90)
+    >>> line
+    <Line (10,10) to (90,90)>
+    >>> line.x1()
     10
-    >>> canvas.y1()
+    >>> line.y1()
     10
-    >>> canvas.x2()
+    >>> line.x2()
     90
-    >>> canvas.y2()
+    >>> line.y2()
     90
 
 Lines inherit directly from :py:class:`.Graphic` and have the same properties

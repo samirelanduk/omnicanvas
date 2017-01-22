@@ -128,8 +128,8 @@ class Canvas:
 
 
     def move_graphic_forward(self, graphic):
-        """Shifts a :py:class:`.Graphic` forward - that is closer to the viewer.
-        This method will make the :py:class:`.Graphic` more visible if it is
+        """Moves a :py:class:`.Graphic` forward - that is, closer to the viewer.
+        This method will make the :py:class:`.Graphic` more visible if it was
         occluded.
 
         :param Graphic graphic: The :py:class:`.Graphic` to move forward."""

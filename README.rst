@@ -1,5 +1,5 @@
-OmniCanvas Documentation
-========================
+OmniCanvas
+==========
 
 OmniCanvas is a Python canvas which supports basic two-dimensional graphics,
 and outputs to various graphics formats - currently just SVG.
