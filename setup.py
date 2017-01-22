@@ -4,7 +4,7 @@ setup(
  name="omnicanvas",
  version="0.3.0",
  description="A Python generic canvas which can paint itself to SVG etc.",
- url="https://omnicanvas.readthedocs.io",
+ url="https://omnicanvas.samireland.com",
  author="Sam Ireland",
  author_email="mail@samireland.com",
  license="MIT",
