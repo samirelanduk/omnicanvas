@@ -119,7 +119,7 @@ have properties relating to their lines:
 Ovals
 #####
 
-:py:class:`.Oval` objects represent circles and ovals generally. They are
+``Oval`` objects represent circles and ovals generally. They are
 defined by the bounding rectangle around them.
 
 >>> canvas.add_oval(10, 10, 300, 200)
