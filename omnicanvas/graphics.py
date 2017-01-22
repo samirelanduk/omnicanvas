@@ -603,7 +603,8 @@ class Polygon(ShapeGraphic):
 class Oval(BoxGraphic):
     """Base class: :py:class:`BoxGraphic`
 
-    An elliptical graphic - a circle or oval.
+    An elliptical graphic - a circle or oval. They are defined by the bounding
+    rectangle around them.
 
     :param x: The x-coordinate of the Oval's bounding rectangle upper left corner.
     :param y: The y-coordinate of the Oval's bounding rectangle upper left corner.
