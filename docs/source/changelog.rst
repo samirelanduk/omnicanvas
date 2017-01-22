@@ -1,6 +1,15 @@
 Changelog
 ---------
 
+Release 0.3.0
+~~~~~~~~~~~~~
+
+`22 January 2017`
+
+* Added Oval Graphic.
+* Graphic objects can now be reordered by the Canvas.
+* There are now pleasant colour constants.
+
 Release 0.2.2
 ~~~~~~~~~~~~~
 
