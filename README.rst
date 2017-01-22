@@ -116,6 +116,21 @@ have properties relating to their lines:
     >>> canvas.graphics()[-1].line_color()
     '#FFFF00'
 
+Ovals
+#####
+
+:py:class:`.Oval` objects represent circles and ovals generally. They are
+defined by the bounding rectangle around them.
+
+>>> canvas.add_oval(10, 10, 300, 200)
+>>> canvas.graphics()[0]
+<Oval 300×200 at (10,10)>
+>>> canvas.graphics()[0].width()
+300
+
+Like Rectangles they also have properties relating to their interior space and
+their edges.
+
 Lines
 #####
 
@@ -240,6 +255,15 @@ method of canvases, which will return this raw text.
 
 Changelog
 ---------
+
+Release 0.3.0
+~~~~~~~~~~~~~
+
+`22 January 2017`
+
+* Added Oval Graphic.
+* Graphic objects can now be reordered by the Canvas.
+* There are now pleasant colour constants.
 
 Release 0.2.2
 ~~~~~~~~~~~~~
