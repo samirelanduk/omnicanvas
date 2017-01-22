@@ -357,6 +357,10 @@ class BoxGraphic(ShapeGraphic):
 
 
     def center(self):
+        """Returns the coordinates of the center point as an ``(x, y)`` tuple.
+
+        :rtype: ``tuple``"""
+
         return (
          self.x() + (self.width() / 2),
          self.y() + (self.height() / 2)
@@ -597,6 +601,24 @@ class Polygon(ShapeGraphic):
 
 
 class Oval(BoxGraphic):
+    """Base class: :py:class:`BoxGraphic`
+
+    An elliptical graphic - a circle or oval.
+
+    :param x: The x-coordinate of the Oval's bounding rectangle upper left corner.
+    :param y: The y-coordinate of the Oval's bounding rectangle upper left corner.
+    :param width: The bounding rectangle's width.
+    :param height: The bounding rectangle's height.
+    :param str fill_color: The Oval's interior colour.
+    :param opacity: The degree of transparency, from 0 to 1 (0 being\
+    invisible).
+    :param line_width: The width of the edge of the Oval in pixels.
+    :param str line_style: The pattern of the edges. Acceptable values are\
+    ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+    :param str line_color: The colour of the edge.
+    :param tuple rotation: Any rotation to be applied, in the format\
+    (x of rotation point, y of rotation point, angle).
+    :param dict data: Any data to be associated with the Oval."""
 
     def __repr__(self):
         return "<Oval %i×%i at (%i,%i)>" % (

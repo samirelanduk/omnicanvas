@@ -84,3 +84,4 @@ colors = [
  RED, BLUE, GREEN, YELLOW, ORANGE, PURPLE, PINK, BROWN, PALEBLUE, PALEGREEN,
  BLACK
 ]
+"""Color constants"""

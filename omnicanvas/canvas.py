@@ -128,6 +128,12 @@ class Canvas:
 
 
     def move_graphic_forward(self, graphic):
+        """Shifts a :py:class:`.Graphic` forward - that is closer to the viewer.
+        This method will make the :py:class:`.Graphic` more visible if it is
+        occluded.
+
+        :param Graphic graphic: The :py:class:`.Graphic` to move forward."""
+
         if not isinstance(graphic, graphics.Graphic):
             raise TypeError("%s is not a Graphic" % str(graphic))
         if not graphic is self.graphics()[-1]:
@@ -138,6 +144,11 @@ class Canvas:
 
 
     def move_graphic_backward(self, graphic):
+        """Shifts a :py:class:`.Graphic` backward - away from the viewer. This
+        method will hide the :py:class:`.Graphic` behind others.
+
+        :param Graphic graphic: The :py:class:`.Graphic` to move backward."""
+
         if not isinstance(graphic, graphics.Graphic):
             raise TypeError("%s is not a Graphic" % str(graphic))
         if not graphic is self.graphics()[0]:
@@ -195,6 +206,24 @@ class Canvas:
 
 
     def add_oval(self, *args, **kwargs):
+        """Adds a :py:class:`.Oval` to the canvas.
+
+        :param x: The x-coordinate of the Oval's bounding rectangle upper left corner.
+        :param y: The y-coordinate of the Oval's bounding rectangle upper left corner.
+        :param width: The bounding rectangle's width.
+        :param height: The bounding rectangle's height.
+        :param str fill_color: The Oval's interior colour.
+        :param opacity: The degree of transparency, from 0 to 1 (0 being\
+        invisible).
+        :param line_width: The width of the edge of the Oval in pixels.
+        :param str line_style: The pattern of the edges. Acceptable values are\
+        ``-`` (default), ``..`` (dotted) or ``--`` (dashed).
+        :param str line_color: The colour of the edge.
+        :param tuple rotation: Any rotation to be applied, in the format\
+        (x of rotation point, y of rotation point, angle).
+        :param dict data: Any data to be associated with the Oval.
+        :rtype: :py:class:`.Oval`"""
+
         self._graphics.append(graphics.Oval(*args, **kwargs))
         return self._graphics[-1]
 
